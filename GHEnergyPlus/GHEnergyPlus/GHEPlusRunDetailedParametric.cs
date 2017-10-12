@@ -261,7 +261,7 @@ namespace GHEnergyPlus
                 //***********************************************************************************
                 //***********************************************************************************
                 //***********************************************************************************
-                while (!File.Exists(path_out + idfmodified + "Table.csv"))
+                while (!File.Exists(path_out + idfmodified + ".eso"))
                 {
                     Console.WriteLine("waiting");
                 }
@@ -273,7 +273,7 @@ namespace GHEnergyPlus
                 //identify correct result file. load it. get the right numbers from it
                 lines = new string[]{};
                 list = new List<string>();
-                fileStream = new FileStream(path_out + idfmodified + "Table.csv", FileMode.Open, FileAccess.Read);
+                fileStream = new FileStream(path_out + idfmodified + ".eso", FileMode.Open, FileAccess.Read);
                 using (var streamReader = new StreamReader(fileStream))
                 {
                     string line;
@@ -290,26 +290,65 @@ namespace GHEnergyPlus
                 double primEnGas = 1.0;
 
                 string[] split;
-                //split = System.Text.RegularExpressions.Regex.Split(lines[49], "\r\n");
                 char delimiter = ',';
-                split = lines[49].Split(delimiter );
-                string heat = split[3];
-                double dblHeat = Convert.ToDouble(heat) * primEnGas;
+                //split = lines[49].Split(delimiter );
+                //string heat = split[3];
+                //double dblHeat = Convert.ToDouble(heat) * primEnGas;
 
-                split = lines[50].Split(delimiter);
-                string cool = split[2];
-                double dblCool = Convert.ToDouble(cool) * primEnElec;
+                //split = lines[50].Split(delimiter);
+                //string cool = split[2];
+                //double dblCool = Convert.ToDouble(cool) * primEnElec;
 
-                split = lines[51].Split(delimiter);
-                string light = split[2];
-                double dblLight = Convert.ToDouble(light) * primEnElec;
+                //split = lines[51].Split(delimiter);
+                //string light = split[2];
+                //double dblLight = Convert.ToDouble(light) * primEnElec;
 
-                split = lines[55].Split(delimiter);
-                string fan = split[2];
-                double dblFan = Convert.ToDouble(fan) * primEnElec;
+                //split = lines[55].Split(delimiter);
+                //string fan = split[2];
+                //double dblFan = Convert.ToDouble(fan) * primEnElec;
+                split = lines[28].Split(delimiter);
+                string heat_north = split[1];
+                split = lines[29].Split(delimiter);
+                string heat_west = split[1];
+                split = lines[30].Split(delimiter);
+                string heat_east = split[1];
+                split = lines[31].Split(delimiter);
+                string heat_south = split[1];
+                split = lines[32].Split(delimiter);
+                string heat_interior = split[1];
+                split = lines[33].Split(delimiter);
+                string heat_main = split[1];
+                double dblHeat = (Convert.ToDouble(heat_north) + Convert.ToDouble(heat_west)
+                    + Convert.ToDouble(heat_east) + Convert.ToDouble(heat_south)
+                    + Convert.ToDouble(heat_interior) + Convert.ToDouble(heat_main))
+                    * primEnGas / 3600000;
 
+                split = lines[36].Split(delimiter);
+                string cool = split[1];
+                double dblCool = Convert.ToDouble(cool) * primEnElec / 3600000;
 
-                result = (dblHeat + dblCool + dblLight + dblFan) / 1104;
+                split = lines[23].Split(delimiter);
+                string light_north = split[1];
+                split = lines[24].Split(delimiter);
+                string light_west = split[1];
+                split = lines[25].Split(delimiter);
+                string light_east = split[1];
+                split = lines[26].Split(delimiter);
+                string light_south = split[1];
+                split = lines[27].Split(delimiter);
+                string light_interior = split[1];
+                double dblLight = (Convert.ToDouble(light_north) + Convert.ToDouble(light_west)
+                    + Convert.ToDouble(light_east) + Convert.ToDouble(light_south) + Convert.ToDouble(light_interior))
+                    * primEnElec / 3600000;
+
+                split = lines[34].Split(delimiter);
+                string fan_supply = split[1];
+                split = lines[34].Split(delimiter);
+                string fan_return = split[1];
+                double dblFan = (Convert.ToDouble(fan_supply) + Convert.ToDouble(fan_return)) * primEnElec / 3600000;
+
+                result = (dblHeat + dblCool + dblLight + dblFan) / 1104;   //1104 is the square meter     
+
 
                 System.Threading.Thread.Sleep(sleeptime);
                 System.IO.File.Delete(path_in + idfmodified + ".idf");
