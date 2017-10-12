@@ -52,6 +52,11 @@ namespace GHEnergyPlus
         /// to store data in output parameters.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            string path_in = @"c:\eplus\EPOpti17\Input\";
+            string path_out = @"c:\eplus\EPOpti17\Output\";
+            string eplusbat = @"C:\EnergyPlusV8-5-0\RunEPlusEPOpti17.bat";
+
+
             string idffile = @"detailed_template";
             if (!DA.GetData(0, ref idffile)) { return; }
 
@@ -64,7 +69,6 @@ namespace GHEnergyPlus
             bool runit = false;
             if (!DA.GetData(3, ref runit)) { return; }
 
-            string eplusbat = @"C:\EnergyPlusV8-5-0\RunEPlusSimAud17.bat";
 
             if (runit == true)
             {
@@ -120,7 +124,7 @@ namespace GHEnergyPlus
                     //load idf into a huge string
                     lines = new string[]{};
                     list = new List<string>();
-                    fileStream = new FileStream(@"c:\eplus\SimAud17\Input\" + idffile + ".idf", FileMode.Open, FileAccess.Read);
+                    fileStream = new FileStream(path_in + idffile + ".idf", FileMode.Open, FileAccess.Read);
                     using (var streamReader = new StreamReader(fileStream))
                     {
                         string line;
@@ -232,7 +236,7 @@ namespace GHEnergyPlus
 
 
                     //write a new idf file
-                    File.WriteAllLines(@"c:\eplus\SimAud17\Input\" + idfmodified + ".idf", lines);
+                    File.WriteAllLines(path_in + idfmodified + ".idf", lines);
 
 
 
@@ -254,7 +258,7 @@ namespace GHEnergyPlus
                     //***********************************************************************************
                     //***********************************************************************************
                     //***********************************************************************************
-                    while (!File.Exists(@"c:\eplus\SimAud17\Output\" + idfmodified + "Table.csv"))
+                    while (!File.Exists(path_out + idfmodified + "Table.csv"))
                     {
                         Console.WriteLine("waiting");
                     }
@@ -266,7 +270,7 @@ namespace GHEnergyPlus
                     //identify correct result file. load it. get the right numbers from it
                     lines = new string[] { };
                     list = new List<string>();
-                    fileStream = new FileStream(@"c:\eplus\SimAud17\Output\" + idfmodified + "Table.csv", FileMode.Open, FileAccess.ReadWrite);
+                    fileStream = new FileStream(path_out + idfmodified + "Table.csv", FileMode.Open, FileAccess.ReadWrite);
                     using (var streamReader = new StreamReader(fileStream))
                     {
                         string line;
@@ -302,26 +306,30 @@ namespace GHEnergyPlus
                     double dblFan = Convert.ToDouble(fan) * primEnElec;
 
 
-                    result = (dblHeat + dblCool + dblLight + dblFan) / 1104;
-
-                    //while (File.Exists(@"c:\eplus\SimAud17\Output\" + idfmodified + "Table.csv"))
-                    //{
-                    //    Console.WriteLine("waiting");
-                    //    System.IO.File.Delete(@"c:\eplus\SimAud17\Output\" + idfmodified + "Table.csv");
-                    //}
-                  
+                    result = (dblHeat + dblCool + dblLight + dblFan) / 1104;                  
 
                     //DA.SetData(0, result);
                     //save result (kWh/m2a) in an array
                     sobResults[j] = result;
                     sobResultsStr[j] = result.ToString();
+
+                    System.Threading.Thread.Sleep(1500);
+                    System.IO.File.Delete(path_in + idfmodified + ".idf");
+                    System.IO.DirectoryInfo di = new DirectoryInfo(path_out);
+                    foreach (FileInfo file in di.GetFiles())
+                    {
+                        file.Delete();
+                    }
+                    foreach (DirectoryInfo dir in di.GetDirectories())
+                    {
+                        dir.Delete(true);
+                    }
+                    System.Threading.Thread.Sleep(1500);
                 }
 
 
-
-
                 //save sobResults as a text file
-                File.WriteAllLines(@"c:\eplus\SimAud17\Output\SobolResults.csv", sobResultsStr);
+                File.WriteAllLines(path_out + "SobolResults.csv", sobResultsStr);
 
 
 

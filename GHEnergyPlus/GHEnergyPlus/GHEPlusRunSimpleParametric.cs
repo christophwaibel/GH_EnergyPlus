@@ -31,6 +31,11 @@ namespace GHEnergyPlus
             pManager.AddNumberParameter("window l W", "ww", "Window West width in [m]", GH_ParamAccess.item);
             pManager.AddNumberParameter("window l E", "we", "Window East width in [m]", GH_ParamAccess.item);
             pManager.AddNumberParameter("transmittance", "τ", "Shading device transmittance [fraction]", GH_ParamAccess.item);
+
+            pManager.AddNumberParameter(" ", " ", " ", GH_ParamAccess.item);
+            pManager[7].Optional = true;
+            pManager.AddIntegerParameter("sleep", "sleep", "sleep. default is 1500", GH_ParamAccess.item);
+            pManager[8].Optional = true;
         }
 
 
@@ -44,8 +49,13 @@ namespace GHEnergyPlus
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            int sleeptime = 1500;
+            if (!DA.GetData(8, ref sleeptime)) {sleeptime = 1500; }
 
-            string eplusbat = @"C:\EnergyPlusV8-5-0\RunEPlusSimAud17.bat";
+
+            string path_in = @"c:\eplus\EPOpti17\Input\";
+            string path_out = @"c:\eplus\EPOpti17\Output\";
+            string eplusbat = @"C:\EnergyPlusV8-5-0\RunEPlusEPOpti17.bat";
 
             //get idf and weather files
             string idffile = @"blabla";
@@ -85,7 +95,7 @@ namespace GHEnergyPlus
                 //load idf into a huge string
                 string[] lines;
                 var list = new List<string>();
-                var fileStream = new FileStream(@"c:\eplus\SimAud17\Input\" + idffile + ".idf", FileMode.Open, FileAccess.Read);
+                var fileStream = new FileStream(path_in + idffile + ".idf", FileMode.Open, FileAccess.Read);
                 using (var streamReader = new StreamReader(fileStream))
                 {
                     string line;
@@ -126,7 +136,7 @@ namespace GHEnergyPlus
 
 
                 //write a new idf file
-                File.WriteAllLines(@"c:\eplus\SimAud17\Input\" + idfmodified + ".idf", lines);
+                File.WriteAllLines(path_in + idfmodified + ".idf", lines);
 
 
 
@@ -148,11 +158,11 @@ namespace GHEnergyPlus
                 //***********************************************************************************
                 //***********************************************************************************
                 //***********************************************************************************
-                while (!File.Exists(@"c:\eplus\SimAud17\Output\" + idfmodified + ".csv"))
+                while (!File.Exists(path_out + idfmodified + ".csv"))
                 {
                     Console.WriteLine("waiting");
                 }
-                System.Threading.Thread.Sleep(1500);
+                System.Threading.Thread.Sleep(sleeptime);
 
 
                 //output result (kWh/m2a) 
@@ -160,7 +170,7 @@ namespace GHEnergyPlus
                 //identify correct result file. load it. get the right numbers from it
                 lines = new string[] { };
                 list = new List<string>();
-                fileStream = new FileStream(@"c:\eplus\SimAud17\Output\" + idfmodified + ".csv", FileMode.Open, FileAccess.Read);
+                fileStream = new FileStream(path_out + idfmodified + ".csv", FileMode.Open, FileAccess.Read);
                 using (var streamReader = new StreamReader(fileStream))
                 {
                     string line;
@@ -191,11 +201,23 @@ namespace GHEnergyPlus
 
 
                 result = (dblHeat + dblCool + dblLight);
+                System.Threading.Thread.Sleep(sleeptime);
+                System.IO.File.Delete(path_in + idfmodified + ".idf");
+                System.IO.DirectoryInfo di = new DirectoryInfo(path_out);
+
+                foreach (FileInfo file in di.GetFiles())
+                {
+                    file.Delete();
+                }
+                foreach (DirectoryInfo dir in di.GetDirectories())
+                {
+                    dir.Delete(true);
+                }
 
 
-                //System.IO.File.Delete(@"c:\eplus\SimAud17\Output\" + idfmodified + "Table.csv");
 
                 DA.SetData(0, result);
+                //System.Threading.Thread.Sleep(sleeptime);
             }
 
 
