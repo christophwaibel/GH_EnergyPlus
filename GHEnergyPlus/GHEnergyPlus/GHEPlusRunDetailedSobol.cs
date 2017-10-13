@@ -187,18 +187,18 @@ namespace GHEnergyPlus
                     double ow = sobparameterset[j][2] + 8.05;
                     replacers[5] = (12.0 - (ww / 2.0)).ToString();      //x0
                     replacers[6] = (12.0 + (ww / 2.0)).ToString();      //x1
-                    replacers[7] = (0.6).ToString();  
-                    replacers[8] = (12.0 - (ww / 2.0)-0.5).ToString();
-                    replacers[9] = (12.0 + (ww / 2.0) + 0.5).ToString();
+                    replacers[7] = (0.6).ToString();                    //y0
+                    replacers[8] = (12.0 - (ww / 2.0) - 0.5).ToString();//x0 over
+                    replacers[9] = (12.0 + (ww / 2.0) + 0.5).ToString();//x1 over
                     replacers[10] = ow.ToString();
 
                     double we = sobparameterset[j][3] * 18.324 + 7.344;
                     double oe = sobparameterset[j][4] + 8.05;
                     replacers[11] = (12.0 - (we / 2.0)).ToString();      //x0
                     replacers[12] = (12.0 + (we / 2.0)).ToString();      //x1
-                    replacers[13] = (0.6).ToString();
-                    replacers[14] = (12.0 - (we / 2.0) - 0.5).ToString();
-                    replacers[15] = (12.0 + (we / 2.0) + 0.5).ToString();
+                    replacers[13] = (0.6).ToString();                    //y0
+                    replacers[14] = (12.0 - (we / 2.0) - 0.5).ToString();//x0 over
+                    replacers[15] = (12.0 + (we / 2.0) + 0.5).ToString();//x1 over
                     replacers[16] = oe.ToString();
 
                     double ws = sobparameterset[j][5] * 4.608 + 1.224;
@@ -336,9 +336,9 @@ namespace GHEnergyPlus
                     string light_south = split[1];
                     split = lines[27].Split(delimiter);
                     string light_interior = split[1];
-                    double dblLight = (Convert.ToDouble(light_north) + Convert.ToDouble(light_west)
-                        + Convert.ToDouble(light_east) + Convert.ToDouble(light_south) + Convert.ToDouble(light_interior))
-                        * primEnElec / 3600000;
+                    double dblLight = (Convert.ToDouble(light_north) * 5.0 + Convert.ToDouble(light_west)
+                        + Convert.ToDouble(light_east) + Convert.ToDouble(light_south) * 5.0 + Convert.ToDouble(light_interior))
+                        * primEnElec / 3600000;     //zone north and south need to be multiplied with 5 (5 rooms). This is not considered in the .eso
 
                     split = lines[34].Split(delimiter);
                     string fan_supply = split[1];

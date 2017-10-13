@@ -337,9 +337,9 @@ namespace GHEnergyPlus
                 string light_south = split[1];
                 split = lines[27].Split(delimiter);
                 string light_interior = split[1];
-                double dblLight = (Convert.ToDouble(light_north) + Convert.ToDouble(light_west)
-                    + Convert.ToDouble(light_east) + Convert.ToDouble(light_south) + Convert.ToDouble(light_interior))
-                    * primEnElec / 3600000;
+                double dblLight = (Convert.ToDouble(light_north) * 5.0 + Convert.ToDouble(light_west)
+                    + Convert.ToDouble(light_east) + Convert.ToDouble(light_south) * 5.0 + Convert.ToDouble(light_interior))
+                    * primEnElec / 3600000;  //zone north and south need to be multiplied with 5 (5 rooms). This is not considered in the .eso
 
                 split = lines[34].Split(delimiter);
                 string fan_supply = split[1];
