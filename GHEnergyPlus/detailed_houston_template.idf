@@ -1233,7 +1233,7 @@
     -8,                      !- Y Origin {m}
     0,                       !- Z Origin {m}
     1,                       !- Type
-    1,                       !- Multiplier
+    5,                       !- Multiplier
     2.7,                     !- Ceiling Height {m}
     129.6;                   !- Volume {m3}
 
