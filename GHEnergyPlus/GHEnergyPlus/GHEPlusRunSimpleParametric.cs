@@ -36,6 +36,9 @@ namespace GHEnergyPlus
             pManager[7].Optional = true;
             pManager.AddIntegerParameter("sleep", "sleep", "sleep. default is 1500", GH_ParamAccess.item);
             pManager[8].Optional = true;
+
+            pManager.AddIntegerParameter("folder", "folder", "folder, multi runs", GH_ParamAccess.item);
+            pManager[9].Optional = true;
         }
 
 
@@ -49,13 +52,16 @@ namespace GHEnergyPlus
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            int folderint = 0;
+            if (!DA.GetData(9, ref folderint )) { folderint =0;}
+
             int sleeptime = 1500;
             if (!DA.GetData(8, ref sleeptime)) {sleeptime = 1500; }
 
 
-            string path_in = @"c:\eplus\EPOpti17\Input\";
-            string path_out = @"c:\eplus\EPOpti17\Output\";
-            string eplusbat = @"C:\EnergyPlusV8-5-0\RunEPlusEPOpti17.bat";
+            string path_in = @"c:\eplus\EPOpti17\Input" + folderint + @"\";
+            string path_out = @"c:\eplus\EPOpti17\Output" + folderint + @"\";
+            string eplusbat = @"C:\EnergyPlusV8-5-0\RunEPlusEPOpti17_" + folderint + ".bat";
 
             //get idf and weather files
             string idffile = @"blabla";
