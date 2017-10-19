@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
+
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System.IO;
@@ -61,7 +63,8 @@ namespace GHEnergyPlus
             if (!DA.GetData(9, ref folderint)) { folderint = 0; }
             string path_in = @"c:\eplus\EPOpti17\Input" + folderint + @"\";
             string path_out = @"c:\eplus\EPOpti17\Output" + folderint + @"\";
-            string eplusbat = @"C:\EnergyPlusV8-5-0\RunEPlusEPOpti17_" + folderint + ".bat";
+            string eplusbat = @"c:\eplus\EPOpti17\Input" + folderint + @"\ep\RunEPlusEPOpti17_" + folderint + @".bat";
+            string eplusexe = @"c:\eplus\EPOpti17\Input" + folderint + @"\ep\energyplus.exe";
 
             //get idf and weather files
             string idffile = @"blabla";
@@ -94,9 +97,10 @@ namespace GHEnergyPlus
                 //***********************************************************************************
                 //***********************************************************************************
                 //modify idf file with parameters and save as new idf file
-                string now = DateTime.Now.ToString("h:mm:ss");
-                now = now.Replace(':', '_');
-                string idfmodified = idffile + "_" + now;
+                //string now = DateTime.Now.ToString("h:mm:ss");
+                //now = now.Replace(':', '_');
+                //string idfmodified = idffile + "_" + now;
+                string idfmodified = idffile + "_modi";
 
                 //load idf into a huge string
                 string[] lines;
@@ -123,11 +127,11 @@ namespace GHEnergyPlus
 
                 //replacers
                 string[] replacers = new string[4];
-                replacers[0] = alpha.ToString();       
-                replacers[1] = ww.ToString();    
-                replacers[2] = we.ToString();                
+                replacers[0] = alpha.ToString();
+                replacers[1] = ww.ToString();
+                replacers[2] = we.ToString();
                 replacers[3] = tau.ToString();
-          
+
 
 
 
@@ -144,6 +148,9 @@ namespace GHEnergyPlus
                 //write a new idf file
                 File.WriteAllLines(path_in + idfmodified + ".idf", lines);
 
+                string idffilenew = path_in + idfmodified + ".idf";
+                string weatherfilein = path_in + @"ep\WeatherData\" + weatherfile + ".epw";
+
 
 
 
@@ -151,25 +158,25 @@ namespace GHEnergyPlus
                 //***********************************************************************************
                 //***********************************************************************************
                 //run eplus
-                //var outt = System.Diagnostics.Process.Start(eplusbat, idfmodified + " " + weatherfile);
-                Thread t = new Thread(() => RunEplus(eplusbat, idfmodified, weatherfile));
-                t.Start();
 
+                string command = @" -w " + weatherfilein + @" -d " + path_out + @" " + idffilenew;
+                System.Diagnostics.Process P = System.Diagnostics.Process.Start(eplusexe, command);
+                P.WaitForExit();
 
+                //System.Threading.Thread.Sleep(sleeptime);
                 
 
 
 
-
-
+                
                 //***********************************************************************************
                 //***********************************************************************************
                 //***********************************************************************************
-                while (!File.Exists(path_out + idfmodified + ".csv"))
+                while (!File.Exists(path_out + "eplusout.eso"))
                 {
                     Console.WriteLine("waiting");
                 }
-                System.Threading.Thread.Sleep(sleeptime);
+                //System.Threading.Thread.Sleep(sleeptime);
 
 
                 //output result (kWh/m2a) 
@@ -177,7 +184,7 @@ namespace GHEnergyPlus
                 //identify correct result file. load it. get the right numbers from it
                 lines = new string[] { };
                 list = new List<string>();
-                fileStream = new FileStream(path_out + idfmodified + ".csv", FileMode.Open, FileAccess.Read);
+                fileStream = new FileStream(path_out + "eplusout.eso", FileMode.Open, FileAccess.Read);
                 using (var streamReader = new StreamReader(fileStream))
                 {
                     string line;
@@ -197,12 +204,14 @@ namespace GHEnergyPlus
                 string[] split;
                 //split = System.Text.RegularExpressions.Regex.Split(lines[49], "\r\n");
                 char delimiter = ',';
-                split = lines[1].Split(delimiter);
+                split = lines[12].Split(delimiter);
                 string light = split[1];
                 double dblLight = Convert.ToDouble(light) / 3600000 / 96 * primEnElec;
-                string heat = split[2];
+                split = lines[13].Split(delimiter);
+                string heat = split[1];
                 double dblHeat = Convert.ToDouble(heat) / 3600000 / 96 / EffHeat;
-                string cool = split[3];
+                split = lines[14].Split(delimiter);
+                string cool = split[1];
                 double dblCool = Convert.ToDouble(cool) / 3600000 / 96 / EffCool;
 
 
@@ -220,7 +229,7 @@ namespace GHEnergyPlus
                 {
                     dir.Delete(true);
                 }
-
+                
 
 
                 DA.SetData(0, result);
@@ -234,11 +243,7 @@ namespace GHEnergyPlus
 
         }
 
-        static void RunEplus(string eplusbat, string idfmodified, string weatherfile)
-        {
-            var outt = System.Diagnostics.Process.Start(eplusbat, idfmodified + " " + weatherfile);
 
-        }
 
 
         protected override System.Drawing.Bitmap Icon

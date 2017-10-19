@@ -49,17 +49,15 @@ namespace GHEnergyPlus
             if (!DA.GetData(4, ref folderint)) { folderint = 0; }
             string path_in = @"c:\eplus\EPOpti17\Input" + folderint + @"\";
             string path_out = @"c:\eplus\EPOpti17\Output" + folderint + @"\";
-            string eplusbat = @"C:\EnergyPlusV8-5-0\RunEPlusEPOpti17_" + folderint + ".bat";
+            string eplusexe = @"c:\eplus\EPOpti17\Input" + folderint + @"\ep\energyplus.exe";
 
-
-
-            string idffile = @"simple_template";
+            string idffile = @"blabla";
             if (!DA.GetData(0, ref idffile)) { return; }
 
-            string weatherfile = @"C:\EnergyPlusV8-5-0\RunEPlusSimAud17.bat";
+            string weatherfile = @"blabla";
             if (!DA.GetData(1, ref weatherfile)) { return; }
 
-            string sobolpath = @"C:\eplus\SimAud17\Input" + folderint + @"\sobol.csv";
+            string sobolpath = @"blabla";
             if (!DA.GetData(2, ref sobolpath)) { return; }
 
             bool runit = false;
@@ -117,7 +115,7 @@ namespace GHEnergyPlus
                     //now = now.Replace(':', '_');
                     //string now = j.ToString();
                     //string idfmodified = idffile + "_" + now;
-                    string idfmodified = idffile + "_" + folderint;
+                    string idfmodified = idffile + "_modi";
 
                     //load idf into a huge string
                     lines = new string[] { };
@@ -171,6 +169,8 @@ namespace GHEnergyPlus
 
                     //write a new idf file
                     File.WriteAllLines(path_in + idfmodified + ".idf", lines);
+                    string idffilenew = path_in + idfmodified + ".idf";
+                    string weatherfilein = path_in + @"ep\WeatherData\" + weatherfile + ".epw";
 
 
 
@@ -179,10 +179,11 @@ namespace GHEnergyPlus
                     //***********************************************************************************
                     //***********************************************************************************
                     //run eplus
-                    //var outt = System.Diagnostics.Process.Start(eplusbat, idfmodified + " " + weatherfile);
+                    string command = @" -w " + weatherfilein + @" -d " + path_out + @" " + idffilenew;
+                    System.Diagnostics.Process P = System.Diagnostics.Process.Start(eplusexe, command);
+                    //System.Diagnostics.Process P = System.Diagnostics.Process.Start(eplusbat, idfmodified + " " + weatherfile);
+                    P.WaitForExit();
 
-                    Thread t = new Thread(() => RunEplus(eplusbat, idfmodified, weatherfile));
-                    t.Start();
 
                     
 
@@ -192,7 +193,7 @@ namespace GHEnergyPlus
                     //***********************************************************************************
                     //***********************************************************************************
                     //***********************************************************************************
-                    while (!File.Exists(path_out + idfmodified + ".csv"))
+                    while (!File.Exists(path_out + "eplusout.eso"))
                     {
                         Console.WriteLine("waiting");
                     }
@@ -204,7 +205,7 @@ namespace GHEnergyPlus
                     //identify correct result file. load it. get the right numbers from it
                     lines = new string[] { };
                     list = new List<string>();
-                    fileStream = new FileStream(path_out + idfmodified + ".csv", FileMode.Open, FileAccess.Read);
+                    fileStream = new FileStream(path_out + "eplusout.eso", FileMode.Open, FileAccess.Read);
                     using (var streamReader = new StreamReader(fileStream))
                     {
                         string line;
@@ -224,12 +225,14 @@ namespace GHEnergyPlus
                     string[] split;
                     //split = System.Text.RegularExpressions.Regex.Split(lines[49], "\r\n");
                     char delimiter = ',';
-                    split = lines[1].Split(delimiter);
+                    split = lines[12].Split(delimiter);
                     string light = split[1];
                     double dblLight = Convert.ToDouble(light) / 3600000 / 96 * primEnElec;
-                    string heat = split[2];
+                    split = lines[13].Split(delimiter);
+                    string heat = split[1];
                     double dblHeat = Convert.ToDouble(heat) / 3600000 / 96 / EffHeat;
-                    string cool = split[3];
+                    split = lines[14].Split(delimiter);
+                    string cool = split[1];
                     double dblCool = Convert.ToDouble(cool) / 3600000 / 96 / EffCool;
 
 
@@ -266,36 +269,10 @@ namespace GHEnergyPlus
                 
 
 
-
-
             }
 
 
         }
-
-
-        //static void Main(string[] args)
-        //{
-        //    Thread t = new Thread(() => CountTo(10));
-        //    t.Start();
-
-        //    // You can use multiline lambdas
-        //    new Thread(() =>
-        //    {
-        //        CountTo(5);
-        //        CountTo(6);
-        //    }).Start();
-
-        //    Console.ReadLine();
-        //}
-
-        static void RunEplus(string eplusbat, string idfmodified, string weatherfile)
-        {
-            var outt = System.Diagnostics.Process.Start(eplusbat, idfmodified + " " + weatherfile);
-
-        }
-
-
 
 
 

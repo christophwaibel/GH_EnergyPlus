@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Threading;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System.IO;
@@ -81,12 +81,12 @@ namespace GHEnergyPlus
             if (!DA.GetData(18, ref folderint)) { folderint = 0; }
             string path_in = @"c:\eplus\EPOpti17\Input" + folderint + @"\";
             string path_out = @"c:\eplus\EPOpti17\Output" + folderint + @"\";
-            string eplusbat = @"C:\EnergyPlusV8-5-0\RunEPlusEPOpti17_" + folderint + ".bat";
+            string eplusexe = @"c:\eplus\EPOpti17\Input" + folderint + @"\ep\energyplus.exe";
 
             //get idf and weather files
-            string idffile = @"detailed_template";
+            string idffile = @"blabla";
             if (!DA.GetData(0, ref idffile)) { return; }
-            string weatherfile = @"C:\EnergyPlusV8-5-0\RunEPlusEPOpti17.bat";
+            string weatherfile = @"blabla";
             if (!DA.GetData(1, ref weatherfile)) { return; }
 
 
@@ -137,9 +137,9 @@ namespace GHEnergyPlus
                 //***********************************************************************************
                 //***********************************************************************************
                 //modify idf file with parameters and save as new idf file
-                string now = DateTime.Now.ToString("h:mm:ss");
-                now = now.Replace(':', '_');
-                string idfmodified = idffile + "_" + now;
+                //string now = DateTime.Now.ToString("h:mm:ss");
+                //now = now.Replace(':', '_');
+                string idfmodified = idffile + "_modi";
                 
                 //load idf into a huge string
                 string[] lines;
@@ -244,8 +244,9 @@ namespace GHEnergyPlus
 
 
                 //write a new idf file
-                File.WriteAllLines(path_in + idfmodified + ".idf", lines); 
-
+                File.WriteAllLines(path_in + idfmodified + ".idf", lines);
+                string idffilenew = path_in + idfmodified + ".idf";
+                string weatherfilein = path_in + @"ep\WeatherData\" + weatherfile + ".epw";
 
 
 
@@ -253,11 +254,11 @@ namespace GHEnergyPlus
                 //***********************************************************************************
                 //***********************************************************************************
                 //run eplus
-                var outt = System.Diagnostics.Process.Start(eplusbat, idfmodified + " " + weatherfile);
+                string command = @" -w " + weatherfilein + @" -d " + path_out + @" " + idffilenew;
+                System.Diagnostics.Process P = System.Diagnostics.Process.Start(eplusexe, command);
+                P.WaitForExit();
 
-
-
-
+                //System.Threading.Thread.Sleep(sleeptime);
 
 
 
@@ -266,11 +267,11 @@ namespace GHEnergyPlus
                 //***********************************************************************************
                 //***********************************************************************************
                 //***********************************************************************************
-                while (!File.Exists(path_out + idfmodified + ".eso"))
+                while (!File.Exists(path_out + "eplusout.eso"))
                 {
                     Console.WriteLine("waiting");
                 }
-                System.Threading.Thread.Sleep(sleeptime);
+                //System.Threading.Thread.Sleep(sleeptime);
 
 
                 //output result (kWh/m2a) 
@@ -278,7 +279,7 @@ namespace GHEnergyPlus
                 //identify correct result file. load it. get the right numbers from it
                 lines = new string[]{};
                 list = new List<string>();
-                fileStream = new FileStream(path_out + idfmodified + ".eso", FileMode.Open, FileAccess.Read);
+                fileStream = new FileStream(path_out + "eplusout.eso", FileMode.Open, FileAccess.Read);
                 using (var streamReader = new StreamReader(fileStream))
                 {
                     string line;
@@ -372,7 +373,13 @@ namespace GHEnergyPlus
             }
 
         }
+        
+        
+        static void RunEplus(string eplusexe, string command)
+        {
+            var outt = System.Diagnostics.Process.Start(eplusexe, command);
 
+        }
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>

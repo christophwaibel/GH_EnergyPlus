@@ -34,6 +34,9 @@ namespace GHEnergyPlus
                 "Path to Sobol sequence csv file. That should be a matrix with samples per row and parameters in columns. Create sequence e.g. in matlab.",
                 GH_ParamAccess.item);
             pManager.AddBooleanParameter("run", "run", "run EnergyPlus", GH_ParamAccess.item);
+
+            pManager.AddIntegerParameter("folder", "folder", "folder number, like 1,2,3, for parallel runs", GH_ParamAccess.item);
+            pManager[4].Optional = true;
         }
 
         /// <summary>
@@ -52,18 +55,20 @@ namespace GHEnergyPlus
         /// to store data in output parameters.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            string path_in = @"c:\eplus\EPOpti17\Input\";
-            string path_out = @"c:\eplus\EPOpti17\Output\";
-            string eplusbat = @"C:\EnergyPlusV8-5-0\RunEPlusEPOpti17.bat";
+            int folderint = 0;
+            if (!DA.GetData(4, ref folderint)) { folderint = 0; }
+            string path_in = @"c:\eplus\EPOpti17\Input" + folderint + @"\";
+            string path_out = @"c:\eplus\EPOpti17\Output" + folderint + @"\";
+            string eplusexe = @"c:\eplus\EPOpti17\Input" + folderint + @"\ep\energyplus.exe";
 
 
-            string idffile = @"detailed_template";
+            string idffile = @"blabla";
             if (!DA.GetData(0, ref idffile)) { return; }
 
-            string weatherfile = @"C:\EnergyPlusV8-5-0\RunEPlusSimAud17.bat";
+            string weatherfile = @"blabla";
             if (!DA.GetData(1, ref weatherfile)) { return; }
 
-            string sobolpath = @"C:\eplus\SimAud17\Input\sobol.csv";
+            string sobolpath = @"blabla";
             if (!DA.GetData(2, ref sobolpath)) { return; }
 
             bool runit = false;
@@ -118,8 +123,8 @@ namespace GHEnergyPlus
                     //modify idf file with parameters and save as new idf file
                     //string now = DateTime.Now.ToString("h:mm:ss");
                     //now = now.Replace(':', '_');
-                    string now = j.ToString();
-                    string idfmodified = idffile + "_" + now;
+                    //string now = j.ToString();
+                    string idfmodified = idffile + "_modi";
 
                     //load idf into a huge string
                     lines = new string[]{};
@@ -237,6 +242,8 @@ namespace GHEnergyPlus
 
                     //write a new idf file
                     File.WriteAllLines(path_in + idfmodified + ".idf", lines);
+                    string idffilenew = path_in + idfmodified + ".idf";
+                    string weatherfilein = path_in + @"ep\WeatherData\" + weatherfile + ".epw";
 
 
 
@@ -245,7 +252,9 @@ namespace GHEnergyPlus
                     //***********************************************************************************
                     //***********************************************************************************
                     //run eplus
-                    var outt = System.Diagnostics.Process.Start(eplusbat, idfmodified + " " + weatherfile);
+                    string command = @" -w " + weatherfilein + @" -d " + path_out + @" " + idffilenew;
+                    System.Diagnostics.Process P = System.Diagnostics.Process.Start(eplusexe, command);
+                    P.WaitForExit();
 
 
 
@@ -259,11 +268,11 @@ namespace GHEnergyPlus
                     //***********************************************************************************
                     //***********************************************************************************
                     //while (!File.Exists(path_out + idfmodified + "Table.csv"))
-                    while (!File.Exists(path_out + idfmodified + ".eso"))
+                    while (!File.Exists(path_out + "eplusout.eso"))
                     {
                         Console.WriteLine("waiting");
                     }
-                    System.Threading.Thread.Sleep(1500);
+                    //System.Threading.Thread.Sleep(1500);
 
 
                     //output result (kWh/m2a) 
@@ -272,7 +281,7 @@ namespace GHEnergyPlus
                     lines = new string[] { };
                     list = new List<string>();
                     //fileStream = new FileStream(path_out + idfmodified + "Table.csv", FileMode.Open, FileAccess.ReadWrite);
-                    fileStream = new FileStream(path_out + idfmodified + ".eso", FileMode.Open, FileAccess.ReadWrite); //reading the eso file to be conform with what WetterWright used. somehow, there is a difference in lighting energy .eso comapred to table.csv
+                    fileStream = new FileStream(path_out + "eplusout.eso", FileMode.Open, FileAccess.ReadWrite); //reading the eso file to be conform with what WetterWright used. somehow, there is a difference in lighting energy .eso comapred to table.csv
                     using (var streamReader = new StreamReader(fileStream))
                     {
                         string line;
