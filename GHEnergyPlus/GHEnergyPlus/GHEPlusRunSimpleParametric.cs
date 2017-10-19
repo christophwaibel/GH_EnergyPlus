@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Threading;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System.IO;
@@ -37,7 +37,7 @@ namespace GHEnergyPlus
             pManager.AddIntegerParameter("sleep", "sleep", "sleep. default is 1500", GH_ParamAccess.item);
             pManager[8].Optional = true;
 
-            pManager.AddIntegerParameter("folder", "folder", "folder, multi runs", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("folder", "folder", "folder number, like 1,2,3, for parallel runs", GH_ParamAccess.item);
             pManager[9].Optional = true;
         }
 
@@ -52,13 +52,13 @@ namespace GHEnergyPlus
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            int folderint = 0;
-            if (!DA.GetData(9, ref folderint )) { folderint =0;}
+
 
             int sleeptime = 1500;
             if (!DA.GetData(8, ref sleeptime)) {sleeptime = 1500; }
 
-
+            int folderint = 0;
+            if (!DA.GetData(9, ref folderint)) { folderint = 0; }
             string path_in = @"c:\eplus\EPOpti17\Input" + folderint + @"\";
             string path_out = @"c:\eplus\EPOpti17\Output" + folderint + @"\";
             string eplusbat = @"C:\EnergyPlusV8-5-0\RunEPlusEPOpti17_" + folderint + ".bat";
@@ -151,11 +151,12 @@ namespace GHEnergyPlus
                 //***********************************************************************************
                 //***********************************************************************************
                 //run eplus
-                var outt = System.Diagnostics.Process.Start(eplusbat, idfmodified + " " + weatherfile);
+                //var outt = System.Diagnostics.Process.Start(eplusbat, idfmodified + " " + weatherfile);
+                Thread t = new Thread(() => RunEplus(eplusbat, idfmodified, weatherfile));
+                t.Start();
 
 
-
-
+                
 
 
 
@@ -233,6 +234,11 @@ namespace GHEnergyPlus
 
         }
 
+        static void RunEplus(string eplusbat, string idfmodified, string weatherfile)
+        {
+            var outt = System.Diagnostics.Process.Start(eplusbat, idfmodified + " " + weatherfile);
+
+        }
 
 
         protected override System.Drawing.Bitmap Icon

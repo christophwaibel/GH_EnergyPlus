@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
@@ -28,6 +29,9 @@ namespace GHEnergyPlus
                 "Path to Sobol sequence csv file. That should be a matrix with samples per row and parameters in columns. Create sequence e.g. in matlab.",
                 GH_ParamAccess.item);
             pManager.AddBooleanParameter("run", "run", "run EnergyPlus", GH_ParamAccess.item);
+
+            pManager.AddIntegerParameter("folder", "folder", "folder number, like 1,2,3, for parallel runs", GH_ParamAccess.item);
+            pManager[4].Optional = true;
         }
 
 
@@ -41,9 +45,11 @@ namespace GHEnergyPlus
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            string path_in = @"c:\eplus\EPOpti17\Input\";
-            string path_out = @"c:\eplus\EPOpti17\Output\";
-            string eplusbat = @"C:\EnergyPlusV8-5-0\RunEPlusEPOpti17.bat";
+            int folderint = 0;
+            if (!DA.GetData(4, ref folderint)) { folderint = 0; }
+            string path_in = @"c:\eplus\EPOpti17\Input" + folderint + @"\";
+            string path_out = @"c:\eplus\EPOpti17\Output" + folderint + @"\";
+            string eplusbat = @"C:\EnergyPlusV8-5-0\RunEPlusEPOpti17_" + folderint + ".bat";
 
 
 
@@ -53,7 +59,7 @@ namespace GHEnergyPlus
             string weatherfile = @"C:\EnergyPlusV8-5-0\RunEPlusSimAud17.bat";
             if (!DA.GetData(1, ref weatherfile)) { return; }
 
-            string sobolpath = @"C:\eplus\SimAud17\Input\sobol.csv";
+            string sobolpath = @"C:\eplus\SimAud17\Input" + folderint + @"\sobol.csv";
             if (!DA.GetData(2, ref sobolpath)) { return; }
 
             bool runit = false;
@@ -109,8 +115,9 @@ namespace GHEnergyPlus
                     //modify idf file with parameters and save as new idf file
                     //string now = DateTime.Now.ToString("h:mm:ss");
                     //now = now.Replace(':', '_');
-                    string now = j.ToString();
-                    string idfmodified = idffile + "_" + now;
+                    //string now = j.ToString();
+                    //string idfmodified = idffile + "_" + now;
+                    string idfmodified = idffile + "_" + folderint;
 
                     //load idf into a huge string
                     lines = new string[] { };
@@ -172,12 +179,12 @@ namespace GHEnergyPlus
                     //***********************************************************************************
                     //***********************************************************************************
                     //run eplus
-                    var outt = System.Diagnostics.Process.Start(eplusbat, idfmodified + " " + weatherfile);
+                    //var outt = System.Diagnostics.Process.Start(eplusbat, idfmodified + " " + weatherfile);
 
+                    Thread t = new Thread(() => RunEplus(eplusbat, idfmodified, weatherfile));
+                    t.Start();
 
-
-
-
+                    
 
 
 
@@ -237,6 +244,7 @@ namespace GHEnergyPlus
 
 
                     System.Threading.Thread.Sleep(1500);
+                     
                     System.IO.File.Delete(path_in + idfmodified + ".idf");
                     System.IO.DirectoryInfo di = new DirectoryInfo(path_out);
                     foreach (FileInfo file in di.GetFiles())
@@ -247,7 +255,7 @@ namespace GHEnergyPlus
                     {
                         dir.Delete(true);
                     }
-                    System.Threading.Thread.Sleep(1500);
+                    //System.Threading.Thread.Sleep(1500);
                 }
 
 
@@ -255,13 +263,35 @@ namespace GHEnergyPlus
 
                 //save sobResults as a text file
                 File.WriteAllLines(path_out + "SobolResults.csv", sobResultsStr);
-
+                
 
 
 
 
             }
 
+
+        }
+
+
+        //static void Main(string[] args)
+        //{
+        //    Thread t = new Thread(() => CountTo(10));
+        //    t.Start();
+
+        //    // You can use multiline lambdas
+        //    new Thread(() =>
+        //    {
+        //        CountTo(5);
+        //        CountTo(6);
+        //    }).Start();
+
+        //    Console.ReadLine();
+        //}
+
+        static void RunEplus(string eplusbat, string idfmodified, string weatherfile)
+        {
+            var outt = System.Diagnostics.Process.Start(eplusbat, idfmodified + " " + weatherfile);
 
         }
 
