@@ -76,7 +76,7 @@ namespace GHEnergyPlus
             pManager.AddNumberParameter("BldD_X3", "x[32]", "Building D x-coordinate of cornerpoint 3, ∈ [0, 14.5].", GH_ParamAccess.item);
             pManager.AddNumberParameter("BldD_Y3", "x[33]", "Building D y-coordinate of cornerpoint 3, ∈ [0, 14.5].", GH_ParamAccess.item);
             pManager.AddNumberParameter("BldD_X4", "x[34]", "Building D x-coordinate of cornerpoint 4, ∈ [0, 14.5].", GH_ParamAccess.item);
-           
+
 
         }
 
@@ -94,6 +94,15 @@ namespace GHEnergyPlus
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+
+            // 1___4  1___4
+            // | C |  | D |
+            // 2---3  2---3
+            //
+            // 1___4  1___4
+            // | A |  | B |
+            // 2---3  2---3            
+            //
             // Bld A
             // pt 1, x/y bounds. x: [0.5, 15.0]; y: [25.0, 39.5]
             // pt 2, x/y bounds. x: [0.5, 15.0]; y: [0.5, 15.0]
@@ -117,6 +126,9 @@ namespace GHEnergyPlus
             // pt 2, x/y bounds. x: [40.5, 55.0]; y: [40.5, 55.0]
             // pt 3, x/y bounds. x: [65.0, 79.5]; y: [40.5, 55.0]
             // pt 4, x/y bounds. x: [65.0, 79.5]; y: [65.0, 65.0]
+
+
+
             int sleeptime = 1500;
             if (!DA.GetData(3, ref sleeptime)) { sleeptime = 1500; }
 
