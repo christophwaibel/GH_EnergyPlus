@@ -42,42 +42,40 @@ namespace GHEnergyPlus
             pManager.AddIntegerParameter("BldCfloors", "x[2]", "Building C number of floors ∈ {1,...,6}. Floor height is 4m.", GH_ParamAccess.item);
             pManager.AddIntegerParameter("BldDfloors", "x[3]", "Building D number of floors ∈ {1,...,6}. Floor height is 4m.", GH_ParamAccess.item);
 
-            pManager.AddNumberParameter("BldA_X1", "x[4]", "Building A x-coordinate of cornerpoint 1, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_Y1", "x[5]", "Building A y-coordinate of cornerpoint 1, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_X2", "x[6]", "Building A x-coordinate of cornerpoint 2, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_Y2", "x[7]", "Building A y-coordinate of cornerpoint 2, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_X3", "x[8]", "Building A x-coordinate of cornerpoint 3, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_Y3", "x[9]", "Building A y-coordinate of cornerpoint 3, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_X4", "x[10]", "Building A x-coordinate of cornerpoint 4, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_Y4", "x[11]", "Building A y-coordinate of cornerpoint 4, ∈ [0, 14.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_X1", "x[4]", "Building A x-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_Y1", "x[5]", "Building A y-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_X2", "x[6]", "Building A x-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_Y2", "x[7]", "Building A y-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_X3", "x[8]", "Building A x-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_Y3", "x[9]", "Building A y-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_X4", "x[10]", "Building A x-coordinate of cornerpoint 4, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_Y4", "x[11]", "Building A y-coordinate of cornerpoint 4, ∈ [0, 9.5].", GH_ParamAccess.item);
 
-            pManager.AddNumberParameter("BldB_X1", "x[12]", "Building B x-coordinate of cornerpoint 1, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_Y1", "x[13]", "Building B y-coordinate of cornerpoint 1, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_X2", "x[14]", "Building B x-coordinate of cornerpoint 2, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_Y2", "x[15]", "Building B y-coordinate of cornerpoint 2, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_X3", "x[16]", "Building B x-coordinate of cornerpoint 3, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_Y3", "x[17]", "Building B y-coordinate of cornerpoint 3, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_X4", "x[18]", "Building B x-coordinate of cornerpoint 4, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_Y4", "x[19]", "Building B y-coordinate of cornerpoint 4, ∈ [0, 14.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_X1", "x[12]", "Building B x-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_Y1", "x[13]", "Building B y-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_X2", "x[14]", "Building B x-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_Y2", "x[15]", "Building B y-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_X3", "x[16]", "Building B x-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_Y3", "x[17]", "Building B y-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_X4", "x[18]", "Building B x-coordinate of cornerpoint 4, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_Y4", "x[19]", "Building B y-coordinate of cornerpoint 4, ∈ [0, 9.5].", GH_ParamAccess.item);
 
-            pManager.AddNumberParameter("BldC_X1", "x[20]", "Building C x-coordinate of cornerpoint 1, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_Y1", "x[21]", "Building C y-coordinate of cornerpoint 1, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_X2", "x[22]", "Building C x-coordinate of cornerpoint 2, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_Y2", "x[23]", "Building C y-coordinate of cornerpoint 2, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_X3", "x[24]", "Building C x-coordinate of cornerpoint 3, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_Y3", "x[25]", "Building C y-coordinate of cornerpoint 3, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_X4", "x[26]", "Building C x-coordinate of cornerpoint 4, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_Y4", "x[27]", "Building C y-coordinate of cornerpoint 4, ∈ [0, 10].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_X1", "x[20]", "Building C x-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_Y1", "x[21]", "Building C y-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_X2", "x[22]", "Building C x-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_Y2", "x[23]", "Building C y-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_X3", "x[24]", "Building C x-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_Y3", "x[25]", "Building C y-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_X4", "x[26]", "Building C x-coordinate of cornerpoint 4, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_Y4", "x[27]", "Building C y-coordinate of cornerpoint 4, ∈ [0, 5.0].", GH_ParamAccess.item);
 
-            pManager.AddNumberParameter("BldD_X1", "x[28]", "Building D x-coordinate of cornerpoint 1, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_Y1", "x[29]", "Building D y-coordinate of cornerpoint 1, ∈ [0, 10].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_X2", "x[30]", "Building D x-coordinate of cornerpoint 2, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_Y2", "x[31]", "Building D y-coordinate of cornerpoint 2, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_X3", "x[32]", "Building D x-coordinate of cornerpoint 3, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_Y3", "x[33]", "Building D y-coordinate of cornerpoint 3, ∈ [0, 14.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_X4", "x[34]", "Building D x-coordinate of cornerpoint 4, ∈ [0, 14.5].", GH_ParamAccess.item);
-
-
+            pManager.AddNumberParameter("BldD_X1", "x[28]", "Building D x-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_Y1", "x[29]", "Building D y-coordinate of cornerpoint 1, ∈ [0, 5.0].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_X2", "x[30]", "Building D x-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_Y2", "x[31]", "Building D y-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_X3", "x[32]", "Building D x-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_Y3", "x[33]", "Building D y-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_X4", "x[34]", "Building D x-coordinate of cornerpoint 4, ∈ [0, 9.5].", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -94,7 +92,9 @@ namespace GHEnergyPlus
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-
+            //_________________________________________________________________________
+            ///////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////
             // 1___4  1___4
             // | C |  | D |
             // 2---3  2---3
@@ -102,30 +102,92 @@ namespace GHEnergyPlus
             // 1___4  1___4
             // | A |  | B |
             // 2---3  2---3            
-            //
+
+
+            //_________________________________________________________________________
+            ///////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////
+            // EXTERNAL WALLS
             // Bld A
-            // pt 1, x/y bounds. x: [0.5, 15.0]; y: [25.0, 39.5]
-            // pt 2, x/y bounds. x: [0.5, 15.0]; y: [0.5, 15.0]
-            // pt 3, x/y bounds. x: [25.0, 39.5]; y: [0.5, 15.0]
-            // pt 4, x/y bounds. x: [25.0, 39.5]; y: [25.0, 39.5]
+            // pt 1, x/y bounds. x: [0.5, 10.0]; y: [30.0, 39.5]
+            // pt 2, x/y bounds. x: [0.5, 10.0]; y: [0.5, 10.0]
+            // pt 3, x/y bounds. x: [30.0, 39.5]; y: [0.5, 10.0]
+            // pt 4, x/y bounds. x: [30.0, 39.5]; y: [30.0, 39.5]
 
             // Bld B
-            // pt 1, x/y bounds. x: [40.5, 55.0]; y: [25.0, 39.5]
-            // pt 2, x/y bounds. x: [40.5, 55.0]; y: [0.5, 15.0]
-            // pt 3, x/y bounds. x: [65.0, 79.5]; y: [0.5, 15.0]
-            // pt 4, x/y bounds. x: [65.0, 79.5]; y: [25.0, 39.5]
+            // pt 1, x/y bounds. x: [40.5, 50.0]; y: [30.0, 39.5]
+            // pt 2, x/y bounds. x: [40.5, 50.0]; y: [0.5, 10.0]
+            // pt 3, x/y bounds. x: [70.0, 79.5]; y: [0.5, 10.0]
+            // pt 4, x/y bounds. x: [70.0, 79.5]; y: [30.0, 39.5]
 
             // Bld C
-            // pt 1, x/y bounds. x: [0.5, 15.0]; y: [65.0, 79.5]
-            // pt 2, x/y bounds. x: [0.5, 15.0]; y: [40.5, 55.0]
-            // pt 3, x/y bounds. x: [25.0, 39.5]; y: [40.5, 55.0]
-            // pt 4, x/y bounds. x: [25.0, 39.5]; y: [65.0, 75.0]
+            // pt 1, x/y bounds. x: [0.5, 10.0]; y: [70.0, 79.5]
+            // pt 2, x/y bounds. x: [0.5, 10.0]; y: [40.5, 50.0]
+            // pt 3, x/y bounds. x: [30.0, 39.5]; y: [40.5, 50.0]
+            // pt 4, x/y bounds. x: [30.0, 39.5]; y: [70.0, 75.0]
 
             // Bld D
-            // pt 1, x/y bounds. x: [40.5, 55.0]; y: [65.0, 75.0]
-            // pt 2, x/y bounds. x: [40.5, 55.0]; y: [40.5, 55.0]
-            // pt 3, x/y bounds. x: [65.0, 79.5]; y: [40.5, 55.0]
-            // pt 4, x/y bounds. x: [65.0, 79.5]; y: [65.0, 65.0]
+            // pt 1, x/y bounds. x: [40.5, 50.0]; y: [70.0, 75.0]
+            // pt 2, x/y bounds. x: [40.5, 50.0]; y: [40.5, 50.0]
+            // pt 3, x/y bounds. x: [70.0, 79.5]; y: [40.5, 50.0]
+            // pt 4, x/y bounds. x: [70.0, 79.5]; y: [65.0, 65.0]
+
+
+            //_________________________________________________________________________
+            ///////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////
+            // INTERNAL WALLS
+            // Bld A
+            // pt 1, x/y bounds. x: [5.5, 15.0]; y: [25.0, 34.5]
+            // pt 2, x/y bounds. x: [5.5, 15.0]; y: [5.5, 15.0]
+            // pt 3, x/y bounds. x: [25.0, 34.5]; y: [5.5, 15.0]
+            // pt 4, x/y bounds. x: [25.0, 34.5]; y: [25.0, 34.5]
+
+            // Bld B
+            // pt 1, x/y bounds. x: [45.5, 55.0]; y: [25.0, 34.5]
+            // pt 2, x/y bounds. x: [45.5, 55.0]; y: [5.5, 15.0]
+            // pt 3, x/y bounds. x: [65.0, 74.5]; y: [5.5, 15.0]
+            // pt 4, x/y bounds. x: [65.0, 74.5]; y: [25.0, 34.5]
+
+            // Bld C
+            // pt 1, x/y bounds. x: [5.5, 15.0]; y: [64.39, 73.89]
+            // pt 2, x/y bounds. x: [5.5, 15.0]; y: [45.5, 55.0]
+            // pt 3, x/y bounds. x: [25.0, 34.5]; y: [45.5, 55.0]
+            // pt 4, x/y bounds. x: [25.0, 34.5]; y: [65.54, 70.54]
+
+            // Bld D
+            // pt 1, x/y bounds. x: [45.5, 55.0]; y: [63.56, 68.56]
+            // pt 2, x/y bounds. x: [45.5, 55.0]; y: [45.5, 55.0]
+            // pt 3, x/y bounds. x: [65.0, 74.5]; y: [45.5, 55.0]
+            // pt 4, x/y bounds. x: [65.0, 74.5]; y: [61.12, 61.12]
+
+
+
+            //_________________________________________________________________________
+            ///////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////
+            // CORE WALLS
+            //
+            // connecting points 1, 2, 3, 4 from each internal A, B, C, D
+
+
+
+            //_________________________________________________________________________
+            ///////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////
+            // CONNECTING WALLS internal to external
+            //
+            // 1_____4  
+            // | \_/ |
+            // | |_| |
+            // |_/_\_|
+            // 2     3 
+            //
+            // connecting point 1 from internal to point 1 from external
+
+
+
+
 
 
 
