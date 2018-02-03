@@ -115,8 +115,14 @@ namespace GHEnergyPlus
 
             //get input parameters
             int dvar = 35;
+            int[] xint = new int[4];
             double[] x = new double[dvar];
-            for (int i = 0; i < x.Length; i++)
+            for (int i = 0; i < 4; i++)
+            {
+                if (!DA.GetData(i + 6, ref xint[i]))  return;
+                else x[i]= Convert.ToDouble(xint[i]);
+            }
+            for (int i = 4; i < x.Length; i++)
                 if (!DA.GetData(i + 6, ref x[i])) { return; };
 
 
@@ -206,8 +212,8 @@ namespace GHEnergyPlus
                 D_px_lb[2] = 70;
                 D_px_lb[3] = 70;
                 D_py_lb[0] = 70;
-                D_py_lb[1] = 50;
-                D_py_lb[2] = 50;
+                D_py_lb[1] = 40.5;
+                D_py_lb[2] = 40.5;
                 D_py_lb[3] = 65;
 
 
@@ -409,16 +415,16 @@ namespace GHEnergyPlus
                 //      /__/|
                 //      |__|/
                 //
-                Point3d [][] Boxes = new Point3d[4][];  // [BLD][0-8]
+                Point3d[][] Boxes = new Point3d[4][];  // [BLD][0-8]
                 for (int b = 0; b < 4; b++)
                 {
                     Boxes[b] = new Point3d[8];
                     int pcnt = 0;
                     for (int p = 0; p < 8; p++)
                     {
-                        if(pcnt == 4) pcnt =0;
-                        if (p > 3) Boxes[b][p] = new Point3d(px[b][pcnt], py[b][pcnt], 0);
-                        else Boxes[b][p] = new Point3d(px[b][pcnt], py[b][pcnt], z[b]);
+                        if (pcnt == 4) pcnt = 0;
+                        if (p > 3) Boxes[b][p] = new Point3d(px[b][pcnt], py[b][pcnt], z[b]);
+                        else Boxes[b][p] = new Point3d(px[b][pcnt], py[b][pcnt], 0);
                         pcnt++;
                     }
                 }
@@ -433,8 +439,10 @@ namespace GHEnergyPlus
                 //modify idf file with parameters and save as new idf file
                 //string idfmodified = idffile + "_modi";
 
-                double rent = 70; //chf per sqm
-                double[] totenergy = new double[4];
+
+                double[] totElec = new double[4];
+                double[] totCool = new double[4];
+                double[] totHeat = new double[4];
                 double[] totsqm = new double[4];
 
                 for (int BLD = 0; BLD < 4; BLD++)
@@ -496,59 +504,59 @@ namespace GHEnergyPlus
                     int xvar_count = 0;
                     for (int i = 0; i < 4; i++)        // DL xy
                     {
-                        replacethis[xvar_count] = @"DLx_p" + i.ToString() + @"%";
+                        replacethis[xvar_count] = @"%DLx_p" + i.ToString() + @"%";
                         replacethis[xvar_count + 1] = @"%DLy_p" + i.ToString() + @"%";
                         xvar_count += 2;
                     }
                     for (int i = 0; i < levels; i++)    // DL z
                     {
-                        replacethis[xvar_count] = @"DLz_p" + (i + 1).ToString() + @"%";
+                        replacethis[xvar_count] = @"%DLz_p" + (i + 1).ToString() + @"%";
                         xvar_count++;
                     }
 
                     for (int i = 0; i < 4; i++)         // window areas
                     {
-                        replacethis[xvar_count] = @"Vent_f" + i.ToString() + @"%";
+                        replacethis[xvar_count] = @"%Vent_f" + i.ToString() + @"%";
                         xvar_count++;
                     }
 
                     for (int i = 0; i < 4; i++)         // corner points, inside and outside
                     {
-                        replacethis[xvar_count] = @"px_" + i.ToString() + @"%";
-                        replacethis[xvar_count + 1] = @"pxin_" + i.ToString() + @"%";
-                        replacethis[xvar_count + 2] = @"py_" + i.ToString() + @"%";
-                        replacethis[xvar_count + 3] = @"pyin_" + i.ToString() + @"%";
+                        replacethis[xvar_count] = @"%px_" + i.ToString() + @"%";
+                        replacethis[xvar_count + 1] = @"%pxin_" + i.ToString() + @"%";
+                        replacethis[xvar_count + 2] = @"%py_" + i.ToString() + @"%";
+                        replacethis[xvar_count + 3] = @"%pyin_" + i.ToString() + @"%";
                         xvar_count += 4;
                     }
 
                     for (int i = 0; i < levels; i++)    //floor heights
                     {
-                        replacethis[xvar_count] = @"pz_" + (i + 1).ToString() + @"%";
+                        replacethis[xvar_count] = @"%pz_" + (i + 1).ToString() + @"%";
                         xvar_count++;
                     }
 
                     //window corner points per zone
-                    replacethis[xvar_count] = @"winAx_l%";
-                    replacethis[xvar_count + 1] = @"winAx_r%";
-                    replacethis[xvar_count + 2] = @"winAy_l%";
-                    replacethis[xvar_count + 3] = @"winAy_r%";
-                    replacethis[xvar_count + 4] = @"winBx_l%";
-                    replacethis[xvar_count + 5] = @"winBx_r%";
-                    replacethis[xvar_count + 6] = @"winBy_l%";
-                    replacethis[xvar_count + 7] = @"winBy_r%";
-                    replacethis[xvar_count + 8] = @"winCx_l%";
-                    replacethis[xvar_count + 9] = @"winCx_r%";
-                    replacethis[xvar_count + 10] = @"winCy_l%";
-                    replacethis[xvar_count + 11] = @"winCy_r%";
-                    replacethis[xvar_count + 12] = @"winDx_l%";
-                    replacethis[xvar_count + 13] = @"winDx_r%";
-                    replacethis[xvar_count + 14] = @"winDy_l%";
-                    replacethis[xvar_count + 15] = @"winDy_r%";
+                    replacethis[xvar_count] = @"%winAx_l%";
+                    replacethis[xvar_count + 1] = @"%winAx_r%";
+                    replacethis[xvar_count + 2] = @"%winAy_l%";
+                    replacethis[xvar_count + 3] = @"%winAy_r%";
+                    replacethis[xvar_count + 4] = @"%winBx_l%";
+                    replacethis[xvar_count + 5] = @"%winBx_r%";
+                    replacethis[xvar_count + 6] = @"%winBy_l%";
+                    replacethis[xvar_count + 7] = @"%winBy_r%";
+                    replacethis[xvar_count + 8] = @"%winCx_l%";
+                    replacethis[xvar_count + 9] = @"%winCx_r%";
+                    replacethis[xvar_count + 10] = @"%winCy_l%";
+                    replacethis[xvar_count + 11] = @"%winCy_r%";
+                    replacethis[xvar_count + 12] = @"%winDx_l%";
+                    replacethis[xvar_count + 13] = @"%winDx_r%";
+                    replacethis[xvar_count + 14] = @"%winDy_l%";
+                    replacethis[xvar_count + 15] = @"%winDy_r%";
                     xvar_count += 16;
-                    for (int i = 1; i < levels; i++)    //window heights per floor
+                    for (int i = 0; i < levels; i++)    //window heights per floor
                     {
-                        replacethis[xvar_count] = @"win_btm_" + (i + 1).ToString() + @"%";
-                        replacethis[xvar_count + 1] = @"win_top_" + (i + 1).ToString() + @"%";
+                        replacethis[xvar_count] = @"%win_btm_" + (i + 1).ToString() + @"%";
+                        replacethis[xvar_count + 1] = @"%win_top_" + (i + 1).ToString() + @"%";
                         xvar_count += 2;
                     }
 
@@ -641,29 +649,29 @@ namespace GHEnergyPlus
                     Vector3d cpzone0L = new Vector3d(px[BLD][0], py[BLD][0], 0);
                     Vector3d vecZ0 = Vector3d.Subtract(cpzone0L, cpzone0R);
                     vecZ0.Unitize();
-                    win_L[0] = Point3d.Add(new Point3d(cpzone0L), Vector3d.Multiply(1.0, vecZ0));
-                    win_R[0] = Point3d.Add(new Point3d(cpzone0R), Vector3d.Multiply(-1.0, vecZ0));
+                    win_L[0] = Point3d.Add(new Point3d(cpzone0L), Vector3d.Multiply(-1.0, vecZ0));
+                    win_R[0] = Point3d.Add(new Point3d(cpzone0R), Vector3d.Multiply(1.0, vecZ0));
 
                     Vector3d cpzone1R = new Vector3d(px[BLD][2], py[BLD][2], 0);
                     Vector3d cpzone1L = new Vector3d(px[BLD][1], py[BLD][1], 0);
                     Vector3d vecZ1 = Vector3d.Subtract(cpzone1L, cpzone1R);
                     vecZ1.Unitize();
-                    win_L[1] = Point3d.Add(new Point3d(cpzone1L), Vector3d.Multiply(1.0, vecZ1));
-                    win_R[1] = Point3d.Add(new Point3d(cpzone1R), Vector3d.Multiply(-1.0, vecZ1));
+                    win_L[1] = Point3d.Add(new Point3d(cpzone1L), Vector3d.Multiply(-1.0, vecZ1));
+                    win_R[1] = Point3d.Add(new Point3d(cpzone1R), Vector3d.Multiply(1.0, vecZ1));
 
                     Vector3d cpzone2R = new Vector3d(px[BLD][3], py[BLD][3], 0);
                     Vector3d cpzone2L = new Vector3d(px[BLD][2], py[BLD][2], 0);
                     Vector3d vecZ2 = Vector3d.Subtract(cpzone2L, cpzone2R);
                     vecZ2.Unitize();
-                    win_L[2] = Point3d.Add(new Point3d(cpzone2L), Vector3d.Multiply(1.0, vecZ2));
-                    win_R[2] = Point3d.Add(new Point3d(cpzone2R), Vector3d.Multiply(-1.0, vecZ2));
+                    win_L[2] = Point3d.Add(new Point3d(cpzone2L), Vector3d.Multiply(-1.0, vecZ2));
+                    win_R[2] = Point3d.Add(new Point3d(cpzone2R), Vector3d.Multiply(1.0, vecZ2));
 
                     Vector3d cpzone3R = new Vector3d(px[BLD][0], py[BLD][0], 0);
                     Vector3d cpzone3L = new Vector3d(px[BLD][3], py[BLD][3], 0);
                     Vector3d vecZ3 = Vector3d.Subtract(cpzone3L, cpzone3R);
                     vecZ3.Unitize();
-                    win_L[3] = Point3d.Add(new Point3d(cpzone3L), Vector3d.Multiply(1.0, vecZ3));
-                    win_R[3] = Point3d.Add(new Point3d(cpzone3R), Vector3d.Multiply(-1.0, vecZ3));
+                    win_L[3] = Point3d.Add(new Point3d(cpzone3L), Vector3d.Multiply(-1.0, vecZ3));
+                    win_R[3] = Point3d.Add(new Point3d(cpzone3R), Vector3d.Multiply(1.0, vecZ3));
 
 
                     Point3d[] pts = new Point3d[16];
@@ -700,11 +708,11 @@ namespace GHEnergyPlus
                     pts[15][2] = 2.5;
 
                     int count = 0;
-                    for (int i = 0; i < levels; i++)
+                    for (int i = 0; i < 4; i++) //for 4 zones
                     {
                         double a = pts[count].DistanceTo(pts[count + 1]);
-                        double b = pts[count+1].DistanceTo(pts[count+2]);
-                        double c = pts[count+2].DistanceTo(pts[count]);
+                        double b = pts[count + 1].DistanceTo(pts[count + 2]);
+                        double c = pts[count + 2].DistanceTo(pts[count]);
                         double p = 0.5 * (a + b + c);
                         double area = (Math.Sqrt(p * (p - a) * (p - b) * (p - c))) * 2; // two triangles is the quad
                         count += 4;
@@ -724,10 +732,9 @@ namespace GHEnergyPlus
                     //z, so I can later replace floor height
                     for (int i = 0; i < levels; i++)
                     {
-                        replacers[xvar_count] = (i * lvlHeight).ToString();
+                        replacers[xvar_count] = ((i + 1) * lvlHeight).ToString();
                         xvar_count++;
                     }
-
 
 
                     //window ponits. created before, because i need window area
@@ -760,12 +767,6 @@ namespace GHEnergyPlus
 
 
 
-
-
-
-
-
-
                     //scan string for keywords and replace them with parameters
                     for (int i = 0; i < lines.Length; i++)
                         for (int u = 0; u < replacethis.Length; u++)
@@ -773,62 +774,94 @@ namespace GHEnergyPlus
 
 
 
-
-
                     //write a new idf file
-                    File.WriteAllLines(path_in + idfmodified + ".idf", lines);
-
+                    string idffilenew = path_in + idfmodified + ".idf";
+                    File.WriteAllLines(idffilenew, lines);
 
 
                     // add shading objects from three other buildings.
                     // 4 corner points of b != BLD
-                    count = 0;
                     List<string> addtext = new List<string>();
                     for (int b = 0; b < 4; b++)
                     {
-                        count = 0;
                         if (b != BLD)
                         {
-                            //add lines
-                            //!!!!!!!!!!!!!!!!!!!!!!!! CLOCKWISE / CCW IMPORTANT!! CHECK IN DOCUMENTATION AND EXAMLPE IDF
-                            //       ___
-                            //      /__/|
-                            //      |__|/
+                            // CounterClockWise important
+                            //       ___        
+                            //      /__/|      1__4
+                            //      |__|/      |__|    points towards you
+                            //                 2  3     
                             //
-                            //                  Shading:Building:Detailed,
-                            //SHADER_189,              !- Name
-                            //,                        !- Transmittance Schedule Name
-                            //3,                       !- Number of Vertices
-                            //-24.1290,106.7630,27.6080,  !- X,Y,Z ==> Vertex 1 {m}
-                            //78.0100,84.1080,27.6080,  !- X,Y,Z ==> Vertex 2 {m}
-                            //85.9210,116.1210,27.6080;  !- X,Y,Z ==> Vertex 3 {m}
-                            addtext.Add(@"  Shading:Building:Detailed,");
-                            addtext.Add(@"    BLDobstacle" + b + "_" + count + @",              !- Name");
-                            addtext.Add(@"    ,                        !- Transmittance Schedule Name");
-                            addtext.Add(@"    3,                       !- Number of Vertices");
+                            //         N            N
+                            //      0_____3      4_____7  
+                            //      |     |      |     |
+                            //     W| btm |E    W| top |E
+                            //      |_____|      |_____|
+                            //      1     2      5     6
+                            //         S            S
                             
-                            //triangles, not all 8
-                            for(int p=0; p<8;p++)
-                            {
-                                
-                                addtext.Add(@"    " + Boxes[b][p].X + "," + "y" + ",0.0,  !- X,Y,Z ==> Vertex 1 {m}");
-                                //Boxes[b][p].X// [BLD][0-8]
-                            }
-
-                            using (StreamWriter sw = File.AppendText(path_in + idfmodified + ".idf"))
-                            {
-                                foreach (string addt in addtext)
-                                {
-                                    sw.WriteLine(addt);
-                                }
-                            }
-                            count++;
+                            //srf south
+                            addtext.Add(@"  Shading:Building:Detailed,");
+                            addtext.Add(@"    BLDobstacle" + b + "_South,              !- Name");
+                            addtext.Add(@"    ,                        !- Transmittance Schedule Name");
+                            addtext.Add(@"    4,                       !- Number of Vertices");
+                            addtext.Add(@"    " + Boxes[b][5].X + "," + Boxes[b][5].Y + "," + Boxes[b][5].Z + ",  !- X,Y,Z ==> Vertex 1 {m}");
+                            addtext.Add(@"    " + Boxes[b][1].X + "," + Boxes[b][1].Y + "," + Boxes[b][1].Z + ",  !- X,Y,Z ==> Vertex 2 {m}");
+                            addtext.Add(@"    " + Boxes[b][2].X + "," + Boxes[b][2].Y + "," + Boxes[b][2].Z + ",  !- X,Y,Z ==> Vertex 3 {m}");
+                            addtext.Add(@"    " + Boxes[b][6].X + "," + Boxes[b][6].Y + "," + Boxes[b][6].Z + ";  !- X,Y,Z ==> Vertex 4 {m}");
+                            addtext.Add(@" ");
+                            //srf East
+                            addtext.Add(@"  Shading:Building:Detailed,");
+                            addtext.Add(@"    BLDobstacle" + b + "_East,              !- Name");
+                            addtext.Add(@"    ,                        !- Transmittance Schedule Name");
+                            addtext.Add(@"    4,                       !- Number of Vertices");
+                            addtext.Add(@"    " + Boxes[b][6].X + "," + Boxes[b][6].Y + "," + Boxes[b][6].Z + ",  !- X,Y,Z ==> Vertex 1 {m}");
+                            addtext.Add(@"    " + Boxes[b][2].X + "," + Boxes[b][2].Y + "," + Boxes[b][2].Z + ",  !- X,Y,Z ==> Vertex 2 {m}");
+                            addtext.Add(@"    " + Boxes[b][3].X + "," + Boxes[b][3].Y + "," + Boxes[b][3].Z + ",  !- X,Y,Z ==> Vertex 3 {m}");
+                            addtext.Add(@"    " + Boxes[b][7].X + "," + Boxes[b][7].Y + "," + Boxes[b][7].Z + ";  !- X,Y,Z ==> Vertex 4 {m}");
+                            addtext.Add(@" ");
+                            //srf North
+                            addtext.Add(@"  Shading:Building:Detailed,");
+                            addtext.Add(@"    BLDobstacle" + b + "_North,              !- Name");
+                            addtext.Add(@"    ,                        !- Transmittance Schedule Name");
+                            addtext.Add(@"    4,                       !- Number of Vertices");
+                            addtext.Add(@"    " + Boxes[b][7].X + "," + Boxes[b][7].Y + "," + Boxes[b][7].Z + ",  !- X,Y,Z ==> Vertex 1 {m}");
+                            addtext.Add(@"    " + Boxes[b][3].X + "," + Boxes[b][3].Y + "," + Boxes[b][3].Z + ",  !- X,Y,Z ==> Vertex 2 {m}");
+                            addtext.Add(@"    " + Boxes[b][0].X + "," + Boxes[b][0].Y + "," + Boxes[b][0].Z + ",  !- X,Y,Z ==> Vertex 3 {m}");
+                            addtext.Add(@"    " + Boxes[b][4].X + "," + Boxes[b][4].Y + "," + Boxes[b][4].Z + ";  !- X,Y,Z ==> Vertex 4 {m}");
+                            addtext.Add(@" ");
+                            //srf West
+                            addtext.Add(@"  Shading:Building:Detailed,");
+                            addtext.Add(@"    BLDobstacle" + b + "_West,              !- Name");
+                            addtext.Add(@"    ,                        !- Transmittance Schedule Name");
+                            addtext.Add(@"    4,                       !- Number of Vertices");
+                            addtext.Add(@"    " + Boxes[b][4].X + "," + Boxes[b][4].Y + "," + Boxes[b][4].Z + ",  !- X,Y,Z ==> Vertex 1 {m}");
+                            addtext.Add(@"    " + Boxes[b][0].X + "," + Boxes[b][0].Y + "," + Boxes[b][0].Z + ",  !- X,Y,Z ==> Vertex 2 {m}");
+                            addtext.Add(@"    " + Boxes[b][1].X + "," + Boxes[b][1].Y + "," + Boxes[b][1].Z + ",  !- X,Y,Z ==> Vertex 3 {m}");
+                            addtext.Add(@"    " + Boxes[b][5].X + "," + Boxes[b][5].Y + "," + Boxes[b][5].Z + ";  !- X,Y,Z ==> Vertex 4 {m}");
+                            addtext.Add(@" ");
+                            //srf Roof
+                            addtext.Add(@"  Shading:Building:Detailed,");
+                            addtext.Add(@"    BLDobstacle" + b + "_Roof,              !- Name");
+                            addtext.Add(@"    ,                        !- Transmittance Schedule Name");
+                            addtext.Add(@"    4,                       !- Number of Vertices");
+                            addtext.Add(@"    " + Boxes[b][5].X + "," + Boxes[b][5].Y + "," + Boxes[b][5].Z + ",  !- X,Y,Z ==> Vertex 1 {m}");
+                            addtext.Add(@"    " + Boxes[b][6].X + "," + Boxes[b][6].Y + "," + Boxes[b][6].Z + ",  !- X,Y,Z ==> Vertex 2 {m}");
+                            addtext.Add(@"    " + Boxes[b][7].X + "," + Boxes[b][7].Y + "," + Boxes[b][7].Z + ",  !- X,Y,Z ==> Vertex 3 {m}");
+                            addtext.Add(@"    " + Boxes[b][4].X + "," + Boxes[b][4].Y + "," + Boxes[b][4].Z + ";  !- X,Y,Z ==> Vertex 4 {m}");
+                            addtext.Add(@" ");
+                        }
+                    }
+                    using (StreamWriter sw = File.AppendText(idffilenew))
+                    {
+                        foreach (string addt in addtext)
+                        {
+                            sw.WriteLine(addt);
                         }
                     }
 
 
-                    string idffilenew = path_in + idfmodified + ".idf";
-                    string weatherfilein = path_in + @"ep\WeatherData\" + weatherfile + ".epw";
+
 
 
 
@@ -838,6 +871,7 @@ namespace GHEnergyPlus
                     //***********************************************************************************
                     //***********************************************************************************
                     //run eplus
+                    string weatherfilein = path_in + @"ep\WeatherData\" + weatherfile + ".epw";
                     string command = @" -w " + weatherfilein + @" -x -d " + path_out + @" -i " + path_in + @"ep\Energy+.idd " + idffilenew;
                     string directory = path_out;
                     Misc.RunEplus(eplusexe, command, directory);
@@ -851,7 +885,7 @@ namespace GHEnergyPlus
                     //***********************************************************************************
                     //***********************************************************************************
                     //process Outputs
-                    string outputfile = "eplusout.eso";
+                    string outputfile = "eplustbl.csv";
                     while (!File.Exists(path_out + outputfile))
                     {
                         Console.WriteLine("waiting");
@@ -860,7 +894,7 @@ namespace GHEnergyPlus
 
 
                     //output result 
-                    totenergy[BLD] = double.NaN;
+
                     //identify correct result file. load it. get the right numbers from it
                     lines = new string[] { };
                     list = new List<string>();
@@ -876,23 +910,28 @@ namespace GHEnergyPlus
                     lines = list.ToArray();
                     fileStream.Close();
 
-                    double Fx;
+                    //GJ
+                    //elec: line[64][2]
+                    //cool: line[64][5]
+                    //heat: line[64][6]
 
-
+                    //m2: [41][2]
+             
                     string[] split;
                     char delimiter = ',';
 
-                    split = lines[11].Split(delimiter);
-                    string heat = split[1];
-                    split = lines[12].Split(delimiter);
-                    string cool = split[1];
-                    double dblheat = 0.001 * Convert.ToDouble(heat) / 3600;
-                    double dblcool = 0.001 * Convert.ToDouble(cool) / 3600 * 3;
+                    split = lines[41].Split(delimiter);
+                    string bldarea = split[2];
+                    split = lines[64].Split(delimiter);
+                    string elec = split[2];
+                    string cool = split[5];
+                    string heat = split[6];
+                    totElec[BLD] = 0.001 * Convert.ToDouble(elec) / 3600;
+                    totHeat[BLD] = 0.001 * Convert.ToDouble(heat) / 3600;
+                    totCool[BLD] = 0.001 * Convert.ToDouble(cool) / 3600;
+                    totsqm[BLD] = Convert.ToDouble(bldarea);
 
-                    Fx = dblheat + dblcool;
 
-
-                    totenergy[BLD] = Fx;
                     System.Threading.Thread.Sleep(sleeptime);
                     System.IO.File.Delete(path_in + idfmodified + ".idf");
                     System.IO.DirectoryInfo di = new DirectoryInfo(path_out);
@@ -908,10 +947,26 @@ namespace GHEnergyPlus
                 }
 
 
-                //get all results of four buildings together
-                double result = totenergy[0] + totenergy[1] + totenergy[2] + totenergy[3];
+                double elecprice = 0.24;
+                double gascost = 0.09;
+                double coolConversion = 3;
+                double boilereff = 0.94;
+                double rent = 70; //chf per sqm
 
-                DA.SetData(0, result);
+
+                //get all results of four buildings together
+                double totProfit = 0;
+                for (int i = 0; i < 4; i++)
+                {
+                    totProfit += totElec[i] * elecprice +
+                        totCool[i] * coolConversion * elecprice +
+                        (totHeat[i] / boilereff) * gascost - 
+                        totsqm[i] * rent;
+                }
+
+
+
+                DA.SetData(0, totProfit);
             }
         }
 
