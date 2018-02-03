@@ -400,6 +400,32 @@ namespace GHEnergyPlus
                 piny[3] = Din_py;
 
 
+                //_________________________________________________________________________
+                ///////////////////////////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////////////////////
+                // Volume box for shading objects, bld A, B, C, D
+                // 
+                //       ___
+                //      /__/|
+                //      |__|/
+                //
+                Point3d [][] Boxes = new Point3d[4][];  // [BLD][0-8]
+                for (int b = 0; b < 4; b++)
+                {
+                    Boxes[b] = new Point3d[8];
+                    int pcnt = 0;
+                    for (int p = 0; p < 8; p++)
+                    {
+                        if(pcnt == 4) pcnt =0;
+                        if (p > 3) Boxes[b][p] = new Point3d(px[b][pcnt], py[b][pcnt], 0);
+                        else Boxes[b][p] = new Point3d(px[b][pcnt], py[b][pcnt], z[b]);
+                        pcnt++;
+                    }
+                }
+
+
+
+
 
                 //***********************************************************************************
                 //***********************************************************************************
@@ -432,19 +458,15 @@ namespace GHEnergyPlus
                     lines = list.ToArray();
                     fileStream.Close();
 
-                    
+
 
 
                     //to be replaced
 
-                    for (int l = 0; l < levels; l++)
-                    {
-
-                    }
-                    // for each zone and level
-                    //   
-                    // Daylighting:Controls:                    %DLx_p0%, %DLy_p0%, %DLz_p0%,   : center of each floor (Perimeter0 to levels*4-1)
-                    // ZoneVentilation:WindandStackOpenArea:    %Vent_f0%                       : opening area. 50% of window area (0 to levels*4-1)
+                    // Daylighting:Controls:                    %DLx_p0%, %DLy_p0%,    : center of each DL, same for each floow (0-3, each zone)
+                    //                                          %DLz_p1%               : per floow, 1-levels. %pz_1% + 0.85
+                    //
+                    // ZoneVentilation:WindandStackOpenArea:    %Vent_f0%                       : opening area. 50% of window area (0-3, each zone)
                     //
                     // BuildingSurface:Detailed
                     // outer and inner  x points:               %px_0%, %pxin_0%,               : px[BLD][0-3], pinx[BLD][0-3]
@@ -464,132 +486,283 @@ namespace GHEnergyPlus
                     //                                          %winDy_l%,      %winDy_r% 
                     //
                     //                                          %win_btm_1%,  %win_top_1% 
-                    
+
                     // add shading objects from three other buildings
 
 
-                    string[] replacethis = new string[dvar + levels*100];       //35 variables, plus levels times variables that need to be replaced
+                    // 8 DL(xy) + z per levels, 4 window areas, 16 corner pts, level heights, 16 window corner pts, 2*levels window heights
+                    string[] replacethis = new string[8 + levels + 4 + 16 + levels + 16 + levels * 2];       //variables that need to be replaced
 
-                    replacethis[0] = @"%x0%"; //infiltration
-                    int xvar_count = 1;
-                    for (int i = 1; i < 13; i++)        //aspect ratio
+                    int xvar_count = 0;
+                    for (int i = 0; i < 4; i++)        // DL xy
                     {
-                        replacethis[xvar_count] = @"%x1_p" + i.ToString() + @"_x%";
-                        replacethis[xvar_count + 1] = @"%x1_p" + i.ToString() + @"_y%";
-                        replacethis[xvar_count + 2] = @"%x1_p" + i.ToString() + @"_z%";
-                        xvar_count += 3;
+                        replacethis[xvar_count] = @"DLx_p" + i.ToString() + @"%";
+                        replacethis[xvar_count + 1] = @"%DLy_p" + i.ToString() + @"%";
+                        xvar_count += 2;
                     }
-                    for (int i = 1; i < 9; i++)
+                    for (int i = 0; i < levels; i++)    // DL z
                     {
-                        replacethis[xvar_count] = @"%x1_pi" + i.ToString() + @"_x%";
-                        replacethis[xvar_count + 1] = @"%x1_pi" + i.ToString() + @"_y%";
-                        replacethis[xvar_count + 2] = @"%x1_pi" + i.ToString() + @"_z%";
-                        xvar_count += 3;
-                    }
-                    replacethis[xvar_count] = @"%x2%"; // u-value
-                    xvar_count++;
-
-                    replacethis[xvar_count] = @"%x3_xstart%";         // fenestration xstart, zstart, length, height. North
-                    replacethis[xvar_count + 1] = @"%x3_zstart%";
-                    replacethis[xvar_count + 2] = @"%x3_length%";
-                    replacethis[xvar_count + 3] = @"%x3_height%";
-                    replacethis[xvar_count + 4] = @"%x4_xstart%";     // South
-                    replacethis[xvar_count + 5] = @"%x4_zstart%";
-                    replacethis[xvar_count + 6] = @"%x4_length%";
-                    replacethis[xvar_count + 7] = @"%x4_height%";
-                    replacethis[xvar_count + 8] = @"%x5_xstart%";     // East
-                    replacethis[xvar_count + 9] = @"%x5_zstart%";
-                    replacethis[xvar_count + 10] = @"%x5_length%";
-                    replacethis[xvar_count + 11] = @"%x5_height%";
-                    replacethis[xvar_count + 12] = @"%x6_xstart%";    // West
-                    replacethis[xvar_count + 13] = @"%x6_zstart%";
-                    replacethis[xvar_count + 14] = @"%x6_length%";
-                    replacethis[xvar_count + 15] = @"%x6_height%";
-                    xvar_count += 16;
-
-                    for (int i = 7; i < dvar; i++)
-                    {
-                        replacethis[xvar_count] = @"%x" + i.ToString() + @"%";
+                        replacethis[xvar_count] = @"DLz_p" + (i + 1).ToString() + @"%";
                         xvar_count++;
                     }
+
+                    for (int i = 0; i < 4; i++)         // window areas
+                    {
+                        replacethis[xvar_count] = @"Vent_f" + i.ToString() + @"%";
+                        xvar_count++;
+                    }
+
+                    for (int i = 0; i < 4; i++)         // corner points, inside and outside
+                    {
+                        replacethis[xvar_count] = @"px_" + i.ToString() + @"%";
+                        replacethis[xvar_count + 1] = @"pxin_" + i.ToString() + @"%";
+                        replacethis[xvar_count + 2] = @"py_" + i.ToString() + @"%";
+                        replacethis[xvar_count + 3] = @"pyin_" + i.ToString() + @"%";
+                        xvar_count += 4;
+                    }
+
+                    for (int i = 0; i < levels; i++)    //floor heights
+                    {
+                        replacethis[xvar_count] = @"pz_" + (i + 1).ToString() + @"%";
+                        xvar_count++;
+                    }
+
+                    //window corner points per zone
+                    replacethis[xvar_count] = @"winAx_l%";
+                    replacethis[xvar_count + 1] = @"winAx_r%";
+                    replacethis[xvar_count + 2] = @"winAy_l%";
+                    replacethis[xvar_count + 3] = @"winAy_r%";
+                    replacethis[xvar_count + 4] = @"winBx_l%";
+                    replacethis[xvar_count + 5] = @"winBx_r%";
+                    replacethis[xvar_count + 6] = @"winBy_l%";
+                    replacethis[xvar_count + 7] = @"winBy_r%";
+                    replacethis[xvar_count + 8] = @"winCx_l%";
+                    replacethis[xvar_count + 9] = @"winCx_r%";
+                    replacethis[xvar_count + 10] = @"winCy_l%";
+                    replacethis[xvar_count + 11] = @"winCy_r%";
+                    replacethis[xvar_count + 12] = @"winDx_l%";
+                    replacethis[xvar_count + 13] = @"winDx_r%";
+                    replacethis[xvar_count + 14] = @"winDy_l%";
+                    replacethis[xvar_count + 15] = @"winDy_r%";
+                    xvar_count += 16;
+                    for (int i = 1; i < levels; i++)    //window heights per floor
+                    {
+                        replacethis[xvar_count] = @"win_btm_" + (i + 1).ToString() + @"%";
+                        replacethis[xvar_count + 1] = @"win_top_" + (i + 1).ToString() + @"%";
+                        xvar_count += 2;
+                    }
+
 
 
 
                     //replacers
                     string[] replacers = new string[replacethis.Length];
-                    replacers[0] = x[0].ToString();
 
-                    double floor_area = 70; //according to paper. but in his file its 100 though
-                    double[][] x1_p;
-                    double[][] x1_pi;
-                    Misc.insert_surface(out x1_p, out x1_pi, floor_area, x[1]);
-
-                    xvar_count = 1;
-                    for (int i = 0; i < 12; i++)        //aspect ratio
+                    double[][][] CP_zones = new double[4][][];
+                    for (int zo = 0; zo < 4; zo++)
                     {
-                        replacers[xvar_count] = x1_p[i][0].ToString();
-                        replacers[xvar_count + 1] = x1_p[i][1].ToString();
-                        replacers[xvar_count + 2] = x1_p[i][2].ToString();
-                        xvar_count += 3;
+                        CP_zones[zo] = new double[4][];
+                        for (int i = 0; i < 4; i++)
+                        {
+                            CP_zones[zo][i] = new double[2];
+                        }
                     }
-                    for (int i = 0; i < 8; i++)
+
+                    //floor zone 0
+                    CP_zones[0][0][0] = px[BLD][1];
+                    CP_zones[0][1][0] = px[BLD][0];
+                    CP_zones[0][2][0] = pinx[BLD][0];
+                    CP_zones[0][3][0] = pinx[BLD][1];
+                    CP_zones[0][0][1] = py[BLD][1];
+                    CP_zones[0][1][1] = py[BLD][0];
+                    CP_zones[0][2][1] = piny[BLD][0];
+                    CP_zones[0][3][1] = piny[BLD][1];
+                    //floor zone 1
+                    CP_zones[1][0][0] = px[BLD][2];
+                    CP_zones[1][1][0] = px[BLD][1];
+                    CP_zones[1][2][0] = pinx[BLD][1];
+                    CP_zones[1][3][0] = pinx[BLD][2];
+                    CP_zones[1][0][1] = py[BLD][2];
+                    CP_zones[1][1][1] = py[BLD][1];
+                    CP_zones[1][2][1] = piny[BLD][1];
+                    CP_zones[1][3][1] = piny[BLD][2];
+                    //floor zone 2
+                    CP_zones[2][0][0] = px[BLD][3];
+                    CP_zones[2][1][0] = px[BLD][2];
+                    CP_zones[2][2][0] = pinx[BLD][2];
+                    CP_zones[2][3][0] = pinx[BLD][3];
+                    CP_zones[2][0][1] = py[BLD][3];
+                    CP_zones[2][1][1] = py[BLD][2];
+                    CP_zones[2][2][1] = piny[BLD][2];
+                    CP_zones[2][3][1] = piny[BLD][3];
+                    //floor zone 3
+                    CP_zones[3][0][0] = px[BLD][3];
+                    CP_zones[3][1][0] = pinx[BLD][3];
+                    CP_zones[3][2][0] = pinx[BLD][0];
+                    CP_zones[3][3][0] = px[BLD][0];
+                    CP_zones[3][0][1] = py[BLD][3];
+                    CP_zones[3][1][1] = piny[BLD][3];
+                    CP_zones[3][2][1] = piny[BLD][0];
+                    CP_zones[3][3][1] = py[BLD][0];
+
+
+                    //using corner points, calc centroid per zone for Daylight. x/y 
+                    double[] cen0 = Misc.Centroid(CP_zones[0]);
+                    double[] cen1 = Misc.Centroid(CP_zones[1]);
+                    double[] cen2 = Misc.Centroid(CP_zones[2]);
+                    double[] cen3 = Misc.Centroid(CP_zones[3]);
+                    replacers[0] = cen0[0].ToString();
+                    replacers[1] = cen0[1].ToString();
+                    replacers[2] = cen1[0].ToString();
+                    replacers[3] = cen1[1].ToString();
+                    replacers[4] = cen2[0].ToString();
+                    replacers[5] = cen2[1].ToString();
+                    replacers[6] = cen3[0].ToString();
+                    replacers[7] = cen3[1].ToString();
+                    xvar_count = 8;
+                    //Daylight z. it's a replacer, so I can change ceilight height later...
+                    for (int i = 0; i < levels; i++)
                     {
-                        replacers[xvar_count] = x1_pi[i][0].ToString();
-                        replacers[xvar_count + 1] = x1_pi[i][1].ToString();
-                        replacers[xvar_count + 2] = x1_pi[i][2].ToString();
-                        xvar_count += 3;
-                    }
-                    replacers[xvar_count] = x[2].ToString();
-                    xvar_count++;
-
-                    double[] xstart;
-                    double[] zstart;
-                    double[] length;
-                    double[] height;
-                    Misc.insert_window(out xstart, out zstart, out length, out height, x1_p, new double[4] { x[3], x[4], x[5], x[6] });
-
-                    replacers[xvar_count] = xstart[0].ToString();         // fenestration xstart, zstart, length, height. North
-                    replacers[xvar_count + 1] = zstart[0].ToString();
-                    replacers[xvar_count + 2] = length[0].ToString();
-                    replacers[xvar_count + 3] = height[0].ToString();
-                    replacers[xvar_count + 4] = xstart[1].ToString();     // South
-                    replacers[xvar_count + 5] = zstart[1].ToString();
-                    replacers[xvar_count + 6] = length[1].ToString();
-                    replacers[xvar_count + 7] = height[1].ToString();
-                    replacers[xvar_count + 8] = xstart[2].ToString();     // East
-                    replacers[xvar_count + 9] = zstart[2].ToString();
-                    replacers[xvar_count + 10] = length[2].ToString();
-                    replacers[xvar_count + 11] = height[2].ToString();
-                    replacers[xvar_count + 12] = xstart[3].ToString();    // West
-                    replacers[xvar_count + 13] = zstart[3].ToString();
-                    replacers[xvar_count + 14] = length[3].ToString();
-                    replacers[xvar_count + 15] = height[3].ToString();
-                    xvar_count += 16;
-
-                    switch (Convert.ToInt16(x[7]))
-                    {
-                        case 1:
-                            replacers[xvar_count] = "Wall_1";
-                            break;
-                        case 2:
-                            replacers[xvar_count] = "Wall_2";
-                            break;
-                        case 3:
-                            replacers[xvar_count] = "Wall_3";
-                            break;
-                        case 4:
-                            replacers[xvar_count] = "Wall_4";
-                            break;
-                    }
-                    xvar_count++;
-                    replacers[xvar_count] = (x[8] / 1000).ToString();
-                    xvar_count++;
-
-                    for (int i = 9; i < dvar; i++)
-                    {
-                        replacers[xvar_count] = x[i].ToString();
+                        replacers[xvar_count] = (lvlHeight * i + 0.85).ToString();
                         xvar_count++;
                     }
+
+
+
+                    //window area. first I need window points.
+                    //window points
+
+                    Point3d[] win_L = new Point3d[4]; //per zone
+                    Point3d[] win_R = new Point3d[4];
+
+                    //take corner point outer wall left, and create vector to the right corner point.
+                    //rhino add point using that unit vector scaled up to 1m (constant 1m offset from walls),
+                    Vector3d cpzone0R = new Vector3d(px[BLD][1], py[BLD][1], 0);
+                    Vector3d cpzone0L = new Vector3d(px[BLD][0], py[BLD][0], 0);
+                    Vector3d vecZ0 = Vector3d.Subtract(cpzone0L, cpzone0R);
+                    vecZ0.Unitize();
+                    win_L[0] = Point3d.Add(new Point3d(cpzone0L), Vector3d.Multiply(1.0, vecZ0));
+                    win_R[0] = Point3d.Add(new Point3d(cpzone0R), Vector3d.Multiply(-1.0, vecZ0));
+
+                    Vector3d cpzone1R = new Vector3d(px[BLD][2], py[BLD][2], 0);
+                    Vector3d cpzone1L = new Vector3d(px[BLD][1], py[BLD][1], 0);
+                    Vector3d vecZ1 = Vector3d.Subtract(cpzone1L, cpzone1R);
+                    vecZ1.Unitize();
+                    win_L[1] = Point3d.Add(new Point3d(cpzone1L), Vector3d.Multiply(1.0, vecZ1));
+                    win_R[1] = Point3d.Add(new Point3d(cpzone1R), Vector3d.Multiply(-1.0, vecZ1));
+
+                    Vector3d cpzone2R = new Vector3d(px[BLD][3], py[BLD][3], 0);
+                    Vector3d cpzone2L = new Vector3d(px[BLD][2], py[BLD][2], 0);
+                    Vector3d vecZ2 = Vector3d.Subtract(cpzone2L, cpzone2R);
+                    vecZ2.Unitize();
+                    win_L[2] = Point3d.Add(new Point3d(cpzone2L), Vector3d.Multiply(1.0, vecZ2));
+                    win_R[2] = Point3d.Add(new Point3d(cpzone2R), Vector3d.Multiply(-1.0, vecZ2));
+
+                    Vector3d cpzone3R = new Vector3d(px[BLD][0], py[BLD][0], 0);
+                    Vector3d cpzone3L = new Vector3d(px[BLD][3], py[BLD][3], 0);
+                    Vector3d vecZ3 = Vector3d.Subtract(cpzone3L, cpzone3R);
+                    vecZ3.Unitize();
+                    win_L[3] = Point3d.Add(new Point3d(cpzone3L), Vector3d.Multiply(1.0, vecZ3));
+                    win_R[3] = Point3d.Add(new Point3d(cpzone3R), Vector3d.Multiply(-1.0, vecZ3));
+
+
+                    Point3d[] pts = new Point3d[16];
+                    //win zone 0
+                    pts[0] = new Point3d(cpzone0L);
+                    pts[1] = new Point3d(cpzone0R);
+                    pts[2] = new Point3d(cpzone0R);
+                    pts[3] = new Point3d(cpzone0L);
+                    pts[2][2] = 2.5; //const win height
+                    pts[3][2] = 2.5;
+
+                    //win zone 1
+                    pts[4] = new Point3d(cpzone1L);
+                    pts[5] = new Point3d(cpzone1R);
+                    pts[6] = new Point3d(cpzone1R);
+                    pts[7] = new Point3d(cpzone1L);
+                    pts[6][2] = 2.5; //const win height
+                    pts[7][2] = 2.5;
+
+                    //win zone 2
+                    pts[8] = new Point3d(cpzone2L);
+                    pts[9] = new Point3d(cpzone2R);
+                    pts[10] = new Point3d(cpzone2R);
+                    pts[11] = new Point3d(cpzone2L);
+                    pts[10][2] = 2.5; //const win height
+                    pts[11][2] = 2.5;
+
+                    //win zone 3
+                    pts[12] = new Point3d(cpzone3L);
+                    pts[13] = new Point3d(cpzone3R);
+                    pts[14] = new Point3d(cpzone3R);
+                    pts[15] = new Point3d(cpzone3L);
+                    pts[14][2] = 2.5; //const win height
+                    pts[15][2] = 2.5;
+
+                    int count = 0;
+                    for (int i = 0; i < levels; i++)
+                    {
+                        double a = pts[count].DistanceTo(pts[count + 1]);
+                        double b = pts[count+1].DistanceTo(pts[count+2]);
+                        double c = pts[count+2].DistanceTo(pts[count]);
+                        double p = 0.5 * (a + b + c);
+                        double area = (Math.Sqrt(p * (p - a) * (p - b) * (p - c))) * 2; // two triangles is the quad
+                        count += 4;
+                        replacers[xvar_count] = (area * 0.5).ToString();    // 50% of the window is openable
+                        xvar_count++;
+                    }
+
+                    // zone corner points x/y
+                    for (int i = 0; i < 4; i++)
+                    {
+                        replacers[xvar_count] = px[BLD][i].ToString();
+                        replacers[xvar_count + 1] = pinx[BLD][i].ToString();
+                        replacers[xvar_count + 2] = py[BLD][i].ToString();
+                        replacers[xvar_count + 3] = piny[BLD][i].ToString();
+                        xvar_count += 4;
+                    }
+                    //z, so I can later replace floor height
+                    for (int i = 0; i < levels; i++)
+                    {
+                        replacers[xvar_count] = (i * lvlHeight).ToString();
+                        xvar_count++;
+                    }
+
+
+
+                    //window ponits. created before, because i need window area
+                    replacers[xvar_count] = win_L[0][0].ToString();
+                    replacers[xvar_count + 1] = win_R[0][0].ToString();
+                    replacers[xvar_count + 2] = win_L[0][1].ToString();
+                    replacers[xvar_count + 3] = win_R[0][1].ToString();
+                    replacers[xvar_count + 4] = win_L[1][0].ToString();
+                    replacers[xvar_count + 5] = win_R[1][0].ToString();
+                    replacers[xvar_count + 6] = win_L[1][1].ToString();
+                    replacers[xvar_count + 7] = win_R[1][1].ToString();
+                    replacers[xvar_count + 8] = win_L[2][0].ToString();
+                    replacers[xvar_count + 9] = win_R[2][0].ToString();
+                    replacers[xvar_count + 10] = win_L[2][1].ToString();
+                    replacers[xvar_count + 11] = win_R[2][1].ToString();
+                    replacers[xvar_count + 12] = win_L[3][0].ToString();
+                    replacers[xvar_count + 13] = win_R[3][0].ToString();
+                    replacers[xvar_count + 14] = win_L[3][1].ToString();
+                    replacers[xvar_count + 15] = win_R[3][1].ToString();
+                    xvar_count += 16;
+
+                    for (int i = 0; i < levels; i++)
+                    {
+                        replacers[xvar_count] = (i * lvlHeight + 1.0).ToString();
+                        replacers[xvar_count + 1] = (i * lvlHeight + lvlHeight - 0.5).ToString();
+                        xvar_count += 2;
+                    }
+
+
+
+
+
+
+
+
 
 
 
@@ -601,8 +774,59 @@ namespace GHEnergyPlus
 
 
 
+
                     //write a new idf file
                     File.WriteAllLines(path_in + idfmodified + ".idf", lines);
+
+
+
+                    // add shading objects from three other buildings.
+                    // 4 corner points of b != BLD
+                    count = 0;
+                    List<string> addtext = new List<string>();
+                    for (int b = 0; b < 4; b++)
+                    {
+                        count = 0;
+                        if (b != BLD)
+                        {
+                            //add lines
+                            //!!!!!!!!!!!!!!!!!!!!!!!! CLOCKWISE / CCW IMPORTANT!! CHECK IN DOCUMENTATION AND EXAMLPE IDF
+                            //       ___
+                            //      /__/|
+                            //      |__|/
+                            //
+                            //                  Shading:Building:Detailed,
+                            //SHADER_189,              !- Name
+                            //,                        !- Transmittance Schedule Name
+                            //3,                       !- Number of Vertices
+                            //-24.1290,106.7630,27.6080,  !- X,Y,Z ==> Vertex 1 {m}
+                            //78.0100,84.1080,27.6080,  !- X,Y,Z ==> Vertex 2 {m}
+                            //85.9210,116.1210,27.6080;  !- X,Y,Z ==> Vertex 3 {m}
+                            addtext.Add(@"  Shading:Building:Detailed,");
+                            addtext.Add(@"    BLDobstacle" + b + "_" + count + @",              !- Name");
+                            addtext.Add(@"    ,                        !- Transmittance Schedule Name");
+                            addtext.Add(@"    3,                       !- Number of Vertices");
+                            
+                            //triangles, not all 8
+                            for(int p=0; p<8;p++)
+                            {
+                                
+                                addtext.Add(@"    " + Boxes[b][p].X + "," + "y" + ",0.0,  !- X,Y,Z ==> Vertex 1 {m}");
+                                //Boxes[b][p].X// [BLD][0-8]
+                            }
+
+                            using (StreamWriter sw = File.AppendText(path_in + idfmodified + ".idf"))
+                            {
+                                foreach (string addt in addtext)
+                                {
+                                    sw.WriteLine(addt);
+                                }
+                            }
+                            count++;
+                        }
+                    }
+
+
                     string idffilenew = path_in + idfmodified + ".idf";
                     string weatherfilein = path_in + @"ep\WeatherData\" + weatherfile + ".epw";
 
@@ -667,7 +891,7 @@ namespace GHEnergyPlus
 
                     Fx = dblheat + dblcool;
 
-                    
+
                     totenergy[BLD] = Fx;
                     System.Threading.Thread.Sleep(sleeptime);
                     System.IO.File.Delete(path_in + idfmodified + ".idf");
