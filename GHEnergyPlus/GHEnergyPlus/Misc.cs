@@ -141,5 +141,21 @@ namespace GHEnergyPlus
             height = mV2 - 2.0 * zstart;
         }
 
+
+
+        internal static double[] Centroid(double[][] X)
+        {
+            double[] centroid = new double[X[0].Length];
+            for (int i = 0; i < X[0].Length; i++)
+            {
+                double sum = 0;
+                for (int j = 0; j < X.Length; j++)
+                {
+                    sum += X[j][i];
+                }
+                centroid[i] = sum / X.Length;
+            }
+            return centroid;
+        }
     }
 }
