@@ -867,14 +867,14 @@
     0,                       !- Opening Effectiveness {dimensionless}
     0,                       !- Effective Angle {deg}
     0.624999999999971,       !- Height Difference {m}
-    0.6,                     !- Discharge Coefficient for Opening
+    AutoCalculate,                     !- Discharge Coefficient for Opening
     23,                      !- Minimum Indoor Temperature {C}
     ,                        !- Minimum Indoor Temperature Schedule Name
     100,                     !- Maximum Indoor Temperature {C}
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -895,7 +895,7 @@
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -1289,14 +1289,14 @@
     0,                       !- Opening Effectiveness {dimensionless}
     0,                       !- Effective Angle {deg}
     0.624999999999971,       !- Height Difference {m}
-    0.6,                     !- Discharge Coefficient for Opening
+    AutoCalculate,                     !- Discharge Coefficient for Opening
     23,                      !- Minimum Indoor Temperature {C}
     ,                        !- Minimum Indoor Temperature Schedule Name
     100,                     !- Maximum Indoor Temperature {C}
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -1317,7 +1317,7 @@
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -1711,14 +1711,14 @@
     0,                       !- Opening Effectiveness {dimensionless}
     0,                       !- Effective Angle {deg}
     0.624999999999971,       !- Height Difference {m}
-    0.6,                     !- Discharge Coefficient for Opening
+    AutoCalculate,                     !- Discharge Coefficient for Opening
     23,                      !- Minimum Indoor Temperature {C}
     ,                        !- Minimum Indoor Temperature Schedule Name
     100,                     !- Maximum Indoor Temperature {C}
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -1739,7 +1739,7 @@
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -2133,14 +2133,14 @@
     0,                       !- Opening Effectiveness {dimensionless}
     0,                       !- Effective Angle {deg}
     0.624999999999971,       !- Height Difference {m}
-    0.6,                     !- Discharge Coefficient for Opening
+    AutoCalculate,                     !- Discharge Coefficient for Opening
     23,                      !- Minimum Indoor Temperature {C}
     ,                        !- Minimum Indoor Temperature Schedule Name
     100,                     !- Maximum Indoor Temperature {C}
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -2161,7 +2161,7 @@
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -2555,14 +2555,14 @@
     0,                       !- Opening Effectiveness {dimensionless}
     0,                       !- Effective Angle {deg}
     0.624999999999971,       !- Height Difference {m}
-    0.6,                     !- Discharge Coefficient for Opening
+    AutoCalculate,                     !- Discharge Coefficient for Opening
     23,                      !- Minimum Indoor Temperature {C}
     ,                        !- Minimum Indoor Temperature Schedule Name
     100,                     !- Maximum Indoor Temperature {C}
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -2583,7 +2583,7 @@
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -2977,14 +2977,14 @@
     0,                       !- Opening Effectiveness {dimensionless}
     0,                       !- Effective Angle {deg}
     0.624999999999971,       !- Height Difference {m}
-    0.6,                     !- Discharge Coefficient for Opening
+    AutoCalculate,                     !- Discharge Coefficient for Opening
     23,                      !- Minimum Indoor Temperature {C}
     ,                        !- Minimum Indoor Temperature Schedule Name
     100,                     !- Maximum Indoor Temperature {C}
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -3005,7 +3005,7 @@
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -3399,14 +3399,14 @@
     0,                       !- Opening Effectiveness {dimensionless}
     0,                       !- Effective Angle {deg}
     0.624999999999971,       !- Height Difference {m}
-    0.6,                     !- Discharge Coefficient for Opening
+    AutoCalculate,                     !- Discharge Coefficient for Opening
     23,                      !- Minimum Indoor Temperature {C}
     ,                        !- Minimum Indoor Temperature Schedule Name
     100,                     !- Maximum Indoor Temperature {C}
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -3427,7 +3427,7 @@
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -3821,14 +3821,14 @@
     0,                       !- Opening Effectiveness {dimensionless}
     0,                       !- Effective Angle {deg}
     0.624999999999971,       !- Height Difference {m}
-    0.6,                     !- Discharge Coefficient for Opening
+    AutoCalculate,                     !- Discharge Coefficient for Opening
     23,                      !- Minimum Indoor Temperature {C}
     ,                        !- Minimum Indoor Temperature Schedule Name
     100,                     !- Maximum Indoor Temperature {C}
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -3849,7 +3849,7 @@
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -4243,14 +4243,14 @@
     0,                       !- Opening Effectiveness {dimensionless}
     0,                       !- Effective Angle {deg}
     0.624999999999972,       !- Height Difference {m}
-    0.6,                     !- Discharge Coefficient for Opening
+    AutoCalculate,                     !- Discharge Coefficient for Opening
     23,                      !- Minimum Indoor Temperature {C}
     ,                        !- Minimum Indoor Temperature Schedule Name
     100,                     !- Maximum Indoor Temperature {C}
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -4271,7 +4271,7 @@
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -4665,14 +4665,14 @@
     0,                       !- Opening Effectiveness {dimensionless}
     0,                       !- Effective Angle {deg}
     0.624999999999972,       !- Height Difference {m}
-    0.6,                     !- Discharge Coefficient for Opening
+    AutoCalculate,                     !- Discharge Coefficient for Opening
     23,                      !- Minimum Indoor Temperature {C}
     ,                        !- Minimum Indoor Temperature Schedule Name
     100,                     !- Maximum Indoor Temperature {C}
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -4693,7 +4693,7 @@
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -5087,14 +5087,14 @@
     0,                       !- Opening Effectiveness {dimensionless}
     0,                       !- Effective Angle {deg}
     0.624999999999972,       !- Height Difference {m}
-    0.6,                     !- Discharge Coefficient for Opening
+    AutoCalculate,                     !- Discharge Coefficient for Opening
     23,                      !- Minimum Indoor Temperature {C}
     ,                        !- Minimum Indoor Temperature Schedule Name
     100,                     !- Maximum Indoor Temperature {C}
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -5115,7 +5115,7 @@
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -5509,14 +5509,14 @@
     0,                       !- Opening Effectiveness {dimensionless}
     0,                       !- Effective Angle {deg}
     0.624999999999972,       !- Height Difference {m}
-    0.6,                     !- Discharge Coefficient for Opening
+    AutoCalculate,                     !- Discharge Coefficient for Opening
     23,                      !- Minimum Indoor Temperature {C}
     ,                        !- Minimum Indoor Temperature Schedule Name
     100,                     !- Maximum Indoor Temperature {C}
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
@@ -5537,7 +5537,7 @@
     ,                        !- Maximum Indoor Temperature Schedule Name
     1,                       !- Delta Temperature {deltaC}
     ,                        !- Delta Temperature Schedule Name
-    0,                       !- Minimum Outdoor Temperature {C}
+    15,                       !- Minimum Outdoor Temperature {C}
     ,                        !- Minimum Outdoor Temperature Schedule Name
     30,                      !- Maximum Outdoor Temperature {C}
     ,                        !- Maximum Outdoor Temperature Schedule Name
