@@ -83,7 +83,7 @@ namespace GHEnergyPlus
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddNumberParameter("Profit", "Profit", "Profit in CHF. Rent minus cost for decentralized energy system.", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Cost", "Cost", "Cost for energy system minus rent (60CHF/m2).", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -444,6 +444,9 @@ namespace GHEnergyPlus
                 double[] totCool = new double[4];
                 double[] totHeat = new double[4];
                 double[] totsqm = new double[4];
+                double[] peakElec = new double[4];
+                double[] peakCool = new double[4];
+                double[] peakHeat = new double[4];
 
                 for (int BLD = 0; BLD < 4; BLD++)
                 {
@@ -926,10 +929,22 @@ namespace GHEnergyPlus
                     string elec = split[2];
                     string cool = split[5];
                     string heat = split[6];
-                    totElec[BLD] = 0.001 * Convert.ToDouble(elec) / 3600;
-                    totHeat[BLD] = 0.001 * Convert.ToDouble(heat) / 3600;
-                    totCool[BLD] = 0.001 * Convert.ToDouble(cool) / 3600;
+                    totElec[BLD] = Convert.ToDouble(elec) / 0.0036; //GJ to kWh
+                    totHeat[BLD] = Convert.ToDouble(heat) / 0.0036;
+                    totCool[BLD] = Convert.ToDouble(cool) / 0.0036;
                     totsqm[BLD] = Convert.ToDouble(bldarea);
+                    
+                    //get peak cool and heat
+                    // elec peak in W: lines[280][2]
+                    // cool peak in W: lines[280][5]
+                    // heat peak in W: lines[280][6]
+                    split = lines[250 + levels * 5].Split(delimiter);
+                    string elecpeak = split[2];
+                    string coolpeak = split[5];
+                    string heatpeak = split[6];
+                    peakElec[BLD] = Convert.ToDouble(elecpeak) * 0.001; //kW
+                    peakCool[BLD] = Convert.ToDouble(coolpeak) * 0.001;
+                    peakHeat[BLD] = Convert.ToDouble(heatpeak) * 0.001;
 
 
                     System.Threading.Thread.Sleep(sleeptime);
@@ -947,26 +962,88 @@ namespace GHEnergyPlus
                 }
 
 
+                //what's specific emission of fully maximized neighbourhood. take that, but reduced by quite a bit (enforcing daylight)
+
+
+                //add system installation cost for boiler and AC, annualized
+                double intrate = 0.08;
+                double LifeBoi = 30;
+                double LifeAC = 20;
+                double CostBoi = 200; //per kW
+                double CostAC = 360;  //per kW
+                double annuityBoi = intrate / (1 - (1 / (Math.Pow((1 + intrate), (LifeBoi)))));
+                double annuityAC = intrate / (1 - (1 / (Math.Pow((1 + intrate), (LifeAC)))));
+                double c_Boi = CostBoi * annuityBoi;
+                double c_AC = CostAC * annuityAC;
+                
+
+
+
                 double elecprice = 0.24;
                 double gascost = 0.09;
                 double coolConversion = 3;
                 double boilereff = 0.94;
-                double rent = 70; //chf per sqm
+                double rent = 65; //chf per sqm
 
 
-                //get all results of four buildings together
-                double totProfit = 0;
+                //measure opeational carbon emissions. if it exceeds a certain value / m2, then penalty
+                //ref heat: 100kWh/m2a
+                //ref elec: 120kWh/m2a
+                double carb_gas = 0.228; //per kWh gas
+                double carb_grid = 0.594; //UCTE-mix, per kWh elec
+                double sumEmissionsElec = 0;
+                double sumEmissionsHeat = 0;
+                double sumHeat = 0;
+                double sumCool = 0;
+                double sumElec = 0;
+                double sumArea = 0;
+                double sumPeakHeat = 0;
+                double sumPeakCool = 0;
+
+                double []costperm2 = new double[4];
+
+
                 for (int i = 0; i < 4; i++)
                 {
-                    totProfit += totElec[i] * elecprice +
-                        totCool[i] * coolConversion * elecprice +
-                        (totHeat[i] / boilereff) * gascost - 
-                        totsqm[i] * rent;
+                    sumEmissionsElec += carb_grid * totElec[i] + carb_grid * totCool[i] * coolConversion;
+                    sumEmissionsHeat += carb_gas * (totHeat[i] / boilereff);
+                    sumElec += totElec[i];
+                    sumCool += totCool[i];
+                    sumHeat += totHeat[i];
+                    sumPeakCool += peakCool[i];
+                    sumPeakHeat += peakHeat[i];
+                    sumArea += totsqm[i];
+
+                    costperm2[i] = (totElec[i] * elecprice + totCool[i] * coolConversion * elecprice + (totHeat[i] / boilereff) * gascost +
+                        peakHeat[i] * c_Boi + peakCool[i] * c_AC) /
+                        totsqm[i];
+
                 }
+                double specEmElec = sumEmissionsElec / sumArea;
+                double specEmHeat = sumEmissionsHeat / sumArea;
+                double specElec = sumElec / sumArea;
+                double specCool = sumCool / sumArea;
+                double specHeat = sumHeat / sumArea;
 
 
 
-                DA.SetData(0, totProfit);
+
+
+                double totCost = 
+                    sumElec * elecprice + 
+                    sumCool * coolConversion * elecprice + 
+                    (sumHeat / boilereff) * gascost + 
+                    sumPeakHeat*c_Boi + 
+                    sumPeakCool*c_AC
+                    - sumArea * rent;
+
+                //double carblimit = 96.5; //from SBE paper ,p.73
+                //if (specEmElec + specEmHeat > carblimit) totCost += 1000000;
+
+
+
+                DA.SetData(0, totCost);       
+                //DA.SetData(0, specEmHeat + specEmElec); //minimize per sqm carbon consumption
             }
         }
 
