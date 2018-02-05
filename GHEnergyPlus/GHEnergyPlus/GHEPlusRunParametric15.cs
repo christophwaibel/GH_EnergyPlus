@@ -83,7 +83,7 @@ namespace GHEnergyPlus
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddNumberParameter("Cost", "Cost", "Cost for energy system minus rent (60CHF/m2).", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Cost", "Cost", "Cost for energy system minus rent (65CHF/m2).", GH_ParamAccess.item);
         }
 
         /// <summary>
