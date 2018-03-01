@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Rhino.Geometry;
 
 namespace GHEnergyPlus
 {
@@ -157,5 +158,37 @@ namespace GHEnergyPlus
             }
             return centroid;
         }
+
+        internal static double[][] PtsFromOffsetRectangle(List<Point3d>plist, double offsetdistance)
+        {
+
+            double[][] ptz = new double[4][];
+            for (int i = 0; i < 4; i++)
+            {
+                ptz[i] = new double[2];
+                ptz[i][0] = plist[i].X;
+                ptz[i][1] = plist[i].Y;
+            }
+
+            double[] dblcen = Misc.Centroid(ptz);
+            Point3d cen = new Point3d(dblcen[0], dblcen[1], 0);
+            
+            plist.Add(plist[0]);
+            PolylineCurve crv = new PolylineCurve(plist);
+            crv.MakeClosed(0.001);
+            Curve[] offsetcr = crv.Offset(cen, Vector3d.ZAxis, offsetdistance,0.001, CurveOffsetCornerStyle.None);
+            PolylineCurve offsetpl = offsetcr[0].ToPolyline(0, 0, 0,System.Double.MaxValue, 0, 0.001, 0, 0,true);
+            Point3d offsetpt0 = offsetpl.Point(0);
+            Point3d offsetpt1 = offsetpl.Point(1);
+            Point3d offsetpt2 = offsetpl.Point(2);
+            Point3d offsetpt3 = offsetpl.Point(3);
+
+            return new double[][] { 
+                new double[] {offsetpt0.X, offsetpt0.Y }, 
+                new double[] {offsetpt1.X, offsetpt1.Y },
+                new double[] {offsetpt2.X, offsetpt2.Y}, 
+                new double[] {offsetpt3.X, offsetpt3.Y}};
+        }
+
     }
 }

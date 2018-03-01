@@ -7,15 +7,15 @@ using System.IO;
 
 namespace GHEnergyPlus
 {
-    public class GHEPlusRunParametric15 : GH_Component
+    public class GHEPlusRunParametric15_Suurstoffi : GH_Component
     {
-        /// <summary>
+         /// <summary>
         /// Initializes a new instance of the GHEPlusRunParametric15 class.
         /// </summary>
-        public GHEPlusRunParametric15()
-            : base("Prob15Waibel", "Prob15Waibel",
-                "Problem 15 Waibel et al 2016, four office buildings, daylight, nat vent.",
-                "EnergyHubs", "BuildingSimulation")
+        public GHEPlusRunParametric15_Suurstoffi()
+            : base("Prob15_Suurstoffi", "Prob15_Suurstoffi",
+                "Problem 15 Waibel et al 2016, four office buildings, daylight, nat vent. in Suurstoffi",
+                "EnergyHubs", "Thesis")
         {
         }
 
@@ -37,45 +37,46 @@ namespace GHEnergyPlus
 
             //6 - 41
             //35 variables
-            pManager.AddIntegerParameter("BldAfloors", "x[0]", "Building A number of floors ∈ {1,...,6}. Floor height is 4m.", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("BldBfloors", "x[1]", "Building B number of floors ∈ {1,...,6}. Floor height is 4m.", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("BldCfloors", "x[2]", "Building C number of floors ∈ {1,...,6}. Floor height is 4m.", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("BldDfloors", "x[3]", "Building D number of floors ∈ {1,...,6}. Floor height is 4m.", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("BldAfloors", "x[0]", "Building A number of floors ∈ {1,...,6}. Floor height is 3.3m.", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("BldBfloors", "x[1]", "Building B number of floors ∈ {1,...,6}. Floor height is 3.3m.", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("BldCfloors", "x[2]", "Building C number of floors ∈ {1,...,6}. Floor height is 3.3m.", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("BldDfloors", "x[3]", "Building D number of floors ∈ {1,...,6}. Floor height is 3.3m.", GH_ParamAccess.item);
 
-            pManager.AddNumberParameter("BldA_X1", "x[4]", "Building A x-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_Y1", "x[5]", "Building A y-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_X2", "x[6]", "Building A x-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_Y2", "x[7]", "Building A y-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_X3", "x[8]", "Building A x-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_Y3", "x[9]", "Building A y-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_X4", "x[10]", "Building A x-coordinate of cornerpoint 4, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_Y4", "x[11]", "Building A y-coordinate of cornerpoint 4, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_X1", "x[4]", "Building A x-coordinate of cornerpoint 1, ∈ [0, 6.2].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_Y1", "x[5]", "Building A y-coordinate of cornerpoint 1, ∈ [0, 13.09].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_X2", "x[6]", "Building A x-coordinate of cornerpoint 2, ∈ [0, 10.38].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_Y2", "x[7]", "Building A y-coordinate of cornerpoint 2, ∈ [0, 4.92].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_X3", "x[8]", "Building A x-coordinate of cornerpoint 3, ∈ [0, 5.08].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_Y3", "x[9]", "Building A y-coordinate of cornerpoint 3, ∈ [0, 12.54].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_X4", "x[10]", "Building A x-coordinate of cornerpoint 4, ∈ [0, 11.17].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_Y4", "x[11]", "Building A y-coordinate of cornerpoint 4, ∈ [0, 4.53].", GH_ParamAccess.item);
 
-            pManager.AddNumberParameter("BldB_X1", "x[12]", "Building B x-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_Y1", "x[13]", "Building B y-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_X2", "x[14]", "Building B x-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_Y2", "x[15]", "Building B y-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_X3", "x[16]", "Building B x-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_Y3", "x[17]", "Building B y-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_X4", "x[18]", "Building B x-coordinate of cornerpoint 4, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_Y4", "x[19]", "Building B y-coordinate of cornerpoint 4, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_X1", "x[12]", "Building B x-coordinate of cornerpoint 1, ∈ [0, 6.2].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_Y1", "x[13]", "Building B y-coordinate of cornerpoint 1, ∈ [0, 13.09].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_X2", "x[14]", "Building B x-coordinate of cornerpoint 2, ∈ [0, 10.39].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_Y2", "x[15]", "Building B y-coordinate of cornerpoint 2, ∈ [0, 4.92].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_X3", "x[16]", "Building B x-coordinate of cornerpoint 3, ∈ [0, 5.08].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_Y3", "x[17]", "Building B y-coordinate of cornerpoint 3, ∈ [0, 12.54].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_X4", "x[18]", "Building B x-coordinate of cornerpoint 4, ∈ [0, 11.18].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_Y4", "x[19]", "Building B y-coordinate of cornerpoint 4, ∈ [0, 4.52].", GH_ParamAccess.item);
 
-            pManager.AddNumberParameter("BldC_X1", "x[20]", "Building C x-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_Y1", "x[21]", "Building C y-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_X2", "x[22]", "Building C x-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_Y2", "x[23]", "Building C y-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_X3", "x[24]", "Building C x-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_Y3", "x[25]", "Building C y-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_X4", "x[26]", "Building C x-coordinate of cornerpoint 4, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_Y4", "x[27]", "Building C y-coordinate of cornerpoint 4, ∈ [0, 5.0].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_X1", "x[20]", "Building C x-coordinate of cornerpoint 1, ∈ [0, 5.08].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_Y1", "x[21]", "Building C y-coordinate of cornerpoint 1, ∈ [0, 12.54].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_X2", "x[22]", "Building C x-coordinate of cornerpoint 2, ∈ [0, 11.17].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_Y2", "x[23]", "Building C y-coordinate of cornerpoint 2, ∈ [0, 4.52].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_X3", "x[24]", "Building C x-coordinate of cornerpoint 3, ∈ [0, 4.07].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_Y3", "x[25]", "Building C y-coordinate of cornerpoint 3, ∈ [0, 12.04].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_X4", "x[26]", "Building C x-coordinate of cornerpoint 4, ∈ [0, 12.07].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_Y4", "x[27]", "Building C y-coordinate of cornerpoint 4, ∈ [0, 4.08].", GH_ParamAccess.item);
 
-            pManager.AddNumberParameter("BldD_X1", "x[28]", "Building D x-coordinate of cornerpoint 1, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_Y1", "x[29]", "Building D y-coordinate of cornerpoint 1, ∈ [0, 5.0].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_X2", "x[30]", "Building D x-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_Y2", "x[31]", "Building D y-coordinate of cornerpoint 2, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_X3", "x[32]", "Building D x-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_Y3", "x[33]", "Building D y-coordinate of cornerpoint 3, ∈ [0, 9.5].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_X4", "x[34]", "Building D x-coordinate of cornerpoint 4, ∈ [0, 9.5].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_X1", "x[28]", "Building D x-coordinate of cornerpoint 1, ∈ [0, 5.09].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_Y1", "x[29]", "Building D y-coordinate of cornerpoint 1, ∈ [0, 12.54].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_X2", "x[30]", "Building D x-coordinate of cornerpoint 2, ∈ [0, 11.18].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_Y2", "x[31]", "Building D y-coordinate of cornerpoint 2, ∈ [0, 4.53].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_X3", "x[32]", "Building D x-coordinate of cornerpoint 3, ∈ [0, 4.07].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_Y3", "x[33]", "Building D y-coordinate of cornerpoint 3, ∈ [0, 12.04].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_X4", "x[34]", "Building D x-coordinate of cornerpoint 4, ∈ [0, 12.07].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_Y4", "x[35]", "Building D y-coordinate of cornerpoint 4, ∈ [0, 4.09].", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -113,8 +114,15 @@ namespace GHEnergyPlus
             if (!DA.GetData(2, ref runit)) { return; }
 
 
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // nat vent and shading set points
             //get input parameters
-            int dvar = 35;
+            int dvar = 36;
             int[] xint = new int[4];
             double[] x = new double[dvar];
             for (int i = 0; i < 4; i++)
@@ -128,7 +136,7 @@ namespace GHEnergyPlus
 
             if (runit == true)
             {
-                double lvlHeight = 4.0; // height per level
+                double lvlHeight = 3.3; // height per level
                 //_________________________________________________________________________
                 ///////////////////////////////////////////////////////////////////////////
                 ///////////////////////////////////////////////////////////////////////////
@@ -151,70 +159,69 @@ namespace GHEnergyPlus
                 ///////////////////////////////////////////////////////////////////////////
                 // EXTERNAL WALLS
                 // Bld A
-                // pt 1, x/y bounds. x: [0.5, 10.0]; y: [30.0, 39.5]
-                // pt 2, x/y bounds. x: [0.5, 10.0]; y: [0.5, 10.0]
-                // pt 3, x/y bounds. x: [30.0, 39.5]; y: [0.5, 10.0]
-                // pt 4, x/y bounds. x: [30.0, 39.5]; y: [30.0, 39.5]
+                // pt 1, x/y bounds. x: [27.87, 34.07]; y: [93.70, 106.79]
+                // pt 2, x/y bounds. x: [20.84, 31.22]; y: [76.51, 81.43]
+                // pt 3, x/y bounds. x: [51.12, 56.20]; y: [59.09, 71.63]
+                // pt 4, x/y bounds. x: [55.27, 66.44]; y: [83.26, 87.79]
                 double[] A_px_lb = new double[4];
                 double[] A_py_lb = new double[4];
-                A_px_lb[0] = 0.5;
-                A_px_lb[1] = 0.5;
-                A_px_lb[2] = 30;
-                A_px_lb[3] = 30;
-                A_py_lb[0] = 30;
-                A_py_lb[1] = 0.5;
-                A_py_lb[2] = 0.5;
-                A_py_lb[3] = 30;
+                A_px_lb[0] = 27.87;
+                A_px_lb[1] = 20.84;
+                A_px_lb[2] = 51.12;
+                A_px_lb[3] = 55.27;
+                A_py_lb[0] = 93.70;
+                A_py_lb[1] = 76.51;
+                A_py_lb[2] = 59.09;
+                A_py_lb[3] = 83.26;
 
 
                 // Bld B
-                // pt 1, x/y bounds. x: [40.5, 50.0]; y: [30.0, 39.5]
-                // pt 2, x/y bounds. x: [40.5, 50.0]; y: [0.5, 10.0]
-                // pt 3, x/y bounds. x: [70.0, 79.5]; y: [0.5, 10.0]
-                // pt 4, x/y bounds. x: [70.0, 79.5]; y: [30.0, 39.5]
+                // pt 1, x/y bounds. x: [19.68, 25.88]; y: [58.42, 71.51]
+                // pt 2, x/y bounds. x: [12.64, 23.03]; y: [41.23, 46.15]
+                // pt 3, x/y bounds. x: [39.18, 44.26]; y: [25.66, 38.20]
+                // pt 4, x/y bounds. x: [43.33, 54.51]; y: [49.83, 54.35]
                 double[] B_px_lb = new double[4];
                 double[] B_py_lb = new double[4];
-                B_px_lb[0] = 40.5;
-                B_px_lb[1] = 40.5;
-                B_px_lb[2] = 70;
-                B_px_lb[3] = 70;
-                B_py_lb[0] = 30;
-                B_py_lb[1] = 0.5;
-                B_py_lb[2] = 0.5;
-                B_py_lb[3] = 30;
-
+                B_px_lb[0] = 19.68;
+                B_px_lb[1] = 12.64;
+                B_px_lb[2] = 39.18;
+                B_px_lb[3] = 43.33;
+                B_py_lb[0] = 58.42;
+                B_py_lb[1] = 41.23;
+                B_py_lb[2] = 25.66;
+                B_py_lb[3] = 49.83;
 
                 // Bld C
-                // pt 1, x/y bounds. x: [0.5, 10.0]; y: [70.0, 79.5]
-                // pt 2, x/y bounds. x: [0.5, 10.0]; y: [40.5, 50.0]
-                // pt 3, x/y bounds. x: [30.0, 39.5]; y: [40.5, 50.0]
-                // pt 4, x/y bounds. x: [30.0, 39.5]; y: [70.0, 75.0]
+                // pt 1, x/y bounds. x: [59.02, 64.10]; y: [39.59, 52.13]
+                // pt 2, x/y bounds. x: [48.78, 59.95]; y: [23.44, 27.96]
+                // pt 3, x/y bounds. x: [76.33, 80.40]; y: [7.86, 19.90]
+                // pt 4, x/y bounds. x: [81.78, 93.85]; y: [30.89, 34.97]
                 double[] C_px_lb = new double[4];
                 double[] C_py_lb = new double[4];
-                C_px_lb[0] = 0.5;
-                C_px_lb[1] = 0.5;
-                C_px_lb[2] = 30;
-                C_px_lb[3] = 30;
-                C_py_lb[0] = 70;
-                C_py_lb[1] = 40.5;
-                C_py_lb[2] = 40.5;
-                C_py_lb[3] = 70;
+                C_px_lb[0] = 59.02;
+                C_px_lb[1] = 48.78;
+                C_px_lb[2] = 76.33;
+                C_px_lb[3] = 81.78;
+                C_py_lb[0] = 39.59;
+                C_py_lb[1] = 23.44;
+                C_py_lb[2] = 7.86;
+                C_py_lb[3] = 30.89;
 
                 // Bld D
-                // pt 1, x/y bounds. x: [40.5, 50.0]; y: [70.0, 75.0]
-                // pt 2, x/y bounds. x: [40.5, 50.0]; y: [40.5, 50.0]
-                // pt 3, x/y bounds. x: [70.0, 79.5]; y: [40.5, 50.0]
-                // pt 4, x/y bounds. x: [70.0, 79.5]; y: [65.0, 65.0]
+                // pt 1, x/y bounds. x: [70.95, 76.04]; y: [73.03, 85.57]
+                // pt 2, x/y bounds. x: [60.71, 71.89]; y: [56.87, 61.40]
+                // pt 3, x/y bounds. x: [92.00, 96.07]; y: [39.45, 51.49]
+                // pt 4, x/y bounds. x: [97.45, 109.52]; y: [62.48, 66.57]
                 double[] D_px_lb = new double[4];
                 double[] D_py_lb = new double[4];
-                D_px_lb[0] = 40.5;
-                D_px_lb[1] = 40.5;
-                D_px_lb[2] = 70;
-                D_px_lb[3] = 70;
-                D_py_lb[0] = 70;
-                D_py_lb[1] = 40.5;
-                D_py_lb[2] = 40.5;
-                D_py_lb[3] = 65;
+                D_px_lb[0] = 70.95;
+                D_px_lb[1] = 60.71;
+                D_px_lb[2] = 92.00;
+                D_px_lb[3] = 97.45;
+                D_py_lb[0] = 73.03;
+                D_py_lb[1] = 56.87;
+                D_py_lb[2] = 39.45;
+                D_py_lb[3] = 62.48;
 
 
                 //_________________________________________________________________________
@@ -222,68 +229,68 @@ namespace GHEnergyPlus
                 ///////////////////////////////////////////////////////////////////////////
                 // INTERNAL WALLS
                 // Bld A
-                // pt 1, x/y bounds. x: [5.5, 15.0]; y: [25.0, 34.5]
-                // pt 2, x/y bounds. x: [5.5, 15.0]; y: [5.5, 15.0]
-                // pt 3, x/y bounds. x: [25.0, 34.5]; y: [5.5, 15.0]
-                // pt 4, x/y bounds. x: [25.0, 34.5]; y: [25.0, 34.5]
+                // pt 1, x/y bounds. x: [31.32, 37.52]; y: [86.43, 99.52]
+                // pt 2, x/y bounds. x: [26.61, 36.99]; y: [79.24, 84.16]
+                // pt 3, x/y bounds. x: [48.29, 53.37]; y: [66.06, 78.6]
+                // pt 4, x/y bounds. x: [49.06, 60.23]; y: [80.74, 85.27]
                 double[] Ain_px_lb = new double[4];
                 double[] Ain_py_lb = new double[4];
-                Ain_px_lb[0] = 5.5;
-                Ain_px_lb[1] = 5.5;
-                Ain_px_lb[2] = 25;
-                Ain_px_lb[3] = 25;
-                Ain_py_lb[0] = 25;
-                Ain_py_lb[1] = 5.5;
-                Ain_py_lb[2] = 5.5;
-                Ain_py_lb[3] = 25;
+                Ain_px_lb[0] = 31.32;
+                Ain_px_lb[1] = 26.61;
+                Ain_px_lb[2] = 48.29;
+                Ain_px_lb[3] = 49.06;
+                Ain_py_lb[0] = 86.43;
+                Ain_py_lb[1] = 79.24;
+                Ain_py_lb[2] = 66.06;
+                Ain_py_lb[3] = 80.74;
 
                 // Bld B
-                // pt 1, x/y bounds. x: [45.5, 55.0]; y: [25.0, 34.5]
-                // pt 2, x/y bounds. x: [45.5, 55.0]; y: [5.5, 15.0]
-                // pt 3, x/y bounds. x: [65.0, 74.5]; y: [5.5, 15.0]
-                // pt 4, x/y bounds. x: [65.0, 74.5]; y: [25.0, 34.5]
+                // pt 1, x/y bounds. x: [23.12, 29.32]; y: [51.15, 64.24]
+                // pt 2, x/y bounds. x: [18.41, 28.79]; y: [43.97, 48.89]
+                // pt 3, x/y bounds. x: [36.36, 41.44]; y: [32.62, 45.16]
+                // pt 4, x/y bounds. x: [37.13, 48.30]; y: [47.31, 51.84]
                 double[] Bin_px_lb = new double[4];
                 double[] Bin_py_lb = new double[4];
-                Bin_px_lb[0] = 45.5;
-                Bin_px_lb[1] = 45.5;
-                Bin_px_lb[2] = 65;
-                Bin_px_lb[3] = 65;
-                Bin_py_lb[0] = 25;
-                Bin_py_lb[1] = 5.5;
-                Bin_py_lb[2] = 5.5;
-                Bin_py_lb[3] = 25;
+                Bin_px_lb[0] = 23.12;
+                Bin_px_lb[1] = 18.41;
+                Bin_px_lb[2] = 36.36;
+                Bin_px_lb[3] = 37.13;
+                Bin_py_lb[0] = 51.15;
+                Bin_py_lb[1] = 43.97;
+                Bin_py_lb[2] = 32.62;
+                Bin_py_lb[3] = 47.31;
 
                 // Bld C
-                // pt 1, x/y bounds. x: [5.5, 15.0]; y: [64.39, 73.89]
-                // pt 2, x/y bounds. x: [5.5, 15.0]; y: [45.5, 55.0]
-                // pt 3, x/y bounds. x: [25.0, 34.5]; y: [45.5, 55.0]
-                // pt 4, x/y bounds. x: [25.0, 34.5]; y: [65.54, 70.54]
+                // pt 1, x/y bounds. x: [61.84, 66.93]; y: [32.63, 45.17]
+                // pt 2, x/y bounds. x: [54.99, 66.16]; y: [25.95, 30.48]
+                // pt 3, x/y bounds. x: [74.06, 78.14]; y: [14.55, 26.59]
+                // pt 4, x/y bounds. x: [75.07, 87.14]; y: [28.62, 32.70]
                 double[] Cin_px_lb = new double[4];
                 double[] Cin_py_lb = new double[4];
-                Cin_px_lb[0] = 5.5;
-                Cin_px_lb[1] = 5.5;
-                Cin_px_lb[2] = 25;
-                Cin_px_lb[3] = 25;
-                Cin_py_lb[0] = 64.39;
-                Cin_py_lb[1] = 45.5;
-                Cin_py_lb[2] = 45.5;
-                Cin_py_lb[3] = 65.54;
+                Cin_px_lb[0] = 61.84;
+                Cin_px_lb[1] = 54.99;
+                Cin_px_lb[2] = 74.06;
+                Cin_px_lb[3] = 75.07;
+                Cin_py_lb[0] = 32.63;
+                Cin_py_lb[1] = 25.95;
+                Cin_py_lb[2] = 14.55;
+                Cin_py_lb[3] = 28.62;
 
                 // Bld D
-                // pt 1, x/y bounds. x: [45.5, 55.0]; y: [63.56, 68.56]
-                // pt 2, x/y bounds. x: [45.5, 55.0]; y: [45.5, 55.0]
-                // pt 3, x/y bounds. x: [65.0, 74.5]; y: [45.5, 55.0]
-                // pt 4, x/y bounds. x: [65.0, 74.5]; y: [61.12, 61.12]
+                // pt 1, x/y bounds. x: [73.78, 78.86]; y: [66.07, 78.60]
+                // pt 2, x/y bounds. x: [66.92, 78.09]; y: [59.39, 63.92]
+                // pt 3, x/y bounds. x: [89.73, 93.81]; y: [46.14, 58.18]
+                // pt 4, x/y bounds. x: [90.74, 102.81]; y: [60.21, 64.30]
                 double[] Din_px_lb = new double[4];
                 double[] Din_py_lb = new double[4];
-                Din_px_lb[0] = 45.5;
-                Din_px_lb[1] = 45.5;
-                Din_px_lb[2] = 65;
-                Din_px_lb[3] = 65;
-                Din_py_lb[0] = 63.56;
-                Din_py_lb[1] = 45.5;
-                Din_py_lb[2] = 45.5;
-                Din_py_lb[3] = 61.12;
+                Din_px_lb[0] = 73.78;
+                Din_px_lb[1] = 66.92;
+                Din_px_lb[2] = 89.73;
+                Din_px_lb[3] = 90.74;
+                Din_py_lb[0] = 66.07;
+                Din_py_lb[1] = 59.39;
+                Din_py_lb[2] = 46.14;
+                Din_py_lb[3] = 60.21;
 
 
                 double[] A_px = new double[4];
@@ -312,20 +319,62 @@ namespace GHEnergyPlus
                     C_px[i] = x[20 + step] + C_px_lb[i];
                     C_py[i] = x[20 + step + 1] + C_py_lb[i];
                     D_px[i] = x[28 + step] + D_px_lb[i];
-                    if (i < 3) D_py[i] = x[28 + step + 1] + D_py_lb[i];
-                    else D_py[i] = D_py_lb[i];
+                    D_py[i] = x[28 + step + 1] + D_py_lb[i];
 
-                    Ain_px[i] = x[4 + step] + Ain_px_lb[i];
-                    Ain_py[i] = x[4 + step + 1] + Ain_py_lb[i];
-                    Bin_px[i] = x[12 + step] + Bin_px_lb[i];
-                    Bin_py[i] = x[12 + step + 1] + Bin_py_lb[i];
-                    Cin_px[i] = x[20 + step] + Cin_px_lb[i];
-                    Cin_py[i] = x[20 + step + 1] + Cin_py_lb[i];
-                    Din_px[i] = x[28 + step] + Din_px_lb[i];
-                    if (i < 3) Din_py[i] = x[28 + step + 1] + Din_py_lb[i];
-                    else Din_py[i] = Din_py_lb[i];
+                    //Ain_px[i] = x[4 + step] + Ain_px_lb[i];
+                    //Ain_py[i] = x[4 + step + 1] + Ain_py_lb[i];
+                    //Bin_px[i] = x[12 + step] + Bin_px_lb[i];
+                    //Bin_py[i] = x[12 + step + 1] + Bin_py_lb[i];
+                    //Cin_px[i] = x[20 + step] + Cin_px_lb[i];
+                    //Cin_py[i] = x[20 + step + 1] + Cin_py_lb[i];
+                    //Din_px[i] = x[28 + step] + Din_px_lb[i];
+                    //Din_py[i] = x[28 + step + 1] + Din_py_lb[i];
                     step += 2;
                 }
+
+
+                List<Point3d> plist = new List<Point3d>();
+                plist.Add(new Point3d(A_px[0], A_py[0], 0));
+                plist.Add(new Point3d(A_px[1], A_py[1], 0));
+                plist.Add(new Point3d(A_px[2], A_py[2], 0));
+                plist.Add(new Point3d(A_px[3], A_py[3], 0));
+                double[][] A_pts_offset = Misc.PtsFromOffsetRectangle(plist,5);
+
+                plist = new List<Point3d>();
+                plist.Add(new Point3d(B_px[0], B_py[0], 0));
+                plist.Add(new Point3d(B_px[1], B_py[1], 0));
+                plist.Add(new Point3d(B_px[2], B_py[2], 0));
+                plist.Add(new Point3d(B_px[3], B_py[3], 0));
+                double[][] B_pts_offset = Misc.PtsFromOffsetRectangle(plist,5);
+
+                plist = new List<Point3d>();
+                plist.Add(new Point3d(C_px[0], C_py[0], 0));
+                plist.Add(new Point3d(C_px[1], C_py[1], 0));
+                plist.Add(new Point3d(C_px[2], C_py[2], 0));
+                plist.Add(new Point3d(C_px[3], C_py[3], 0));
+                double[][] C_pts_offset = Misc.PtsFromOffsetRectangle(plist,5);
+
+                plist = new List<Point3d>();
+                plist.Add(new Point3d(D_px[0], D_py[0], 0));
+                plist.Add(new Point3d(D_px[1], D_py[1], 0));
+                plist.Add(new Point3d(D_px[2], D_py[2], 0));
+                plist.Add(new Point3d(D_px[3], D_py[3], 0));
+                double[][] D_pts_offset = Misc.PtsFromOffsetRectangle(plist,5);
+
+                for (int i = 0; i < 4; i++)
+                {
+                    Ain_px[i] = A_pts_offset[i][0];
+                    Ain_py[i] = A_pts_offset[i][1];
+                    Bin_px[i] = B_pts_offset[i][0];
+                    Bin_py[i] = B_pts_offset[i][1];
+                    Cin_px[i] = C_pts_offset[i][0];
+                    Cin_py[i] = C_pts_offset[i][1];
+                    Din_px[i] = D_pts_offset[i][0];
+                    Din_py[i] = D_pts_offset[i][1];
+                }
+
+
+
 
                 //_________________________________________________________________________
                 ///////////////////////////////////////////////////////////////////////////
@@ -1067,7 +1116,7 @@ namespace GHEnergyPlus
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("{d9f6638f-2119-481c-a178-46bda59b2e5b}"); }
+            get { return new Guid("{668c737e-b0c6-4fc6-be51-93f61fb3932b}"); }
         }
     }
 }
