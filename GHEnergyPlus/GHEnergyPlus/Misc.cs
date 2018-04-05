@@ -190,5 +190,27 @@ namespace GHEnergyPlus
                 new double[] {offsetpt3.X, offsetpt3.Y}};
         }
 
+        /// <summary>
+        /// Planar projection of a point to a new plane, using projection matrix C
+        /// </summary>
+        /// <param name="C"></param>
+        /// <param name="pin"></param>
+        /// <returns></returns>
+        internal static double [] TransformPoints(double [,] C, double [] pin){
+            double [] p1 = new double[3];
+            for(int i=0; i<3; i++)                //C*pin;
+            {
+                p1[i] = 0;
+                for(int u=0; u<3; u++)
+                {
+                    p1[i] += C[i,u]*pin[u];
+                }    
+            }
+            double px = p1[0] / p1[2];          // px = p1(1) / p1(3);
+            double py = p1[1] / p1[2];          // py = p1(2) / p1(3);
+            double pz = 1;
+
+            return new double[3]{px,py,pz};            // p = [px;py;1];
+        }
     }
 }
