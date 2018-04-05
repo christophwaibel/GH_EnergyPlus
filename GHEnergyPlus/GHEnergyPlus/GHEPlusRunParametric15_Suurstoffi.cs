@@ -143,6 +143,118 @@ namespace GHEnergyPlus
                 // 2---3  2---3            
 
 
+                // PROJECTIVE TRANSFORMATION MATRICES - using Matlab script C=ProjectiveTransformation(Ain,Bin)
+                // design variables are in domain x \in [0,1]
+                double[,] CTransf_C1 = new double[,]
+                {
+                    {8.3240,    2.0830,     25.7800},
+                    {-3.9866,   8.9832,     97.7800},
+                    {0.0010,    -0.0003,    1.000}
+                };
+                double[,] CTransf_C4 = new double[,]
+                {
+                    {8.0889,    2.9790,   55.2700},
+                    {-4.0389,   8.4340,   83.2600},
+                    {-0.0005,   -0.0010,  1.0000}
+                };
+                double[,] CTransf_C3 = new double[,]
+                {
+                    {8.1016,    3.1226,   48.0700},
+                    {-4.0399,    8.6318,   63.1000},
+                    {-0.0005,    0.0014,    1.0000}
+                };
+                double[,] CTransf_C2 = new double[,]
+                {
+                    {8.2900,    2.0900,   20.8400},
+                    {-4.0800,    9.0000,   76.5100},
+                    {0,    0.0000,    1.0000}
+                };
+
+                double[,] CTransf_D1 = new double[,]
+                {
+                    {8.2058,    3.0135,   67.9100},
+                    {-3.9272,    8.5081,   77.0300},
+                    {0.0010,   -0.0004,    1.0000}
+                };
+                double[,] CTransf_D4 = new double[,]
+                {
+                    {8.1434,    3.8196,   97.4500},
+                    {-3.9504,    7.9754,   62.4800},
+                    {0.0005,   -0.0015,    1.0000}
+                };
+                double[,] CTransf_D3 = new double[,]
+                {
+                    {7.9743,    4.0454,   88.0000},
+                    {-4.0193,    8.0854,   43.4300},
+                    {-0.0010,    0.0005,    1.0000}
+                };
+                double[,] CTransf_D2 = new double[,]
+                {
+                    {9.0858,    2.7179,   60.7100},
+                    {-3.2659,    8.3286,   56.8700},
+                    {0.0139,   -0.0052,    1.0000}
+                };
+
+                double[,] CTransf_B1 = new double[,]
+                {
+                    {8.0247,    3.0003,   55.9800},
+                    {-4.0688,    8.4949,   43.6000},
+                    {-0.0015,   -0.0007,    1.0000}
+                };
+                double[,] CTransf_B4 = new double[,]
+                {
+                    {8.0272,    3.6726,   81.7800},
+                    {-3.9928,    7.9349,   30.8900},
+                    {-0.0005,   -0.0035,    1.0000}
+                };
+                double[,] CTransf_B3 = new double[,]
+                {
+                    {8.0700,    4.0000,   72.3300},
+                    {-3.9800,    8.0600,   11.8400},
+                    {-0.0000,   -0.0000,    1.0000}
+                };
+                double[,] CTransf_B2 = new double[,]
+                {
+                    {8.1580,    3.1043,   48.7800},
+                    {-4.0004,    8.5635,   23.4400},
+                    {0.0005,    0.0010,    1.0000}
+                };
+
+                double[,] CTransf_A1 = new double[,]
+                {
+                    {8.2642,    2.0949,   17.5900},
+                    {-4.1482,    9.0180,   62.5100},
+                    {-0.0010,    0.0003,    1.0000}
+                };
+                double[,] CTransf_A4 = new double[,]
+                {
+                    {8.1300,    3.0500,   43.3300},
+                    {-4.0100,    8.5300,   49.8300},
+                    {0.0000,    0.0000,    1.0000}
+                };
+                double[,] CTransf_A3 = new double[,]
+                {
+                    {8.1424,    2.9844,   36.1400},
+                    {-3.9870,    8.4858,   29.6600},
+                    {0.0005,   -0.0014,    1.0000}
+                };
+                double[,] CTransf_A2 = new double[,]
+                {
+                    {8.3312,    2.1122,   12.6400},
+                    {-4.0247,    9.0517,   41.2300},
+                    {0.0015,    0.0008,    1.0000}
+                };
+
+
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //FROM HERE ON change building coordinates creation... use mapping first:
+                // 
+                // pin should be a point in the 0,1 domain, i.e. the design variable for a building.
+                //double[] newp = Misc.TransformPoints(CTransf_A1, pin);
+
+
+
+
                 //heights
                 double A_z = x[0] * lvlHeight;
                 double B_z = x[1] * lvlHeight;
