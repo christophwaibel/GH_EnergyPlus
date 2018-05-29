@@ -10,9 +10,9 @@ using Rhino.PlugIns;
 [assembly: AssemblyTitle("GHEnergyPlus")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Empa")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("GHEnergyPlus")]
-[assembly: AssemblyCopyright("Copyright © Empa 2016")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -22,7 +22,7 @@ using Rhino.PlugIns;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("918c3d1f-45fe-4b11-a110-7c827fcc4363")] // This will also be the Guid of the Rhino plug-in
+[assembly: Guid("67f52351-0d58-4001-a555-c417d57926ae")] // This will also be the Guid of the Rhino plug-in
 
 // Version information for an assembly consists of the following four values:
 //
