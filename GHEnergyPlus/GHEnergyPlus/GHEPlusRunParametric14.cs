@@ -138,29 +138,29 @@ namespace GHEnergyPlus
                 for (int i = 1; i < 9; i++)
                 {
                     replacethis[xvar_count] = @"%x1_pi" + i.ToString() + @"_x%";
-                    replacethis[xvar_count+1] = @"%x1_pi" + i.ToString() + @"_y%";
-                    replacethis[xvar_count+2] = @"%x1_pi" + i.ToString() + @"_z%";
+                    replacethis[xvar_count + 1] = @"%x1_pi" + i.ToString() + @"_y%";
+                    replacethis[xvar_count + 2] = @"%x1_pi" + i.ToString() + @"_z%";
                     xvar_count += 3;
                 }
                 replacethis[xvar_count] = @"%x2%"; // u-value
                 xvar_count++;
 
                 replacethis[xvar_count] = @"%x3_xstart%";         // fenestration xstart, zstart, length, height. North
-                replacethis[xvar_count + 1] = @"%x3_zstart%"; 
-                replacethis[xvar_count + 2] = @"%x3_length%"; 
-                replacethis[xvar_count + 3] = @"%x3_height%"; 
+                replacethis[xvar_count + 1] = @"%x3_zstart%";
+                replacethis[xvar_count + 2] = @"%x3_length%";
+                replacethis[xvar_count + 3] = @"%x3_height%";
                 replacethis[xvar_count + 4] = @"%x4_xstart%";     // South
-                replacethis[xvar_count + 5] = @"%x4_zstart%"; 
-                replacethis[xvar_count + 6] = @"%x4_length%"; 
-                replacethis[xvar_count + 7] = @"%x4_height%"; 
+                replacethis[xvar_count + 5] = @"%x4_zstart%";
+                replacethis[xvar_count + 6] = @"%x4_length%";
+                replacethis[xvar_count + 7] = @"%x4_height%";
                 replacethis[xvar_count + 8] = @"%x5_xstart%";     // East
-                replacethis[xvar_count + 9] = @"%x5_zstart%"; 
-                replacethis[xvar_count + 10] = @"%x5_length%"; 
-                replacethis[xvar_count + 11] = @"%x5_height%"; 
+                replacethis[xvar_count + 9] = @"%x5_zstart%";
+                replacethis[xvar_count + 10] = @"%x5_length%";
+                replacethis[xvar_count + 11] = @"%x5_height%";
                 replacethis[xvar_count + 12] = @"%x6_xstart%";    // West
-                replacethis[xvar_count + 13] = @"%x6_zstart%"; 
-                replacethis[xvar_count + 14] = @"%x6_length%"; 
-                replacethis[xvar_count + 15] = @"%x6_height%"; 
+                replacethis[xvar_count + 13] = @"%x6_zstart%";
+                replacethis[xvar_count + 14] = @"%x6_length%";
+                replacethis[xvar_count + 15] = @"%x6_height%";
                 xvar_count += 16;
 
                 for (int i = 7; i < dvar; i++)
@@ -174,12 +174,12 @@ namespace GHEnergyPlus
                 //replacers
                 string[] replacers = new string[replacethis.Length];
                 replacers[0] = x[0].ToString();
-                
+
                 double floor_area = 70; //according to paper. but in his file its 100 though
                 double[][] x1_p;
                 double[][] x1_pi;
                 Misc.insert_surface(out x1_p, out x1_pi, floor_area, x[1]);
-                
+
                 xvar_count = 1;
                 for (int i = 0; i < 12; i++)        //aspect ratio
                 {
@@ -198,9 +198,9 @@ namespace GHEnergyPlus
                 replacers[xvar_count] = x[2].ToString();
                 xvar_count++;
 
-                double [] xstart;
+                double[] xstart;
                 double[] zstart;
-                double[] length; 
+                double[] length;
                 double[] height;
                 Misc.insert_window(out xstart, out zstart, out length, out height, x1_p, new double[4] { x[3], x[4], x[5], x[6] });
 
@@ -345,7 +345,7 @@ namespace GHEnergyPlus
             }
         }
 
-        
+
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>

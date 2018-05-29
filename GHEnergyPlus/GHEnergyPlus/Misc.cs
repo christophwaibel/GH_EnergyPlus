@@ -159,7 +159,7 @@ namespace GHEnergyPlus
             return centroid;
         }
 
-        internal static double[][] PtsFromOffsetRectangle(List<Point3d>plist, double offsetdistance)
+        internal static double[][] PtsFromOffsetRectangle(List<Point3d> plist, double offsetdistance)
         {
 
             double[][] ptz = new double[4][];
@@ -172,12 +172,12 @@ namespace GHEnergyPlus
 
             double[] dblcen = Misc.Centroid(ptz);
             Point3d cen = new Point3d(dblcen[0], dblcen[1], 0);
-            
+
             plist.Add(plist[0]);
             PolylineCurve crv = new PolylineCurve(plist);
             crv.MakeClosed(0.001);
-            Curve[] offsetcr = crv.Offset(cen, Vector3d.ZAxis, offsetdistance,0.001, CurveOffsetCornerStyle.None);
-            PolylineCurve offsetpl = offsetcr[0].ToPolyline(0, 0, 0,System.Double.MaxValue, 0, 0.001, 0, 0,true);
+            Curve[] offsetcr = crv.Offset(cen, Vector3d.ZAxis, offsetdistance, 0.001, CurveOffsetCornerStyle.None);
+            PolylineCurve offsetpl = offsetcr[0].ToPolyline(0, 0, 0, System.Double.MaxValue, 0, 0.001, 0, 0, true);
             Point3d offsetpt0 = offsetpl.Point(0);
             Point3d offsetpt1 = offsetpl.Point(1);
             Point3d offsetpt2 = offsetpl.Point(2);
@@ -196,21 +196,22 @@ namespace GHEnergyPlus
         /// <param name="C"></param>
         /// <param name="pin"></param>
         /// <returns></returns>
-        internal static double [] TransformPoints(double [,] C, double [] pin){
-            double [] p1 = new double[3];
-            for(int i=0; i<3; i++)                //C*pin;
+        internal static double[] TransformPoints(double[,] C, double[] pin)
+        {
+            double[] p1 = new double[3];
+            for (int i = 0; i < 3; i++)                //C*pin;
             {
                 p1[i] = 0;
-                for(int u=0; u<3; u++)
+                for (int u = 0; u < 3; u++)
                 {
-                    p1[i] += C[i,u]*pin[u];
-                }    
+                    p1[i] += C[i, u] * pin[u];
+                }
             }
             double px = p1[0] / p1[2];          // px = p1(1) / p1(3);
             double py = p1[1] / p1[2];          // py = p1(2) / p1(3);
             double pz = 1;
 
-            return new double[3]{px,py,pz};            // p = [px;py;1];
+            return new double[3] { px, py, pz };            // p = [px;py;1];
         }
     }
 }

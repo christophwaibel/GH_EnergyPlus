@@ -191,7 +191,7 @@ namespace GHEnergyPlus
                 mins[15] = 0.01;
                 maxs[15] = 5.0;
                 mins[16] = 0.01;
-                maxs[16] = 5.0; 
+                maxs[16] = 5.0;
                 mins[17] = 0.01;
                 maxs[17] = 2.0;
                 mins[18] = 0.01;
@@ -306,12 +306,12 @@ namespace GHEnergyPlus
                     }
 
 
-                  
+
                     //scan string for keywords and replace them with parameters
                     for (int i = 0; i < lines.Length; i++)
                         for (int u = 0; u < replacethis.Length; u++)
                             lines[i] = lines[i].Replace(replacethis[u], replacers[u]);
-                        
+
 
                     //write a new idf file
                     File.WriteAllLines(path_in + idfmodified + ".idf", lines);
@@ -382,7 +382,7 @@ namespace GHEnergyPlus
 
 
                     result = Fx;
-                   
+
 
 
                     //DA.SetData(0, result);
@@ -404,7 +404,7 @@ namespace GHEnergyPlus
                         dir.Delete(true);
                     }
                 }
-                
+
 
 
 

@@ -7,14 +7,14 @@ using System.IO;
 
 namespace GHEnergyPlus
 {
-    public class GHEPlusRunParametric15_Suurstoffi : GH_Component
+    public class GHEPlusRunParametric15_Zurich : GH_Component
     {
          /// <summary>
         /// Initializes a new instance of the GHEPlusRunParametric15 class.
         /// </summary>
-        public GHEPlusRunParametric15_Suurstoffi()
-            : base("Prob15_Suurstoffi", "Prob15_Suurstoffi",
-                "Problem 15 Waibel et al 2016, four office buildings, daylight, nat vent. in Suurstoffi. Case Study 2 in Holistic Paper.",
+        public GHEPlusRunParametric15_Zurich()
+            : base("Prob15_Zurich", "Prob15_Zurich",
+                "Problem 15 Waibel et al 2016, four office buildings, daylight, nat vent. in Zurich. Case Study 1 and 3 for Thesis and Holistic Paper.",
                 "EnergyHubs", "Thesis")
         {
         }
@@ -37,46 +37,46 @@ namespace GHEnergyPlus
 
             //6 - 41
             //35 variables
-            pManager.AddIntegerParameter("BldAfloors", "x[0]", "Building A number of floors ∈ {1,...,6}. Floor height is 3.3m.", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("BldBfloors", "x[1]", "Building B number of floors ∈ {1,...,6}. Floor height is 3.3m.", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("BldCfloors", "x[2]", "Building C number of floors ∈ {1,...,6}. Floor height is 3.3m.", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("BldDfloors", "x[3]", "Building D number of floors ∈ {1,...,6}. Floor height is 3.3m.", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("BldAfloors", "x[0]", "Building A number of floors ∈ {1,...,6}. Floor height is 4 m.", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("BldBfloors", "x[1]", "Building B number of floors ∈ {1,...,6}. Floor height is 4 m.", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("BldCfloors", "x[2]", "Building C number of floors ∈ {1,...,6}. Floor height is 4 m.", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("BldDfloors", "x[3]", "Building D number of floors ∈ {1,...,6}. Floor height is 4 m.", GH_ParamAccess.item);
 
-            pManager.AddNumberParameter("BldA_X1", "x[4]", "Building A x-coordinate of cornerpoint 1, ∈ [0, 6.2].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_Y1", "x[5]", "Building A y-coordinate of cornerpoint 1, ∈ [0, 13.09].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_X2", "x[6]", "Building A x-coordinate of cornerpoint 2, ∈ [0, 10.38].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_Y2", "x[7]", "Building A y-coordinate of cornerpoint 2, ∈ [0, 4.92].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_X3", "x[8]", "Building A x-coordinate of cornerpoint 3, ∈ [0, 5.08].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_Y3", "x[9]", "Building A y-coordinate of cornerpoint 3, ∈ [0, 12.54].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_X4", "x[10]", "Building A x-coordinate of cornerpoint 4, ∈ [0, 11.17].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldA_Y4", "x[11]", "Building A y-coordinate of cornerpoint 4, ∈ [0, 4.53].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_X1", "x[4]", "Building A x-coordinate of cornerpoint 1, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_Y1", "x[5]", "Building A y-coordinate of cornerpoint 1, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_X2", "x[6]", "Building A x-coordinate of cornerpoint 2, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_Y2", "x[7]", "Building A y-coordinate of cornerpoint 2, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_X3", "x[8]", "Building A x-coordinate of cornerpoint 3, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_Y3", "x[9]", "Building A y-coordinate of cornerpoint 3, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_X4", "x[10]", "Building A x-coordinate of cornerpoint 4, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldA_Y4", "x[11]", "Building A y-coordinate of cornerpoint 4, ∈ [0, 1].", GH_ParamAccess.item);
 
-            pManager.AddNumberParameter("BldB_X1", "x[12]", "Building B x-coordinate of cornerpoint 1, ∈ [0, 6.2].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_Y1", "x[13]", "Building B y-coordinate of cornerpoint 1, ∈ [0, 13.09].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_X2", "x[14]", "Building B x-coordinate of cornerpoint 2, ∈ [0, 10.39].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_Y2", "x[15]", "Building B y-coordinate of cornerpoint 2, ∈ [0, 4.92].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_X3", "x[16]", "Building B x-coordinate of cornerpoint 3, ∈ [0, 5.08].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_Y3", "x[17]", "Building B y-coordinate of cornerpoint 3, ∈ [0, 12.54].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_X4", "x[18]", "Building B x-coordinate of cornerpoint 4, ∈ [0, 11.18].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldB_Y4", "x[19]", "Building B y-coordinate of cornerpoint 4, ∈ [0, 4.52].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_X1", "x[12]", "Building B x-coordinate of cornerpoint 1, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_Y1", "x[13]", "Building B y-coordinate of cornerpoint 1, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_X2", "x[14]", "Building B x-coordinate of cornerpoint 2, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_Y2", "x[15]", "Building B y-coordinate of cornerpoint 2, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_X3", "x[16]", "Building B x-coordinate of cornerpoint 3, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_Y3", "x[17]", "Building B y-coordinate of cornerpoint 3, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_X4", "x[18]", "Building B x-coordinate of cornerpoint 4, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldB_Y4", "x[19]", "Building B y-coordinate of cornerpoint 4, ∈ [0, 1].", GH_ParamAccess.item);
 
-            pManager.AddNumberParameter("BldC_X1", "x[20]", "Building C x-coordinate of cornerpoint 1, ∈ [0, 5.08].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_Y1", "x[21]", "Building C y-coordinate of cornerpoint 1, ∈ [0, 12.54].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_X2", "x[22]", "Building C x-coordinate of cornerpoint 2, ∈ [0, 11.17].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_Y2", "x[23]", "Building C y-coordinate of cornerpoint 2, ∈ [0, 4.52].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_X3", "x[24]", "Building C x-coordinate of cornerpoint 3, ∈ [0, 4.07].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_Y3", "x[25]", "Building C y-coordinate of cornerpoint 3, ∈ [0, 12.04].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_X4", "x[26]", "Building C x-coordinate of cornerpoint 4, ∈ [0, 12.07].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldC_Y4", "x[27]", "Building C y-coordinate of cornerpoint 4, ∈ [0, 4.08].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_X1", "x[20]", "Building C x-coordinate of cornerpoint 1, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_Y1", "x[21]", "Building C y-coordinate of cornerpoint 1, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_X2", "x[22]", "Building C x-coordinate of cornerpoint 2, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_Y2", "x[23]", "Building C y-coordinate of cornerpoint 2, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_X3", "x[24]", "Building C x-coordinate of cornerpoint 3, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_Y3", "x[25]", "Building C y-coordinate of cornerpoint 3, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_X4", "x[26]", "Building C x-coordinate of cornerpoint 4, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldC_Y4", "x[27]", "Building C y-coordinate of cornerpoint 4, ∈ [0, 1].", GH_ParamAccess.item);
 
-            pManager.AddNumberParameter("BldD_X1", "x[28]", "Building D x-coordinate of cornerpoint 1, ∈ [0, 5.09].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_Y1", "x[29]", "Building D y-coordinate of cornerpoint 1, ∈ [0, 12.54].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_X2", "x[30]", "Building D x-coordinate of cornerpoint 2, ∈ [0, 11.18].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_Y2", "x[31]", "Building D y-coordinate of cornerpoint 2, ∈ [0, 4.53].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_X3", "x[32]", "Building D x-coordinate of cornerpoint 3, ∈ [0, 4.07].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_Y3", "x[33]", "Building D y-coordinate of cornerpoint 3, ∈ [0, 12.04].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_X4", "x[34]", "Building D x-coordinate of cornerpoint 4, ∈ [0, 12.07].", GH_ParamAccess.item);
-            pManager.AddNumberParameter("BldD_Y4", "x[35]", "Building D y-coordinate of cornerpoint 4, ∈ [0, 4.09].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_X1", "x[28]", "Building D x-coordinate of cornerpoint 1, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_Y1", "x[29]", "Building D y-coordinate of cornerpoint 1, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_X2", "x[30]", "Building D x-coordinate of cornerpoint 2, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_Y2", "x[31]", "Building D y-coordinate of cornerpoint 2, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_X3", "x[32]", "Building D x-coordinate of cornerpoint 3, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_Y3", "x[33]", "Building D y-coordinate of cornerpoint 3, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_X4", "x[34]", "Building D x-coordinate of cornerpoint 4, ∈ [0, 1].", GH_ParamAccess.item);
+            pManager.AddNumberParameter("BldD_Y4", "x[35]", "Building D y-coordinate of cornerpoint 4, ∈ [0, 1].", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -84,7 +84,11 @@ namespace GHEnergyPlus
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddNumberParameter("Cost", "Cost", "Cost for energy system minus rent (65CHF/m2).", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Elec", "Elec", "Electricity demand, 8760 time series, in kW.", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Cool", "Cool", "Cooling demand,  8760 time series, in kW.", GH_ParamAccess.list);
+            pManager.AddNumberParameter("DHW", "DHW", "Domestic Hot Water demand, 8760 time series, in kW.", GH_ParamAccess.list);
+            pManager.AddNumberParameter("SH", "SH", "Space Heating demand, 8760 time series, in kW", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Area", "Area", "Total floor area, in square meters.", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -113,7 +117,9 @@ namespace GHEnergyPlus
             bool runit = false;
             if (!DA.GetData(2, ref runit)) { return; }
 
-
+            // settings
+            double lvlHeight = 4.0; // height per level
+            double offset = 5.0; // depth of perimeter zones
 
             //get input parameters
             int dvar = 36;
@@ -130,7 +136,6 @@ namespace GHEnergyPlus
 
             if (runit == true)
             {
-                double lvlHeight = 3.3; // height per level
                 //_________________________________________________________________________
                 ///////////////////////////////////////////////////////////////////////////
                 ///////////////////////////////////////////////////////////////////////////
@@ -142,108 +147,134 @@ namespace GHEnergyPlus
                 // | A |  | B |
                 // 2---3  2---3            
 
-
                 // PROJECTIVE TRANSFORMATION MATRICES - using Matlab script C=ProjectiveTransformation(Ain,Bin)
                 // design variables are in domain x \in [0,1]
-                double[,] CTransf_C1 = new double[,]
-                {
-                    {8.3240,    2.0830,     25.7800},
-                    {-3.9866,   8.9832,     97.7800},
-                    {0.0010,    -0.0003,    1.000}
-                };
-                double[,] CTransf_C4 = new double[,]
-                {
-                    {8.0889,    2.9790,   55.2700},
-                    {-4.0389,   8.4340,   83.2600},
-                    {-0.0005,   -0.0010,  1.0000}
-                };
-                double[,] CTransf_C3 = new double[,]
-                {
-                    {8.1016,    3.1226,   48.0700},
-                    {-4.0399,    8.6318,   63.1000},
-                    {-0.0005,    0.0014,    1.0000}
-                };
-                double[,] CTransf_C2 = new double[,]
-                {
-                    {8.2900,    2.0900,   20.8400},
-                    {-4.0800,    9.0000,   76.5100},
-                    {0,    0.0000,    1.0000}
-                };
 
                 double[,] CTransf_D1 = new double[,]
                 {
-                    {8.2058,    3.0135,   67.9100},
-                    {-3.9272,    8.5081,   77.0300},
-                    {0.0010,   -0.0004,    1.0000}
+                    {94.8077,    0.0000,   42.5000},
+                    {120.1538,    3.5000,   71.0000},
+                    {1.6923,    0.0000,    1.0000}
                 };
                 double[,] CTransf_D4 = new double[,]
                 {
-                    {8.1434,    3.8196,   97.4500},
-                    {-3.9504,    7.9754,   62.4800},
-                    {0.0005,   -0.0015,    1.0000}
+                    {358.3000,    0.0000,   71.0000},
+                    {283.8000,    2.7000,   64.5000},
+                    {4.4000,    0.0000,    1.0000}
                 };
                 double[,] CTransf_D3 = new double[,]
                 {
-                    {7.9743,    4.0454,   88.0000},
-                    {-4.0193,    8.0854,   43.4300},
-                    {-0.0010,    0.0005,    1.0000}
+                    {8.5000,    0.0000,   71.0000},
+                    {0,    8.5000,   42.5000},
+                    {0,    0.0000,    1.0000}
                 };
                 double[,] CTransf_D2 = new double[,]
                 {
-                    {9.0858,    2.7179,   60.7100},
-                    {-3.2659,    8.3286,   56.8700},
-                    {0.0139,   -0.0052,    1.0000}
-                };
-
-                double[,] CTransf_B1 = new double[,]
-                {
-                    {8.0247,    3.0003,   55.9800},
-                    {-4.0688,    8.4949,   43.6000},
-                    {-0.0015,   -0.0007,    1.0000}
-                };
-                double[,] CTransf_B4 = new double[,]
-                {
-                    {8.0272,    3.6726,   81.7800},
-                    {-3.9928,    7.9349,   30.8900},
-                    {-0.0005,   -0.0035,    1.0000}
-                };
-                double[,] CTransf_B3 = new double[,]
-                {
-                    {8.0700,    4.0000,   72.3300},
-                    {-3.9800,    8.0600,   11.8400},
+                    {8.5000,   -0.0000,   42.5000},
+                    {-0.0000,    8.5000,   42.5000},
                     {-0.0000,   -0.0000,    1.0000}
                 };
-                double[,] CTransf_B2 = new double[,]
-                {
-                    {8.1580,    3.1043,   48.7800},
-                    {-4.0004,    8.5635,   23.4400},
-                    {0.0005,    0.0010,    1.0000}
-                };
+
 
                 double[,] CTransf_A1 = new double[,]
                 {
-                    {8.2642,    2.0949,   17.5900},
-                    {-4.1482,    9.0180,   62.5100},
-                    {-0.0010,    0.0003,    1.0000}
+                    {8.5,   0.0,    0.5},
+                    {0.0,   8.5,    29.0},
+                    {0.0,   0.0,    1.0}
                 };
                 double[,] CTransf_A4 = new double[,]
                 {
-                    {8.1300,    3.0500,   43.3300},
-                    {-4.0100,    8.5300,   49.8300},
-                    {0.0000,    0.0000,    1.0000}
+                    {8.5,   0.0,    29.0},
+                    {0.0,   8.5,    29.0},
+                    {0.0,   0.0,    1.0}
                 };
                 double[,] CTransf_A3 = new double[,]
                 {
-                    {8.1424,    2.9844,   36.1400},
-                    {-3.9870,    8.4858,   29.6600},
-                    {0.0005,   -0.0014,    1.0000}
+                    {8.5,   -0.0,   29.0},
+                    {0.0,   8.5,    0.5},
+                    {0.0 ,  -0.0,   1.0}
                 };
                 double[,] CTransf_A2 = new double[,]
                 {
-                    {8.3312,    2.1122,   12.6400},
-                    {-4.0247,    9.0517,   41.2300},
-                    {0.0015,    0.0008,    1.0000}
+                    {8.5,   0.0,    0.5},
+                    {0.0,   8.5,    0.5},
+                    {0.0,   0.0,    1.0}
                 };
+
+
+                double[,] CTransf_B1 = new double[,]
+                {
+                    {8.5000,         0,   42.5000},
+                    {0.0000,    8.5000,  29.0000},
+                    {0.0000,         0,    1.0000}
+                };
+                double[,] CTransf_B4 = new double[,]
+                {
+                    {8.5000,    0.0000,   71.0000},
+                    {0.0000,    8.5000,   29.0000},
+                    {0.0000,    0.0000,    1.0000}
+                };
+                double[,] CTransf_B3 = new double[,]
+                {
+                    {8.5000,   -0.0000,   71.0000},
+                    {0,    8.5000,   0.5000},
+                    {0,   -0.0000,   1.0000}
+                };
+                double[,] CTransf_B2 = new double[,]
+                {
+                    {8.5000,   0.0000,   42.5000},
+                    {0.0000,    8.5000,  0.5000},
+                    {0.0000,  0.0000,    1.0000}
+                };
+
+
+                double[,] CTransf_C1 = new double[,]
+                {
+                    {9.7000,   -0.0000,    0.5000},
+                    {9.4667,    8.5000,   71.0000},
+                    {0.1333,   -0.0000,    1.0000}
+                };
+                double[,] CTransf_C4 = new double[,]
+                {
+                    {17.4286,         0,   29.0000},
+                    {16.9048,    5.2000,   71.0000},
+                    {0.2381,         0,    1.0000}
+                };
+                double[,] CTransf_C3 = new double[,]
+                {
+                    {8.5000,    0.0000,   29.0000},
+                    {0,    8.5000,   42.5000},
+                    {0.0000,    0.0000,    1.0000}
+                };
+                double[,] CTransf_C2 = new double[,]
+                {
+                    {8.5000,         0,    0.5000},
+                    {0,    8.5000,   42.5000},
+                    {0,         0,    1.0000}
+                };
+
+
+                double[][,] CA = new double[4][,];
+                double[][,] CB = new double[4][,];
+                double[][,] CC = new double[4][,];
+                double[][,] CD = new double[4][,];
+                CA[0] = CTransf_A1;
+                CA[1] = CTransf_A2;
+                CA[2] = CTransf_A3;
+                CA[3] = CTransf_A4;
+                CB[0] = CTransf_B1;
+                CB[1] = CTransf_B2;
+                CB[2] = CTransf_B3;
+                CB[3] = CTransf_B4;
+                CC[0] = CTransf_C1;
+                CC[1] = CTransf_C2;
+                CC[2] = CTransf_C3;
+                CC[3] = CTransf_C4;
+                CD[0] = CTransf_D1;
+                CD[1] = CTransf_D2;
+                CD[2] = CTransf_D3;
+                CD[3] = CTransf_D4;
+
 
 
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -260,145 +291,7 @@ namespace GHEnergyPlus
                 double B_z = x[1] * lvlHeight;
                 double C_z = x[2] * lvlHeight;
                 double D_z = x[3] * lvlHeight;
-                //_________________________________________________________________________
-                ///////////////////////////////////////////////////////////////////////////
-                ///////////////////////////////////////////////////////////////////////////
-                // EXTERNAL WALLS
-                // Bld A
-                // pt 1, x/y bounds. x: [27.87, 34.07]; y: [93.70, 106.79]
-                // pt 2, x/y bounds. x: [20.84, 31.22]; y: [76.51, 81.43]
-                // pt 3, x/y bounds. x: [51.12, 56.20]; y: [59.09, 71.63]
-                // pt 4, x/y bounds. x: [55.27, 66.44]; y: [83.26, 87.79]
-                double[] A_px_lb = new double[4];
-                double[] A_py_lb = new double[4];
-                A_px_lb[0] = 27.87;
-                A_px_lb[1] = 20.84;
-                A_px_lb[2] = 51.12;
-                A_px_lb[3] = 55.27;
-                A_py_lb[0] = 93.70;
-                A_py_lb[1] = 76.51;
-                A_py_lb[2] = 59.09;
-                A_py_lb[3] = 83.26;
-
-
-                // Bld B
-                // pt 1, x/y bounds. x: [19.68, 25.88]; y: [58.42, 71.51]
-                // pt 2, x/y bounds. x: [12.64, 23.03]; y: [41.23, 46.15]
-                // pt 3, x/y bounds. x: [39.18, 44.26]; y: [25.66, 38.20]
-                // pt 4, x/y bounds. x: [43.33, 54.51]; y: [49.83, 54.35]
-                double[] B_px_lb = new double[4];
-                double[] B_py_lb = new double[4];
-                B_px_lb[0] = 19.68;
-                B_px_lb[1] = 12.64;
-                B_px_lb[2] = 39.18;
-                B_px_lb[3] = 43.33;
-                B_py_lb[0] = 58.42;
-                B_py_lb[1] = 41.23;
-                B_py_lb[2] = 25.66;
-                B_py_lb[3] = 49.83;
-
-                // Bld C
-                // pt 1, x/y bounds. x: [59.02, 64.10]; y: [39.59, 52.13]
-                // pt 2, x/y bounds. x: [48.78, 59.95]; y: [23.44, 27.96]
-                // pt 3, x/y bounds. x: [76.33, 80.40]; y: [7.86, 19.90]
-                // pt 4, x/y bounds. x: [81.78, 93.85]; y: [30.89, 34.97]
-                double[] C_px_lb = new double[4];
-                double[] C_py_lb = new double[4];
-                C_px_lb[0] = 59.02;
-                C_px_lb[1] = 48.78;
-                C_px_lb[2] = 76.33;
-                C_px_lb[3] = 81.78;
-                C_py_lb[0] = 39.59;
-                C_py_lb[1] = 23.44;
-                C_py_lb[2] = 7.86;
-                C_py_lb[3] = 30.89;
-
-                // Bld D
-                // pt 1, x/y bounds. x: [70.95, 76.04]; y: [73.03, 85.57]
-                // pt 2, x/y bounds. x: [60.71, 71.89]; y: [56.87, 61.40]
-                // pt 3, x/y bounds. x: [92.00, 96.07]; y: [39.45, 51.49]
-                // pt 4, x/y bounds. x: [97.45, 109.52]; y: [62.48, 66.57]
-                double[] D_px_lb = new double[4];
-                double[] D_py_lb = new double[4];
-                D_px_lb[0] = 70.95;
-                D_px_lb[1] = 60.71;
-                D_px_lb[2] = 92.00;
-                D_px_lb[3] = 97.45;
-                D_py_lb[0] = 73.03;
-                D_py_lb[1] = 56.87;
-                D_py_lb[2] = 39.45;
-                D_py_lb[3] = 62.48;
-
-
-                //_________________________________________________________________________
-                ///////////////////////////////////////////////////////////////////////////
-                ///////////////////////////////////////////////////////////////////////////
-                // INTERNAL WALLS
-                // Bld A
-                // pt 1, x/y bounds. x: [31.32, 37.52]; y: [86.43, 99.52]
-                // pt 2, x/y bounds. x: [26.61, 36.99]; y: [79.24, 84.16]
-                // pt 3, x/y bounds. x: [48.29, 53.37]; y: [66.06, 78.6]
-                // pt 4, x/y bounds. x: [49.06, 60.23]; y: [80.74, 85.27]
-                double[] Ain_px_lb = new double[4];
-                double[] Ain_py_lb = new double[4];
-                Ain_px_lb[0] = 31.32;
-                Ain_px_lb[1] = 26.61;
-                Ain_px_lb[2] = 48.29;
-                Ain_px_lb[3] = 49.06;
-                Ain_py_lb[0] = 86.43;
-                Ain_py_lb[1] = 79.24;
-                Ain_py_lb[2] = 66.06;
-                Ain_py_lb[3] = 80.74;
-
-                // Bld B
-                // pt 1, x/y bounds. x: [23.12, 29.32]; y: [51.15, 64.24]
-                // pt 2, x/y bounds. x: [18.41, 28.79]; y: [43.97, 48.89]
-                // pt 3, x/y bounds. x: [36.36, 41.44]; y: [32.62, 45.16]
-                // pt 4, x/y bounds. x: [37.13, 48.30]; y: [47.31, 51.84]
-                double[] Bin_px_lb = new double[4];
-                double[] Bin_py_lb = new double[4];
-                Bin_px_lb[0] = 23.12;
-                Bin_px_lb[1] = 18.41;
-                Bin_px_lb[2] = 36.36;
-                Bin_px_lb[3] = 37.13;
-                Bin_py_lb[0] = 51.15;
-                Bin_py_lb[1] = 43.97;
-                Bin_py_lb[2] = 32.62;
-                Bin_py_lb[3] = 47.31;
-
-                // Bld C
-                // pt 1, x/y bounds. x: [61.84, 66.93]; y: [32.63, 45.17]
-                // pt 2, x/y bounds. x: [54.99, 66.16]; y: [25.95, 30.48]
-                // pt 3, x/y bounds. x: [74.06, 78.14]; y: [14.55, 26.59]
-                // pt 4, x/y bounds. x: [75.07, 87.14]; y: [28.62, 32.70]
-                double[] Cin_px_lb = new double[4];
-                double[] Cin_py_lb = new double[4];
-                Cin_px_lb[0] = 61.84;
-                Cin_px_lb[1] = 54.99;
-                Cin_px_lb[2] = 74.06;
-                Cin_px_lb[3] = 75.07;
-                Cin_py_lb[0] = 32.63;
-                Cin_py_lb[1] = 25.95;
-                Cin_py_lb[2] = 14.55;
-                Cin_py_lb[3] = 28.62;
-
-                // Bld D
-                // pt 1, x/y bounds. x: [73.78, 78.86]; y: [66.07, 78.60]
-                // pt 2, x/y bounds. x: [66.92, 78.09]; y: [59.39, 63.92]
-                // pt 3, x/y bounds. x: [89.73, 93.81]; y: [46.14, 58.18]
-                // pt 4, x/y bounds. x: [90.74, 102.81]; y: [60.21, 64.30]
-                double[] Din_px_lb = new double[4];
-                double[] Din_py_lb = new double[4];
-                Din_px_lb[0] = 73.78;
-                Din_px_lb[1] = 66.92;
-                Din_px_lb[2] = 89.73;
-                Din_px_lb[3] = 90.74;
-                Din_py_lb[0] = 66.07;
-                Din_py_lb[1] = 59.39;
-                Din_py_lb[2] = 46.14;
-                Din_py_lb[3] = 60.21;
-
-
+               
                 double[] A_px = new double[4];
                 double[] A_py = new double[4];
                 double[] B_px = new double[4];
@@ -416,25 +309,44 @@ namespace GHEnergyPlus
                 double[] Din_px = new double[4];
                 double[] Din_py = new double[4];
                 int step = 0;
+
+                double[][] A_p = new double[4][];
+                double[][] B_p = new double[4][];
+                double[][] C_p = new double[4][];
+                double[][] D_p = new double[4][];
+
                 for (int i = 0; i < 4; i++)
                 {
-                    A_px[i] = x[4 + step] + A_px_lb[i];
-                    A_py[i] = x[4 + step + 1] + A_py_lb[i];
-                    B_px[i] = x[12 + step] + B_px_lb[i];
-                    B_py[i] = x[12 + step + 1] + B_py_lb[i];
-                    C_px[i] = x[20 + step] + C_px_lb[i];
-                    C_py[i] = x[20 + step + 1] + C_py_lb[i];
-                    D_px[i] = x[28 + step] + D_px_lb[i];
-                    D_py[i] = x[28 + step + 1] + D_py_lb[i];
+                    double[] pin = new double[3];
 
-                    //Ain_px[i] = x[4 + step] + Ain_px_lb[i];
-                    //Ain_py[i] = x[4 + step + 1] + Ain_py_lb[i];
-                    //Bin_px[i] = x[12 + step] + Bin_px_lb[i];
-                    //Bin_py[i] = x[12 + step + 1] + Bin_py_lb[i];
-                    //Cin_px[i] = x[20 + step] + Cin_px_lb[i];
-                    //Cin_py[i] = x[20 + step + 1] + Cin_py_lb[i];
-                    //Din_px[i] = x[28 + step] + Din_px_lb[i];
-                    //Din_py[i] = x[28 + step + 1] + Din_py_lb[i];
+                    pin[0] = x[4 + step];
+                    pin[1] = x[4 + step + 1];
+                    pin[2] = 1;
+                    A_p[i] = Misc.TransformPoints(CA[i], pin);
+                    A_px[i] = A_p[i][0];
+                    A_py[i] = A_p[i][1];
+
+                    pin[0] = x[12 + step];
+                    pin[1] = x[12 + step + 1];
+                    pin[2] = 1;
+                    B_p[i] = Misc.TransformPoints(CB[i], pin);
+                    B_px[i] = B_p[i][0];
+                    B_py[i] = B_p[i][1];
+
+                    pin[0] = x[20 + step];
+                    pin[1] = x[20 + step + 1];
+                    pin[2] = 1;
+                    C_p[i] = Misc.TransformPoints(CC[i], pin);
+                    C_px[i] = C_p[i][0];
+                    C_py[i] = C_p[i][1];
+
+                    pin[0] = x[28 + step];
+                    pin[1] = x[28 + step + 1];
+                    pin[2] = 1;
+                    D_p[i] = Misc.TransformPoints(CD[i], pin);
+                    D_px[i] = D_p[i][0];
+                    D_py[i] = D_p[i][1];
+
                     step += 2;
                 }
 
@@ -444,28 +356,28 @@ namespace GHEnergyPlus
                 plist.Add(new Point3d(A_px[1], A_py[1], 0));
                 plist.Add(new Point3d(A_px[2], A_py[2], 0));
                 plist.Add(new Point3d(A_px[3], A_py[3], 0));
-                double[][] A_pts_offset = Misc.PtsFromOffsetRectangle(plist,5);
+                double[][] A_pts_offset = Misc.PtsFromOffsetRectangle(plist,offset);
 
                 plist = new List<Point3d>();
                 plist.Add(new Point3d(B_px[0], B_py[0], 0));
                 plist.Add(new Point3d(B_px[1], B_py[1], 0));
                 plist.Add(new Point3d(B_px[2], B_py[2], 0));
                 plist.Add(new Point3d(B_px[3], B_py[3], 0));
-                double[][] B_pts_offset = Misc.PtsFromOffsetRectangle(plist,5);
+                double[][] B_pts_offset = Misc.PtsFromOffsetRectangle(plist, offset);
 
                 plist = new List<Point3d>();
                 plist.Add(new Point3d(C_px[0], C_py[0], 0));
                 plist.Add(new Point3d(C_px[1], C_py[1], 0));
                 plist.Add(new Point3d(C_px[2], C_py[2], 0));
                 plist.Add(new Point3d(C_px[3], C_py[3], 0));
-                double[][] C_pts_offset = Misc.PtsFromOffsetRectangle(plist,5);
+                double[][] C_pts_offset = Misc.PtsFromOffsetRectangle(plist, offset);
 
                 plist = new List<Point3d>();
                 plist.Add(new Point3d(D_px[0], D_py[0], 0));
                 plist.Add(new Point3d(D_px[1], D_py[1], 0));
                 plist.Add(new Point3d(D_px[2], D_py[2], 0));
                 plist.Add(new Point3d(D_px[3], D_py[3], 0));
-                double[][] D_pts_offset = Misc.PtsFromOffsetRectangle(plist,5);
+                double[][] D_pts_offset = Misc.PtsFromOffsetRectangle(plist, offset);
 
                 for (int i = 0; i < 4; i++)
                 {
@@ -594,14 +506,18 @@ namespace GHEnergyPlus
                 //modify idf file with parameters and save as new idf file
                 //string idfmodified = idffile + "_modi";
 
+                List<double> out_elec = new List<double>(8760);
+                List<double> out_cool = new List<double>(8760);
+                List<double> out_dhw = new List<double>(8760);
+                List<double> out_sh = new List<double>(8760);
 
-                double[] totElec = new double[4];
-                double[] totCool = new double[4];
-                double[] totHeat = new double[4];
+                //double[] totElec = new double[4];
+                //double[] totCool = new double[4];
+                //double[] totHeat = new double[4];
                 double[] totsqm = new double[4];
-                double[] peakElec = new double[4];
-                double[] peakCool = new double[4];
-                double[] peakHeat = new double[4];
+                //double[] peakElec = new double[4];
+                //double[] peakCool = new double[4];
+                //double[] peakHeat = new double[4];
 
                 for (int BLD = 0; BLD < 4; BLD++)
                 {
@@ -874,7 +790,7 @@ namespace GHEnergyPlus
                         double p = 0.5 * (a + b + c);
                         double area = (Math.Sqrt(p * (p - a) * (p - b) * (p - c))) * 2; // two triangles is the quad
                         count += 4;
-                        replacers[xvar_count] = (area * 0.5).ToString();    // 50% of the window is openable
+                        replacers[xvar_count] = ((area * 0.5) / 5.0).ToString();    // 50% of the window is openable. and since I will have 5 separably controllable windows per facade, divide area by 5
                         xvar_count++;
                     }
 
@@ -1068,11 +984,6 @@ namespace GHEnergyPlus
                     lines = list.ToArray();
                     fileStream.Close();
 
-                    //GJ
-                    //elec: line[64][2]
-                    //cool: line[64][5]
-                    //heat: line[64][6]
-
                     //m2: [41][2]
 
                     string[] split;
@@ -1081,25 +992,25 @@ namespace GHEnergyPlus
                     split = lines[41].Split(delimiter);
                     string bldarea = split[2];
                     split = lines[64].Split(delimiter);
-                    string elec = split[2];
-                    string cool = split[5];
-                    string heat = split[6];
-                    totElec[BLD] = Convert.ToDouble(elec) / 0.0036; //GJ to kWh
-                    totHeat[BLD] = Convert.ToDouble(heat) / 0.0036;
-                    totCool[BLD] = Convert.ToDouble(cool) / 0.0036;
+                    //string elec = split[2];
+                    //string cool = split[5];
+                    //string heat = split[6];
+                    //totElec[BLD] = Convert.ToDouble(elec) / 0.0036; //GJ to kWh
+                    //totHeat[BLD] = Convert.ToDouble(heat) / 0.0036;
+                    //totCool[BLD] = Convert.ToDouble(cool) / 0.0036;
                     totsqm[BLD] = Convert.ToDouble(bldarea);
 
-                    //get peak cool and heat
-                    // elec peak in W: lines[280][2]
-                    // cool peak in W: lines[280][5]
-                    // heat peak in W: lines[280][6]
-                    split = lines[250 + levels * 5].Split(delimiter);
-                    string elecpeak = split[2];
-                    string coolpeak = split[5];
-                    string heatpeak = split[6];
-                    peakElec[BLD] = Convert.ToDouble(elecpeak) * 0.001; //kW
-                    peakCool[BLD] = Convert.ToDouble(coolpeak) * 0.001;
-                    peakHeat[BLD] = Convert.ToDouble(heatpeak) * 0.001;
+                    ////get peak cool and heat
+                    //// elec peak in W: lines[280][2]
+                    //// cool peak in W: lines[280][5]
+                    //// heat peak in W: lines[280][6]
+                    //split = lines[250 + levels * 5].Split(delimiter);
+                    //string elecpeak = split[2];
+                    //string coolpeak = split[5];
+                    //string heatpeak = split[6];
+                    //peakElec[BLD] = Convert.ToDouble(elecpeak) * 0.001; //kW
+                    //peakCool[BLD] = Convert.ToDouble(coolpeak) * 0.001;
+                    //peakHeat[BLD] = Convert.ToDouble(heatpeak) * 0.001;
 
 
                     System.Threading.Thread.Sleep(sleeptime);
@@ -1117,88 +1028,22 @@ namespace GHEnergyPlus
                 }
 
 
-                //what's specific emission of fully maximized neighbourhood. take that, but reduced by quite a bit (enforcing daylight)
+                
 
-
-                //add system installation cost for boiler and AC, annualized
-                double intrate = 0.08;
-                double LifeBoi = 30;
-                double LifeAC = 20;
-                double CostBoi = 200; //per kW
-                double CostAC = 360;  //per kW
-                double annuityBoi = intrate / (1 - (1 / (Math.Pow((1 + intrate), (LifeBoi)))));
-                double annuityAC = intrate / (1 - (1 / (Math.Pow((1 + intrate), (LifeAC)))));
-                double c_Boi = CostBoi * annuityBoi;
-                double c_AC = CostAC * annuityAC;
-
-
-
-
-                double elecprice = 0.24;
-                double gascost = 0.09;
-                double coolConversion = 3;
-                double boilereff = 0.94;
-                double rent = 65; //chf per sqm
-
-
-                //measure opeational carbon emissions. if it exceeds a certain value / m2, then penalty
-                //ref heat: 100kWh/m2a
-                //ref elec: 120kWh/m2a
-                double carb_gas = 0.228; //per kWh gas
-                double carb_grid = 0.594; //UCTE-mix, per kWh elec
-                double sumEmissionsElec = 0;
-                double sumEmissionsHeat = 0;
-                double sumHeat = 0;
-                double sumCool = 0;
-                double sumElec = 0;
-                double sumArea = 0;
-                double sumPeakHeat = 0;
-                double sumPeakCool = 0;
-
-                double[] costperm2 = new double[4];
-
-
+                double out_sumArea = 0;
                 for (int i = 0; i < 4; i++)
                 {
-                    sumEmissionsElec += carb_grid * totElec[i] + carb_grid * totCool[i] * coolConversion;
-                    sumEmissionsHeat += carb_gas * (totHeat[i] / boilereff);
-                    sumElec += totElec[i];
-                    sumCool += totCool[i];
-                    sumHeat += totHeat[i];
-                    sumPeakCool += peakCool[i];
-                    sumPeakHeat += peakHeat[i];
-                    sumArea += totsqm[i];
-
-                    costperm2[i] = (totElec[i] * elecprice + totCool[i] * coolConversion * elecprice + (totHeat[i] / boilereff) * gascost +
-                        peakHeat[i] * c_Boi + peakCool[i] * c_AC) /
-                        totsqm[i];
-
+                    out_sumArea += totsqm[i];
                 }
-                double specEmElec = sumEmissionsElec / sumArea;
-                double specEmHeat = sumEmissionsHeat / sumArea;
-                double specElec = sumElec / sumArea;
-                double specCool = sumCool / sumArea;
-                double specHeat = sumHeat / sumArea;
 
 
+                // OUTPUTS FOR ENERGYHUB
+                DA.SetDataList(0, out_elec);  //total electricity demand, aggregated for all 4 buildings
+                DA.SetDataList(1, out_cool);
+                DA.SetDataList(2, out_dhw);     // hot water according to schedule and square meters
+                DA.SetDataList(3, out_sh);
+                DA.SetData(4, out_sumArea); // total floor area, for rent calcualtion, in ehub module.
 
-
-
-                double totCost =
-                    sumElec * elecprice +
-                    sumCool * coolConversion * elecprice +
-                    (sumHeat / boilereff) * gascost +
-                    sumPeakHeat * c_Boi +
-                    sumPeakCool * c_AC
-                    - sumArea * rent;
-
-                //double carblimit = 96.5; //from SBE paper ,p.73
-                //if (specEmElec + specEmHeat > carblimit) totCost += 1000000;
-
-
-
-                DA.SetData(0, totCost);
-                //DA.SetData(0, specEmHeat + specEmElec); //minimize per sqm carbon consumption
             }
         }
 
@@ -1222,7 +1067,7 @@ namespace GHEnergyPlus
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("{668c737e-b0c6-4fc6-be51-93f61fb3932b}"); }
+            get { return new Guid("14bddafd-047a-4290-9752-e93fd38df449"); }
         }
     }
 }

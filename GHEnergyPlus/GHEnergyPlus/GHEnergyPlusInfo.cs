@@ -33,7 +33,7 @@ namespace GHEnergyPlus
         {
             get
             {
-                return new Guid("6ffbe401-a1b2-4730-99ce-1c4a3ea23ba5");
+                return new Guid("7c21146a-511e-46d9-bfea-53b7d0be5b61");
             }
         }
 
@@ -42,7 +42,7 @@ namespace GHEnergyPlus
             get
             {
                 //Return a string identifying you or your company.
-                return "Empa";
+                return "";
             }
         }
         public override string AuthorContact
