@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BC3E8B5F-73CF-43A1-8633-69F12971E475}</ProjectGuid>
+    <ProjectGuid>{94299429-3261-40C7-8A15-733202BE3327}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GHEnergyPlus</RootNamespace>
@@ -47,7 +47,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="RhinoCommon">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Rhinoceros 5.0\System\rhinocommon.dll</HintPath>
+      <HintPath>c:\Program Files (x86)\Rhinoceros 5\System\rhinocommon.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Grasshopper">
@@ -62,12 +62,100 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GHEPlusRunDetailedParametric.cs" />
-    <Compile Include="GHEPlusRunDetailedSobol.cs" />
     <Compile Include="GHEnergyPlusInfo.cs" />
-    <Compile Include="GHEPlusRunSimpleParametric.cs" />
-    <Compile Include="GHEPlusRunSimpleSobol.cs" />
+    <Compile Include="GHEPlusRunParametric10.cs" />
+    <Compile Include="GHEPlusRunParametric11A.cs" />
+    <Compile Include="GHEPlusRunParametric12A.cs" />
+    <Compile Include="GHEPlusRunParametric14.cs" />
+    <Compile Include="GHEPlusRunParametric15.cs" />
+    <Compile Include="GHEPlusRunParametric15_Suurstoffi.cs" />
+    <Compile Include="GHEPlusRunParametric15_Zurich.cs" />
+    <Compile Include="GHEPlusRunParametric1to3.cs" />
+    <Compile Include="GHEPlusRunParametric4to8.cs" />
+    <Compile Include="GHEPlusRunParametric9.cs" />
+    <Compile Include="GHEPlusRunSobol10.cs" />
+    <Compile Include="GHEPlusRunSobol11A.cs" />
+    <Compile Include="GHEPlusRunSobol12A.cs" />
+    <Compile Include="GHEPlusRunSobol14.cs" />
+    <Compile Include="GHEPlusRunSobol1to3.cs" />
+    <Compile Include="GHEPlusRunSobol4to8.cs" />
+    <Compile Include="GHEplusRunSobol9.cs" />
+    <Compile Include="Misc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opti_1to3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opti_4to8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opti_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opti_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opti_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opti_11A2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opti_12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opti_13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opti_14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opti_15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sobol_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sobol_1to3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sobol_4to8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sobol_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sobol_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sobol_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sobol_11A2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sobol_12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sobol_13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sobol_14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sobol_15.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -85,13 +173,13 @@ Erase "$(TargetPath)"</PostBuildEvent>
     <StartArguments>
     </StartArguments>
     <StartAction>Program</StartAction>
-    <StartProgram>C:\Program Files (x86)\Rhinoceros 5.0\System\Rhino4.exe</StartProgram>
+    <StartProgram>c:\Program Files (x86)\Rhinoceros 5\System\Rhino4.exe</StartProgram>
   </PropertyGroup>
   <PropertyGroup>
     <FallbackCulture>en-US</FallbackCulture>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug64|AnyCPU'">
-    <StartProgram>C:\Program Files\Rhinoceros 5.0\System\Rhino.exe</StartProgram>
+    <StartProgram>c:\Program Files\Rhinoceros 5 (64-bit)\System\Rhino.exe</StartProgram>
     <StartArguments>
     </StartArguments>
     <StartAction>Program</StartAction>
