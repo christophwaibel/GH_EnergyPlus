@@ -9,7 +9,7 @@ namespace GHEnergyPlus
 {
     public class GHEPlusRunParametric15_Zurich : GH_Component
     {
-         /// <summary>
+        /// <summary>
         /// Initializes a new instance of the GHEPlusRunParametric15 class.
         /// </summary>
         public GHEPlusRunParametric15_Zurich()
@@ -120,6 +120,7 @@ namespace GHEnergyPlus
             // settings
             double lvlHeight = 4.0; // height per level
             double offset = 5.0; // depth of perimeter zones
+            double dhwfull = 5.2; // domestic hot water energy per m2 100%
 
             //get input parameters
             int dvar = 36;
@@ -291,7 +292,7 @@ namespace GHEnergyPlus
                 double B_z = x[1] * lvlHeight;
                 double C_z = x[2] * lvlHeight;
                 double D_z = x[3] * lvlHeight;
-               
+
                 double[] A_px = new double[4];
                 double[] A_py = new double[4];
                 double[] B_px = new double[4];
@@ -356,7 +357,7 @@ namespace GHEnergyPlus
                 plist.Add(new Point3d(A_px[1], A_py[1], 0));
                 plist.Add(new Point3d(A_px[2], A_py[2], 0));
                 plist.Add(new Point3d(A_px[3], A_py[3], 0));
-                double[][] A_pts_offset = Misc.PtsFromOffsetRectangle(plist,offset);
+                double[][] A_pts_offset = Misc.PtsFromOffsetRectangle(plist, offset);
 
                 plist = new List<Point3d>();
                 plist.Add(new Point3d(B_px[0], B_py[0], 0));
@@ -506,10 +507,17 @@ namespace GHEnergyPlus
                 //modify idf file with parameters and save as new idf file
                 //string idfmodified = idffile + "_modi";
 
-                List<double> out_elec = new List<double>(8760);
-                List<double> out_cool = new List<double>(8760);
-                List<double> out_dhw = new List<double>(8760);
-                List<double> out_sh = new List<double>(8760);
+                List<double> out_elec = new List<double>();
+                List<double> out_cool = new List<double>();
+                List<double> out_dhw = new List<double>();
+                List<double> out_sh = new List<double>();
+                for (int t = 0; t < 8760; t++)
+                {
+                    out_elec.Add(0);
+                    out_cool.Add(0);
+                    out_dhw.Add(0);
+                    out_sh.Add(0);
+                }
 
                 //double[] totElec = new double[4];
                 //double[] totCool = new double[4];
@@ -523,7 +531,7 @@ namespace GHEnergyPlus
                 {
                     // BUILDING A, B, C, or D
                     int levels = Convert.ToInt16(x[BLD]);
-                    string idfmodified = idffile + "_L" + x[BLD].ToString() + "_modi";
+                    string idfmodified = idffile + "_L" + x[BLD].ToString() + "_modi_" + BLD;
 
                     //load idf into a huge string
                     string[] lines;
@@ -959,13 +967,11 @@ namespace GHEnergyPlus
                     //***********************************************************************************
                     //***********************************************************************************
                     //process Outputs
-                    string outputfile = "eplustbl.csv";
+                    string outputfile = "eplusout.mtr";
                     while (!File.Exists(path_out + outputfile))
                     {
                         Console.WriteLine("waiting");
                     }
-
-
 
                     //output result 
 
@@ -984,33 +990,90 @@ namespace GHEnergyPlus
                     lines = list.ToArray();
                     fileStream.Close();
 
-                    //m2: [41][2]
-
                     string[] split;
                     char delimiter = ',';
 
-                    split = lines[41].Split(delimiter);
-                    string bldarea = split[2];
-                    split = lines[64].Split(delimiter);
-                    //string elec = split[2];
-                    //string cool = split[5];
-                    //string heat = split[6];
-                    //totElec[BLD] = Convert.ToDouble(elec) / 0.0036; //GJ to kWh
-                    //totHeat[BLD] = Convert.ToDouble(heat) / 0.0036;
-                    //totCool[BLD] = Convert.ToDouble(cool) / 0.0036;
-                    totsqm[BLD] = Convert.ToDouble(bldarea);
+                    //identify, number-IDs for heat, cool, elec
+                    int heatID = Convert.ToInt16(lines[6].Split(delimiter)[0]);
+                    int coolID = Convert.ToInt16(lines[7].Split(delimiter)[0]);
+                    int elecID = Convert.ToInt16(lines[8].Split(delimiter)[0]);
 
-                    ////get peak cool and heat
-                    //// elec peak in W: lines[280][2]
-                    //// cool peak in W: lines[280][5]
-                    //// heat peak in W: lines[280][6]
-                    //split = lines[250 + levels * 5].Split(delimiter);
-                    //string elecpeak = split[2];
-                    //string coolpeak = split[5];
-                    //string heatpeak = split[6];
-                    //peakElec[BLD] = Convert.ToDouble(elecpeak) * 0.001; //kW
-                    //peakCool[BLD] = Convert.ToDouble(coolpeak) * 0.001;
-                    //peakHeat[BLD] = Convert.ToDouble(heatpeak) * 0.001;
+                    //bldg area
+                    double[][] perim = new double[4][];
+                    for (int p = 0; p < 4; p++)
+                    {
+                        perim[p] = new double[2];
+                        perim[p][0] = Boxes[BLD][p].X;
+                        perim[p][1] = Boxes[BLD][p].Y;
+                    }
+                    totsqm[BLD] = Misc.CalcArea2Dpts(perim) * levels;
+
+                    // loop starting from line 9, check if split line [0] == ID, then add to list of heating cooling elec demand. but with heat[t] += line..., because its aggregated
+                    int t = 0;
+                    for (int l = 12; l < 35051; l += 4)
+                    {
+                        out_elec[t] += Convert.ToDouble(lines[l].Split(delimiter)[1]) / 3600000;
+                        out_sh[t] += Convert.ToDouble(lines[l + 1].Split(delimiter)[1]) / 3600000;
+                        out_cool[t] += Convert.ToDouble(lines[l + 2].Split(delimiter)[1]) / 3600000;
+                        t++;
+                    }
+
+
+
+
+                    //it always starts with a sunday.
+                    //sun mon tue wed thu fr sa
+                    //5.2 W/m2 is hot water 100%
+                    List<double> dhw_dummy = new List<double>();
+                    for (int tt = 0; tt < 8904; tt += 168)
+                    {
+                        //sunday
+                        for (int s = 0; s < 24; s++)
+                        {
+                            dhw_dummy.Add(0);
+                        }
+                        //mon - fri
+                        for (int d = 0; d < 5; d++)
+                        {
+                            dhw_dummy.Add(0);//                     !- Hour 1
+                            dhw_dummy.Add(0);//                      !- Hour 2
+                            dhw_dummy.Add(0);//                       !- Hour 3
+                            dhw_dummy.Add(0);//                       !- Hour 4
+                            dhw_dummy.Add(0);//                       !- Hour 5
+                            dhw_dummy.Add(0);//                       !- Hour 6
+                            dhw_dummy.Add(0);//                       !- Hour 7
+                            dhw_dummy.Add(dhwfull * 0.16*totsqm[BLD]); //                     !- Hour 8
+                            dhw_dummy.Add(dhwfull * 0.32 * totsqm[BLD]);//                  !- Hour 9
+                            dhw_dummy.Add(dhwfull * 0.48 * totsqm[BLD]);//                    !- Hour 10
+                            dhw_dummy.Add(dhwfull * 0.64 * totsqm[BLD]);//                     !- Hour 11
+                            dhw_dummy.Add(dhwfull * 0.64 * totsqm[BLD]);//                     !- Hour 12
+                            dhw_dummy.Add(dhwfull * 0.32 * totsqm[BLD]);//                     !- Hour 13
+                            dhw_dummy.Add(dhwfull * 0.48 * totsqm[BLD]);//                     !- Hour 14
+                            dhw_dummy.Add(dhwfull * 0.64 * totsqm[BLD]);//                     !- Hour 15
+                            dhw_dummy.Add(dhwfull * 0.64 * totsqm[BLD]);//                     !- Hour 16
+                            dhw_dummy.Add(dhwfull * 0.32 * totsqm[BLD]);//                     !- Hour 17
+                            dhw_dummy.Add(dhwfull * 0.16 * totsqm[BLD]);//                     !- Hour 18
+                            dhw_dummy.Add(0);//                      !- Hour 19
+                            dhw_dummy.Add(0);//                      !- Hour 20
+                            dhw_dummy.Add(0);//                  !- Hour 21
+                            dhw_dummy.Add(0);//                    !- Hour 22
+                            dhw_dummy.Add(0);//                    !- Hour 23
+                            dhw_dummy.Add(0);//                      !- Hour 24	
+                        }
+                        //saturday
+                        for (int s = 0; s < 24; s++)
+                        {
+                            dhw_dummy.Add(0);
+                        }
+                    }
+
+                    for (int tt = 0; tt < 8760; tt++)
+                    {
+                        out_dhw[tt] += dhw_dummy[tt] / 1000;    //Wh to kWh
+                    }
+
+
+
 
 
                     System.Threading.Thread.Sleep(sleeptime);
@@ -1028,7 +1091,7 @@ namespace GHEnergyPlus
                 }
 
 
-                
+
 
                 double out_sumArea = 0;
                 for (int i = 0; i < 4; i++)
@@ -1038,10 +1101,16 @@ namespace GHEnergyPlus
 
 
                 // OUTPUTS FOR ENERGYHUB
-                DA.SetDataList(0, out_elec);  //total electricity demand, aggregated for all 4 buildings
-                DA.SetDataList(1, out_cool);
-                DA.SetDataList(2, out_dhw);     // hot water according to schedule and square meters
-                DA.SetDataList(3, out_sh);
+
+                // read from eplus output files
+                DA.SetDataList(0, out_elec);  // hourly electricity demand, aggregated for all 4 buildings
+                DA.SetDataList(1, out_cool); // hourly cooling, aggregated for 4 bldgs
+                DA.SetDataList(3, out_sh);  // hourly space heating, aggregated for 4 bldgs
+
+                // calculate manually here in code
+                DA.SetDataList(2, out_dhw);     // hourly hot water according to schedule and square meters
+
+
                 DA.SetData(4, out_sumArea); // total floor area, for rent calcualtion, in ehub module.
 
             }

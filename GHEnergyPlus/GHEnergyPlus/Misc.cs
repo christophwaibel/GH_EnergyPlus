@@ -143,6 +143,18 @@ namespace GHEnergyPlus
         }
 
 
+        internal static double CalcArea2Dpts(double[][] pts)
+        {
+            double area = 0;
+            for (int i = 0; i < pts.Length-1; i++ )
+            {
+                area += pts[i][0] * pts[i + 1][1] - pts[i][1] * pts[i + 1][0];
+            }
+            area += pts[pts.Length-1][0] * pts[0][1] - pts[pts.Length-1][1] * pts[0][0];
+            area *= 0.5;
+            area = Math.Abs(area);
+            return area;
+        }
 
         internal static double[] Centroid(double[][] X)
         {
