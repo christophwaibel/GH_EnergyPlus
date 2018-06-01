@@ -16,7 +16,7 @@ namespace GHEnergyPlus
 {
   public class GHEplusRunSobol13 : GH_Component
   {
-    protected virtual Bitmap Icon
+    protected override Bitmap Icon
     {
       get
       {
@@ -24,7 +24,7 @@ namespace GHEnergyPlus
       }
     }
 
-    public virtual Guid ComponentGuid
+    public override Guid ComponentGuid
     {
       get
       {
@@ -32,55 +32,57 @@ namespace GHEnergyPlus
       }
     }
 
-    public GHEplusRunSobol13()
+    public GHEplusRunSobol13():base
+    ("Sobol13Djuric", "Sobol13", "Sobol 13 Djuric (now Nord) 2007, school building.", "EnergyHubs", "BuildingSimulation")
     {
-      this.\u002Ector("Sobol13Djuric", "Sobol13", "Sobol 13 Djuric (now Nord) 2007, school building.", "EnergyHubs", "BuildingSimulation");
     }
 
-    protected virtual void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
     {
       pManager.AddTextParameter("idf file", "idf file", "idf file. has to be in C:\\eplus\\EPOpti17\\Input\\", (GH_ParamAccess) 0);
       pManager.AddTextParameter("weather file", "weather file", "weather file. has to be in WeatherData folder of your Energyplus folder", (GH_ParamAccess) 0);
       pManager.AddTextParameter("Path LPt sequence", "Path LPt sequence", "Path to Sobol sequence csv file. That should be a matrix with samples per row and parameters in columns. Create sequence e.g. in matlab.", (GH_ParamAccess) 0);
       pManager.AddBooleanParameter("run", "run", "run EnergyPlus", (GH_ParamAccess) 0);
       pManager.AddIntegerParameter("folder", "folder", "folder number, like 1,2,3, for parallel runs", (GH_ParamAccess) 0);
-      pManager.get_Param(4).set_Optional(true);
+      pManager[4].Optional =true;
     }
 
-    protected virtual void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+    protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
     }
 
-    protected virtual void SolveInstance(IGH_DataAccess DA)
+    protected override void SolveInstance(IGH_DataAccess DA)
     {
       int num1 = 0;
       // ISSUE: explicit reference operation
       // ISSUE: cast to a reference type
-      if (!DA.GetData<int>(4, (M0&) @num1))
-        num1 = 0;
+            if (!DA.GetData(4, ref num1)) { num1 = 0; }
       string str1 = "c:\\eplus\\EPOpti17\\Input" + (object) num1 + "\\";
       string path1 = "c:\\eplus\\EPOpti17\\Output" + (object) num1 + "\\";
       string FileName = "c:\\eplus\\EPOpti17\\Input" + (object) num1 + "\\ep\\energyplus.exe";
       string str2 = "blabla";
       // ISSUE: explicit reference operation
       // ISSUE: cast to a reference type
-      if (!DA.GetData<string>(0, (M0&) @str2))
-        return;
+            if (!DA.GetData(0, ref str2)) { return; }
+
       string str3 = "blabla";
       // ISSUE: explicit reference operation
       // ISSUE: cast to a reference type
-      if (!DA.GetData<string>(1, (M0&) @str3))
-        return;
+            if (!DA.GetData(1, ref str3)) { return; }
+
+
       string path2 = "blabla";
       // ISSUE: explicit reference operation
       // ISSUE: cast to a reference type
-      if (!DA.GetData<string>(2, (M0&) @path2))
-        return;
+            if (!DA.GetData(2, ref path2)) { return; }
+
+
       bool flag = false;
       // ISSUE: explicit reference operation
       // ISSUE: cast to a reference type
-      if (!DA.GetData<bool>(3, (M0&) @flag))
-        return;
+      if (!DA.GetData(3, ref flag)) { return; }
+
+
       int length = 10;
       if (!flag)
         return;
