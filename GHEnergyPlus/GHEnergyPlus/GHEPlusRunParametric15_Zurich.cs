@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
@@ -77,6 +78,9 @@ namespace GHEnergyPlus
             pManager.AddNumberParameter("BldD_Y3", "x[33]", "Building D y-coordinate of cornerpoint 3, ∈ [0, 1].", GH_ParamAccess.item);
             pManager.AddNumberParameter("BldD_X4", "x[34]", "Building D x-coordinate of cornerpoint 4, ∈ [0, 1].", GH_ParamAccess.item);
             pManager.AddNumberParameter("BldD_Y4", "x[35]", "Building D y-coordinate of cornerpoint 4, ∈ [0, 1].", GH_ParamAccess.item);
+
+            //42 
+            pManager.AddNumberParameter("rent", "rent", "Rent per m2 in CHF.", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -89,6 +93,16 @@ namespace GHEnergyPlus
             pManager.AddNumberParameter("DHW", "DHW", "Domestic Hot Water demand, 8760 time series, in kW.", GH_ParamAccess.list);
             pManager.AddNumberParameter("SH", "SH", "Space Heating demand, 8760 time series, in kW", GH_ParamAccess.list);
             pManager.AddNumberParameter("Area", "Area", "Total floor area, in square meters.", GH_ParamAccess.item);
+
+            // 5 - 8
+            pManager.AddNumberParameter("ElecSpec", "ElecSpec", "Specific Electricity demand in kWh/m2a.", GH_ParamAccess.item);
+            pManager.AddNumberParameter("CoolSpec", "CoolSpec", "Specific Cooling demand in kWh/m2a.", GH_ParamAccess.item);
+            pManager.AddNumberParameter("DHWSpec", "DHWSpec", "Specific domestic hot water demand in kWh/m2a.", GH_ParamAccess.item);
+            pManager.AddNumberParameter("SHSpec", "SHSpec", "Specific space heating demand in kWh/m2a.", GH_ParamAccess.item);
+
+            // 9-10
+            pManager.AddNumberParameter("Cost", "Cost", "Cost in CHF/a, for -rent plus energy cost assuming ref boiler and grid elec.", GH_ParamAccess.item);
+            pManager.AddNumberParameter("CO2", "CO2", "Emissions for operation of energy system in kgCO2/m2a.", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -121,6 +135,9 @@ namespace GHEnergyPlus
             double lvlHeight = 4.0; // height per level
             double offset = 5.0; // depth of perimeter zones
             double dhwfull = 5.2; // domestic hot water energy per m2 100%
+
+            double rent = 65; //chf per sqm
+            if (!DA.GetData(42, ref rent)) { };
 
             //get input parameters
             int dvar = 36;
@@ -1100,7 +1117,9 @@ namespace GHEnergyPlus
                 }
 
 
-                // OUTPUTS FOR ENERGYHUB
+
+                ///////////////////////////////////////////////////////////
+                // OUTPUTS FOR ENERGYHUB (nested optimization)
 
                 // read from eplus output files
                 DA.SetDataList(0, out_elec);  // hourly electricity demand, aggregated for all 4 buildings
@@ -1113,6 +1132,94 @@ namespace GHEnergyPlus
 
                 DA.SetData(4, out_sumArea); // total floor area, for rent calcualtion, in ehub module.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ///////////////////////////////////////////////////////////
+                // OUTPUTS FOR Sequential optimization
+
+                //what's specific emission of fully maximized neighbourhood. take that, but reduced by quite a bit (enforcing daylight)
+                //measure opeational carbon emissions. if it exceeds a certain value / m2, then penalty
+                //ref heat: 100kWh/m2a
+                //ref elec: 120kWh/m2a
+                double carb_gas = 0.237; //per kWh gas
+                double carb_grid = 0.594; //UCTE-mix, per kWh elec
+                double costSpecCO2 = 0;
+
+
+                //add system installation cost for boiler and AC, annualized
+                double intrate = 0.04;
+                double LifeBoi = 30;
+                double LifeAC = 20;
+                double CostBoi = 200; //per kW
+                double CostAC = 360;  //per kW
+                double annuityBoi = intrate / (1 - (1 / (Math.Pow((1 + intrate), (LifeBoi)))));
+                double annuityAC = intrate / (1 - (1 / (Math.Pow((1 + intrate), (LifeAC)))));
+                double c_Boi = CostBoi * annuityBoi;
+                double c_AC = CostAC * annuityAC;
+
+                double elecprice_peak = 0.24;
+                double elecprice_off = 0.12;
+                double gascost = 0.09;
+                double coolConversion = 3;
+                double boilereff = 0.94;
+                //double rent = 65; //chf per sqm
+
+                double costSeq = 0;
+
+                int hourcount = 0;
+                for (int t = 0; t < 8760; t++)
+                {
+                    if ((hourcount >= 0 && hourcount < 6) || (hourcount >= 20 && hourcount <= 24))
+                    {
+                        costSeq += out_cool[t] * coolConversion * elecprice_off;
+                        costSeq += out_elec[t] * elecprice_off;
+                    }
+                    else
+                    {
+                        costSeq += out_cool[t] * coolConversion * elecprice_peak;
+                        costSeq += out_elec[t] * elecprice_peak;
+                    }
+                    costSeq += (out_dhw[t] + out_sh[t]) / boilereff * gascost;
+
+                    costSpecCO2 += (out_dhw[t] + out_sh[t]) / boilereff * carb_gas;
+                    costSpecCO2 += (out_cool[t] * coolConversion + out_elec[t]) * carb_grid;
+                }
+                costSpecCO2 /= out_sumArea;
+
+                costSeq += out_cool.Max()* coolConversion * c_AC;
+                double maxHeat = (out_dhw.Max() > out_sh.Max()) ? out_dhw.Max() : out_sh.Max();
+                costSeq += maxHeat / boilereff * c_Boi;
+
+                costSeq -= out_sumArea * rent;
+
+           
+
+                //double carblimit = 96.5; //from SBE paper ,p.73
+                //if (specEmElec + specEmHeat > carblimit) totCost += 1000000;
+
+
+                double elecspec = out_elec.Sum() / out_sumArea;
+                double coolspec = out_cool.Sum() / out_sumArea;
+                double dhwspec = out_dhw.Sum() / out_sumArea;
+                double shspec = out_sh.Sum() / out_sumArea;
+
+                DA.SetData(5, elecspec);
+                DA.SetData(6, coolspec);
+                DA.SetData(7, dhwspec);
+                DA.SetData(8, shspec);
+                DA.SetData(9, costSeq);
+                DA.SetData(10, costSpecCO2);
             }
         }
 

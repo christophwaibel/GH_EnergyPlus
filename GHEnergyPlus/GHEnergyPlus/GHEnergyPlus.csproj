@@ -66,6 +66,7 @@
     <Compile Include="GHEPlusRunParametric10.cs" />
     <Compile Include="GHEPlusRunParametric11A.cs" />
     <Compile Include="GHEPlusRunParametric12A.cs" />
+    <Compile Include="GHEPlusRunParametric13.cs" />
     <Compile Include="GHEPlusRunParametric14.cs" />
     <Compile Include="GHEPlusRunParametric15.cs" />
     <Compile Include="GHEPlusRunParametric15_Suurstoffi.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="GHEPlusRunSobol10.cs" />
     <Compile Include="GHEPlusRunSobol11A.cs" />
     <Compile Include="GHEPlusRunSobol12A.cs" />
+    <Compile Include="GHEplusRunSobol13.cs" />
     <Compile Include="GHEPlusRunSobol14.cs" />
     <Compile Include="GHEPlusRunSobol1to3.cs" />
     <Compile Include="GHEPlusRunSobol4to8.cs" />
