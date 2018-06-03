@@ -24,8 +24,8 @@
     408;                     !- Elevation {m}
 	
   RunPeriodControl:DaylightSavingTime,
-    Last Sunday in March,    !- Start Date
-    Last Sunday in October;  !- End Date
+    1 January,    !- Start Date
+    31 December;  !- End Date
 
   Site:GroundTemperature:BuildingSurface,14,14,14,14,14,14,14,14,14,14,14,14;
 
@@ -836,17 +836,17 @@
     0,                       !- Hour 5
     0,                       !- Hour 6
     0,                       !- Hour 7
-    1,                       !- Hour 8
-    1,                       !- Hour 9
-    1,                       !- Hour 10
-    1,                       !- Hour 11
-    1,                       !- Hour 12
-    1,                       !- Hour 13
-    1,                       !- Hour 14
-    1,                       !- Hour 15
-    1,                       !- Hour 16
-    1,                       !- Hour 17
-    1,                       !- Hour 18
+    0,                       !- Hour 8
+    0,                       !- Hour 9
+    0,                       !- Hour 10
+    0,                       !- Hour 11
+    0,                       !- Hour 12
+    0,                       !- Hour 13
+    0,                       !- Hour 14
+    0,                       !- Hour 15
+    0,                       !- Hour 16
+    0,                       !- Hour 17
+    0,                       !- Hour 18
     0,                       !- Hour 19
     0,                       !- Hour 20
     0,                       !- Hour 21
@@ -885,30 +885,30 @@
   Schedule:Day:Hourly,
     equipOfficeWeekEnd,      !- Name
     Fraction,                !- Schedule Type Limits Name
-    0.1,                     !- Hour 1
-    0.1,                     !- Hour 2
-    0.1,                     !- Hour 3
-    0.1,                     !- Hour 4
-    0.1,                     !- Hour 5
-    0.1,                     !- Hour 6
-    0.1,                     !- Hour 7
-    0.2,                     !- Hour 8
-    0.4,                     !- Hour 9
-    0.6,                     !- Hour 10
-    0.8,                     !- Hour 11
-    0.8,                     !- Hour 12
-    0.4,                     !- Hour 13
-    0.6,                     !- Hour 14
-    0.8,                     !- Hour 15
-    0.8,                     !- Hour 16
-    0.4,                     !- Hour 17
-    0.2,                     !- Hour 18
-    0.1,                     !- Hour 19
-    0.1,                     !- Hour 20
-    0.1,                     !- Hour 21
-    0.1,                     !- Hour 22
-    0.1,                     !- Hour 23
-    0.1;                     !- Hour 24
+    0,                     !- Hour 1
+    0,                     !- Hour 2
+    0,                     !- Hour 3
+    0,                     !- Hour 4
+    0,                     !- Hour 5
+    0,                     !- Hour 6
+    0,                     !- Hour 7
+    0,                     !- Hour 8
+    0,                     !- Hour 9
+    0,                     !- Hour 10
+    0,                     !- Hour 11
+    0,                     !- Hour 12
+    0,                     !- Hour 13
+    0,                     !- Hour 14
+    0,                     !- Hour 15
+    0,                     !- Hour 16
+    0,                     !- Hour 17
+    0,                     !- Hour 18
+    0,                     !- Hour 19
+    0,                     !- Hour 20
+    0,                     !- Hour 21
+    0,                     !- Hour 22
+    0,                     !- Hour 23
+    0;                     !- Hour 24
 
   Schedule:Day:Hourly,
     dhwOffice,             !- Name
@@ -1274,7 +1274,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -1289,7 +1289,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -1304,7 +1304,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -1319,7 +1319,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -1334,7 +1334,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -1416,74 +1416,7 @@
 
 
 
-! ======================================================================
-! ------------------------ DOMESTIC HOT WATER
 
-HotWaterEquipment,
-    Perimeter0:DHW,         !- Name
-    Perimeter0,       !- Zone or ZoneList Name
-    dhwOffice,          !- Schedule Name
-    Watts/Area,              !- Design Level Calculation Method
-    ,                        !- Design Level {W}
-    5.2,                     !- Power per Zone Floor Area {W/m2}
-    ,                        !- Power per Person {W/Person}
-    0,                       !- Fraction Latent
-    0,                       !- Fraction Radiant
-    1,                       !- Fraction Lost
-    General;                 !- End-Use Subcategory
-	
-HotWaterEquipment,
-    Perimeter1:DHW,         !- Name
-    Perimeter1,       !- Zone or ZoneList Name
-    dhwOffice,          !- Schedule Name
-    Watts/Area,              !- Design Level Calculation Method
-    ,                        !- Design Level {W}
-    5.2,                     !- Power per Zone Floor Area {W/m2}
-    ,                        !- Power per Person {W/Person}
-    0,                       !- Fraction Latent
-    0,                       !- Fraction Radiant
-    1,                       !- Fraction Lost
-    General;                 !- End-Use Subcategory
-	
-HotWaterEquipment,
-    Perimeter2:DHW,         !- Name
-    Perimeter2,       !- Zone or ZoneList Name
-    dhwOffice,          !- Schedule Name
-    Watts/Area,              !- Design Level Calculation Method
-    ,                        !- Design Level {W}
-    5.2,                     !- Power per Zone Floor Area {W/m2}
-    ,                        !- Power per Person {W/Person}
-    0,                       !- Fraction Latent
-    0,                       !- Fraction Radiant
-    1,                       !- Fraction Lost
-    General;                 !- End-Use Subcategory
-	
-HotWaterEquipment,
-    Perimeter3:DHW,         !- Name
-    Perimeter3,       !- Zone or ZoneList Name
-    dhwOffice,          !- Schedule Name
-    Watts/Area,              !- Design Level Calculation Method
-    ,                        !- Design Level {W}
-    5.2,                     !- Power per Zone Floor Area {W/m2}
-    ,                        !- Power per Person {W/Person}
-    0,                       !- Fraction Latent
-    0,                       !- Fraction Radiant
-    1,                       !- Fraction Lost
-    General;                 !- End-Use Subcategory
-	
-HotWaterEquipment,
-    Core:DHW,         !- Name
-    Core,       !- Zone or ZoneList Name
-    dhwOffice,          !- Schedule Name
-    Watts/Area,              !- Design Level Calculation Method
-    ,                        !- Design Level {W}
-    5.2,                     !- Power per Zone Floor Area {W/m2}
-    ,                        !- Power per Person {W/Person}
-    0,                       !- Fraction Latent
-    0,                       !- Fraction Radiant
-    1,                       !- Fraction Lost
-    General;                 !- End-Use Subcategory	
-  
 
 
 ! ======================================================================
@@ -2274,9 +2207,9 @@ HVACTemplate:Zone:IdealLoadsAirSystem,
     Perimeter0:f3:w0_ShadingControl,  !- Name
     ExteriorShade,           !- Shading Type
     ,                        !- Construction with Shading Name
-    OnIfHighSolarOnWindow,   !- Shading Control Type
-    AllOn,                   !- Schedule Name
-    180,                     !- Setpoint {W/m2, W or deg C}
+    OnIfHighZoneCooling,     !- Shading Control Type
+    AllOn,                        !- Schedule Name
+    24,                      !- Setpoint {W/m2, W or deg C}
     Yes,                     !- Shading Control Is Scheduled
     No,                      !- Glare Control Is Active
     Perimeter0:f3:w0_Shade,  !- Shading Device Material Name
@@ -2417,9 +2350,9 @@ HVACTemplate:Zone:IdealLoadsAirSystem,
     Perimeter1:f2:w0_ShadingControl,  !- Name
     ExteriorShade,           !- Shading Type
     ,                        !- Construction with Shading Name
-    OnIfHighSolarOnWindow,   !- Shading Control Type
-    AllOn,                   !- Schedule Name
-    180,                     !- Setpoint {W/m2, W or deg C}
+    OnIfHighZoneCooling,     !- Shading Control Type
+    AllOn,                        !- Schedule Name
+    24,                      !- Setpoint {W/m2, W or deg C}
     Yes,                     !- Shading Control Is Scheduled
     No,                      !- Glare Control Is Active
     Perimeter1:f2:w0_Shade,  !- Shading Device Material Name
@@ -2576,9 +2509,9 @@ HVACTemplate:Zone:IdealLoadsAirSystem,
     Perimeter2:f2:w0_ShadingControl,  !- Name
     ExteriorShade,           !- Shading Type
     ,                        !- Construction with Shading Name
-    OnIfHighSolarOnWindow,   !- Shading Control Type
-    AllOn,                   !- Schedule Name
-    180,                     !- Setpoint {W/m2, W or deg C}
+    OnIfHighZoneCooling,     !- Shading Control Type
+    AllOn,                        !- Schedule Name
+    24,                      !- Setpoint {W/m2, W or deg C}
     Yes,                     !- Shading Control Is Scheduled
     No,                      !- Glare Control Is Active
     Perimeter2:f2:w0_Shade,  !- Shading Device Material Name
@@ -2771,9 +2704,9 @@ HVACTemplate:Zone:IdealLoadsAirSystem,
     Perimeter3:f4:w0_ShadingControl,  !- Name
     ExteriorShade,           !- Shading Type
     ,                        !- Construction with Shading Name
-    OnIfHighSolarOnWindow,   !- Shading Control Type
-    AllOn,                   !- Schedule Name
-    180,                     !- Setpoint {W/m2, W or deg C}
+    OnIfHighZoneCooling,     !- Shading Control Type
+    AllOn,                        !- Schedule Name
+    24,                      !- Setpoint {W/m2, W or deg C}
     Yes,                     !- Shading Control Is Scheduled
     No,                      !- Glare Control Is Active
     Perimeter3:f4:w0_Shade,  !- Shading Device Material Name
@@ -2930,7 +2863,6 @@ HVACTemplate:Zone:IdealLoadsAirSystem,
     %pxin_1%,%pyin_1%,%pz_1%,  !- X,Y,Z ==> Vertex 3 {m}
     %pxin_2%,%pyin_2%,%pz_1%;  !- X,Y,Z ==> Vertex 4 {m}
 
-	
 	
 	
 	

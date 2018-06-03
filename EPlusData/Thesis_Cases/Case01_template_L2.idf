@@ -24,8 +24,8 @@
     408;                     !- Elevation {m}
 	
   RunPeriodControl:DaylightSavingTime,
-    Last Sunday in March,    !- Start Date
-    Last Sunday in October;  !- End Date
+    1 January,    !- Start Date
+    31 December;  !- End Date
 
   Site:GroundTemperature:BuildingSurface,14,14,14,14,14,14,14,14,14,14,14,14;
 
@@ -828,17 +828,17 @@
     0,                       !- Hour 5
     0,                       !- Hour 6
     0,                       !- Hour 7
-    1,                       !- Hour 8
-    1,                       !- Hour 9
-    1,                       !- Hour 10
-    1,                       !- Hour 11
-    1,                       !- Hour 12
-    1,                       !- Hour 13
-    1,                       !- Hour 14
-    1,                       !- Hour 15
-    1,                       !- Hour 16
-    1,                       !- Hour 17
-    1,                       !- Hour 18
+    0,                       !- Hour 8
+    0,                       !- Hour 9
+    0,                       !- Hour 10
+    0,                       !- Hour 11
+    0,                       !- Hour 12
+    0,                       !- Hour 13
+    0,                       !- Hour 14
+    0,                       !- Hour 15
+    0,                       !- Hour 16
+    0,                       !- Hour 17
+    0,                       !- Hour 18
     0,                       !- Hour 19
     0,                       !- Hour 20
     0,                       !- Hour 21
@@ -877,30 +877,30 @@
   Schedule:Day:Hourly,
     equipOfficeWeekEnd,      !- Name
     Fraction,                !- Schedule Type Limits Name
-    0.1,                     !- Hour 1
-    0.1,                     !- Hour 2
-    0.1,                     !- Hour 3
-    0.1,                     !- Hour 4
-    0.1,                     !- Hour 5
-    0.1,                     !- Hour 6
-    0.1,                     !- Hour 7
-    0.2,                     !- Hour 8
-    0.4,                     !- Hour 9
-    0.6,                     !- Hour 10
-    0.8,                     !- Hour 11
-    0.8,                     !- Hour 12
-    0.4,                     !- Hour 13
-    0.6,                     !- Hour 14
-    0.8,                     !- Hour 15
-    0.8,                     !- Hour 16
-    0.4,                     !- Hour 17
-    0.2,                     !- Hour 18
-    0.1,                     !- Hour 19
-    0.1,                     !- Hour 20
-    0.1,                     !- Hour 21
-    0.1,                     !- Hour 22
-    0.1,                     !- Hour 23
-    0.1;                     !- Hour 24
+    0,                     !- Hour 1
+    0,                     !- Hour 2
+    0,                     !- Hour 3
+    0,                     !- Hour 4
+    0,                     !- Hour 5
+    0,                     !- Hour 6
+    0,                     !- Hour 7
+    0,                     !- Hour 8
+    0,                     !- Hour 9
+    0,                     !- Hour 10
+    0,                     !- Hour 11
+    0,                     !- Hour 12
+    0,                     !- Hour 13
+    0,                     !- Hour 14
+    0,                     !- Hour 15
+    0,                     !- Hour 16
+    0,                     !- Hour 17
+    0,                     !- Hour 18
+    0,                     !- Hour 19
+    0,                     !- Hour 20
+    0,                     !- Hour 21
+    0,                     !- Hour 22
+    0,                     !- Hour 23
+    0;                     !- Hour 24
 
   Schedule:Day:Hourly,
     dhwOffice,             !- Name
@@ -987,7 +987,739 @@
     1;                       !- Hour 24
 
 
+	
 
+
+!===================================================================================
+! ------------------------ Ventilation
+ZoneVentilation:DesignFlowRate,
+    Perimeter0:Vent,        !- Name
+    Perimeter0,       !- Zone or ZoneList Name
+    ventOffice,  !- Schedule Name
+    Flow/Area,               !- Design Flow Rate Calculation Method
+    ,                        !- Design Flow Rate {m3/s}
+    0.001,                   !- Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow Rate per Person {m3/s-person}
+    ,                        !- Air Changes per Hour {1/hr}
+    Intake,                  !- Ventilation Type
+    0,                       !- Fan Pressure Rise {Pa}
+    1,                       !- Fan Total Efficiency
+    0.606,                   !- Constant Term Coefficient
+    0.0201999999,            !- Temperature Term Coefficient
+    0.000598,                !- Velocity Term Coefficient
+    0,                       !- Velocity Squared Term Coefficient
+    17,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    31,                      !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    -100,                    !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    0,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    30,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+ZoneVentilation:DesignFlowRate,
+    Perimeter1:Vent,        !- Name
+    Perimeter1,       !- Zone or ZoneList Name
+    ventOffice,  !- Schedule Name
+    Flow/Area,               !- Design Flow Rate Calculation Method
+    ,                        !- Design Flow Rate {m3/s}
+    0.001,                   !- Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow Rate per Person {m3/s-person}
+    ,                        !- Air Changes per Hour {1/hr}
+    Intake,                  !- Ventilation Type
+    0,                       !- Fan Pressure Rise {Pa}
+    1,                       !- Fan Total Efficiency
+    0.606,                   !- Constant Term Coefficient
+    0.0201999999,            !- Temperature Term Coefficient
+    0.000598,                !- Velocity Term Coefficient
+    0,                       !- Velocity Squared Term Coefficient
+    17,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    31,                      !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    -100,                    !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    0,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    30,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+	
+ZoneVentilation:DesignFlowRate,
+    Perimeter2:Vent,        !- Name
+    Perimeter2,       !- Zone or ZoneList Name
+    ventOffice,  !- Schedule Name
+    Flow/Area,               !- Design Flow Rate Calculation Method
+    ,                        !- Design Flow Rate {m3/s}
+    0.001,                   !- Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow Rate per Person {m3/s-person}
+    ,                        !- Air Changes per Hour {1/hr}
+    Intake,                  !- Ventilation Type
+    0,                       !- Fan Pressure Rise {Pa}
+    1,                       !- Fan Total Efficiency
+    0.606,                   !- Constant Term Coefficient
+    0.0201999999,            !- Temperature Term Coefficient
+    0.000598,                !- Velocity Term Coefficient
+    0,                       !- Velocity Squared Term Coefficient
+    17,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    31,                      !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    -100,                    !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    0,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    30,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+	
+ZoneVentilation:DesignFlowRate,
+    Perimeter3:Vent,        !- Name
+    Perimeter3,       !- Zone or ZoneList Name
+    ventOffice,  !- Schedule Name
+    Flow/Area,               !- Design Flow Rate Calculation Method
+    ,                        !- Design Flow Rate {m3/s}
+    0.001,                   !- Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow Rate per Person {m3/s-person}
+    ,                        !- Air Changes per Hour {1/hr}
+    Intake,                  !- Ventilation Type
+    0,                       !- Fan Pressure Rise {Pa}
+    1,                       !- Fan Total Efficiency
+    0.606,                   !- Constant Term Coefficient
+    0.0201999999,            !- Temperature Term Coefficient
+    0.000598,                !- Velocity Term Coefficient
+    0,                       !- Velocity Squared Term Coefficient
+    17,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    31,                      !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    -100,                    !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    0,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    30,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+	
+ZoneVentilation:DesignFlowRate,
+    Core0:Vent,        !- Name
+    Core0,       !- Zone or ZoneList Name
+    ventOffice,  !- Schedule Name
+    Flow/Area,               !- Design Flow Rate Calculation Method
+    ,                        !- Design Flow Rate {m3/s}
+    0.001,                   !- Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow Rate per Person {m3/s-person}
+    ,                        !- Air Changes per Hour {1/hr}
+    Intake,                  !- Ventilation Type
+    0,                       !- Fan Pressure Rise {Pa}
+    1,                       !- Fan Total Efficiency
+    0.606,                   !- Constant Term Coefficient
+    0.0201999999,            !- Temperature Term Coefficient
+    0.000598,                !- Velocity Term Coefficient
+    0,                       !- Velocity Squared Term Coefficient
+    17,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    31,                      !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    -100,                    !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    0,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    30,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+	
+	
+ZoneVentilation:DesignFlowRate,
+    Perimeter4:Vent,        !- Name
+    Perimeter4,       !- Zone or ZoneList Name
+    ventOffice,  !- Schedule Name
+    Flow/Area,               !- Design Flow Rate Calculation Method
+    ,                        !- Design Flow Rate {m3/s}
+    0.001,                   !- Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow Rate per Person {m3/s-person}
+    ,                        !- Air Changes per Hour {1/hr}
+    Intake,                  !- Ventilation Type
+    0,                       !- Fan Pressure Rise {Pa}
+    1,                       !- Fan Total Efficiency
+    0.606,                   !- Constant Term Coefficient
+    0.0201999999,            !- Temperature Term Coefficient
+    0.000598,                !- Velocity Term Coefficient
+    0,                       !- Velocity Squared Term Coefficient
+    17,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    31,                      !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    -100,                    !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    0,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    30,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+ZoneVentilation:DesignFlowRate,
+    Perimeter5:Vent,        !- Name
+    Perimeter5,       !- Zone or ZoneList Name
+    ventOffice,  !- Schedule Name
+    Flow/Area,               !- Design Flow Rate Calculation Method
+    ,                        !- Design Flow Rate {m3/s}
+    0.001,                   !- Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow Rate per Person {m3/s-person}
+    ,                        !- Air Changes per Hour {1/hr}
+    Intake,                  !- Ventilation Type
+    0,                       !- Fan Pressure Rise {Pa}
+    1,                       !- Fan Total Efficiency
+    0.606,                   !- Constant Term Coefficient
+    0.0201999999,            !- Temperature Term Coefficient
+    0.000598,                !- Velocity Term Coefficient
+    0,                       !- Velocity Squared Term Coefficient
+    17,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    31,                      !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    -100,                    !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    0,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    30,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+	
+ZoneVentilation:DesignFlowRate,
+    Perimeter6:Vent,        !- Name
+    Perimeter6,       !- Zone or ZoneList Name
+    ventOffice,  !- Schedule Name
+    Flow/Area,               !- Design Flow Rate Calculation Method
+    ,                        !- Design Flow Rate {m3/s}
+    0.001,                   !- Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow Rate per Person {m3/s-person}
+    ,                        !- Air Changes per Hour {1/hr}
+    Intake,                  !- Ventilation Type
+    0,                       !- Fan Pressure Rise {Pa}
+    1,                       !- Fan Total Efficiency
+    0.606,                   !- Constant Term Coefficient
+    0.0201999999,            !- Temperature Term Coefficient
+    0.000598,                !- Velocity Term Coefficient
+    0,                       !- Velocity Squared Term Coefficient
+    17,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    31,                      !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    -100,                    !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    0,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    30,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+	
+ZoneVentilation:DesignFlowRate,
+    Perimeter7:Vent,        !- Name
+    Perimeter7,       !- Zone or ZoneList Name
+    ventOffice,  !- Schedule Name
+    Flow/Area,               !- Design Flow Rate Calculation Method
+    ,                        !- Design Flow Rate {m3/s}
+    0.001,                   !- Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow Rate per Person {m3/s-person}
+    ,                        !- Air Changes per Hour {1/hr}
+    Intake,                  !- Ventilation Type
+    0,                       !- Fan Pressure Rise {Pa}
+    1,                       !- Fan Total Efficiency
+    0.606,                   !- Constant Term Coefficient
+    0.0201999999,            !- Temperature Term Coefficient
+    0.000598,                !- Velocity Term Coefficient
+    0,                       !- Velocity Squared Term Coefficient
+    17,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    31,                      !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    -100,                    !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    0,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    30,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+	
+ZoneVentilation:DesignFlowRate,
+    Core1:Vent,        !- Name
+    Core1,       !- Zone or ZoneList Name
+    ventOffice,  !- Schedule Name
+    Flow/Area,               !- Design Flow Rate Calculation Method
+    ,                        !- Design Flow Rate {m3/s}
+    0.001,                   !- Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow Rate per Person {m3/s-person}
+    ,                        !- Air Changes per Hour {1/hr}
+    Intake,                  !- Ventilation Type
+    0,                       !- Fan Pressure Rise {Pa}
+    1,                       !- Fan Total Efficiency
+    0.606,                   !- Constant Term Coefficient
+    0.0201999999,            !- Temperature Term Coefficient
+    0.000598,                !- Velocity Term Coefficient
+    0,                       !- Velocity Squared Term Coefficient
+    17,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    31,                      !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    -100,                    !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    0,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    30,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+		
+	
+	
+	
+	
+	
+	
+!===================================================================================
+! ------------------------ HVAC
+
+ HVACTemplate:Thermostat,
+    office_thermostats,      !- Name
+    htgOffice,    !- Heating Setpoint Schedule Name
+    ,                        !- Constant Heating Setpoint {C}
+    clgOffice,    !- Cooling Setpoint Schedule Name
+    ;                        !- Constant Cooling Setpoint {C}
+
+	
+HVACTemplate:Zone:IdealLoadsAirSystem,
+    Perimeter0,       !- Zone Name
+    office_thermostats,      !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ,                        !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60,                      !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30,                      !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    ;                        !- Demand Controlled Ventilation Type
+	
+HVACTemplate:Zone:IdealLoadsAirSystem,
+    Perimeter1,       !- Zone Name
+    office_thermostats,      !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ,                        !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60,                      !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30,                      !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    ;                        !- Demand Controlled Ventilation Type
+
+HVACTemplate:Zone:IdealLoadsAirSystem,
+    Perimeter2,       !- Zone Name
+    office_thermostats,      !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ,                        !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60,                      !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30,                      !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    ;                        !- Demand Controlled Ventilation Type	
+	
+HVACTemplate:Zone:IdealLoadsAirSystem,
+    Perimeter3,       !- Zone Name
+    office_thermostats,      !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ,                        !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60,                      !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30,                      !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    ;                        !- Demand Controlled Ventilation Type	
+	
+HVACTemplate:Zone:IdealLoadsAirSystem,
+    Core0,       !- Zone Name
+    office_thermostats,      !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ,                        !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60,                      !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30,                      !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    ;                        !- Demand Controlled Ventilation Type
+	
+	
+HVACTemplate:Zone:IdealLoadsAirSystem,
+    Perimeter4,       !- Zone Name
+    office_thermostats,      !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ,                        !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60,                      !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30,                      !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    ;                        !- Demand Controlled Ventilation Type
+	
+HVACTemplate:Zone:IdealLoadsAirSystem,
+    Perimeter5,       !- Zone Name
+    office_thermostats,      !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ,                        !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60,                      !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30,                      !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    ;                        !- Demand Controlled Ventilation Type
+
+HVACTemplate:Zone:IdealLoadsAirSystem,
+    Perimeter6,       !- Zone Name
+    office_thermostats,      !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ,                        !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60,                      !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30,                      !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    ;                        !- Demand Controlled Ventilation Type	
+	
+HVACTemplate:Zone:IdealLoadsAirSystem,
+    Perimeter7,       !- Zone Name
+    office_thermostats,      !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ,                        !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60,                      !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30,                      !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    ;                        !- Demand Controlled Ventilation Type	
+	
+HVACTemplate:Zone:IdealLoadsAirSystem,
+    Core1,       !- Zone Name
+    office_thermostats,      !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ,                        !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60,                      !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30,                      !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    ;                        !- Demand Controlled Ventilation Type
+	
+	
+	
+
+
+! ======================================================================
+	
+! ------------------------ PEOPLE
+
+  People,
+    People Core0,             !- Name
+    Core0,                    !- Zone or ZoneList Name
+    occOffice,               !- Number of People Schedule Name
+    Area/Person,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    ,                        !- People per Zone Floor Area {person/m2}
+    10,                      !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    AutoCalculate,           !- Sensible Heat Fraction
+    actOffice;     !- Activity Level Schedule Name
+
+! ------------------------ PEOPLE
+
+  People,
+    People Perimeter0,       !- Name
+    Perimeter0,              !- Zone or ZoneList Name
+    occOffice,               !- Number of People Schedule Name
+    Area/Person,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    ,                        !- People per Zone Floor Area {person/m2}
+    10,                      !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    AutoCalculate,           !- Sensible Heat Fraction
+    actOffice;     !- Activity Level Schedule Name
+
+	
+! ------------------------ PEOPLE
+
+  People,
+    People Perimeter3,       !- Name
+    Perimeter3,              !- Zone or ZoneList Name
+    occOffice,               !- Number of People Schedule Name
+    Area/Person,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    ,                        !- People per Zone Floor Area {person/m2}
+    10,                      !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    AutoCalculate,           !- Sensible Heat Fraction
+    actOffice;     !- Activity Level Schedule Name
+	
+! ------------------------ PEOPLE
+
+  People,
+    People Perimeter2,       !- Name
+    Perimeter2,              !- Zone or ZoneList Name
+    occOffice,               !- Number of People Schedule Name
+    Area/Person,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    ,                        !- People per Zone Floor Area {person/m2}
+    10,                      !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    AutoCalculate,           !- Sensible Heat Fraction
+    actOffice;     !- Activity Level Schedule Name
+	
+! ------------------------ PEOPLE
+
+  People,
+    People Perimeter1,       !- Name
+    Perimeter1,              !- Zone or ZoneList Name
+    occOffice,               !- Number of People Schedule Name
+    Area/Person,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    ,                        !- People per Zone Floor Area {person/m2}
+    10,                      !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    AutoCalculate,           !- Sensible Heat Fraction
+    actOffice;     !- Activity Level Schedule Name 	
+	
+! ------------------------ PEOPLE
+
+  People,
+    People Core1,             !- Name
+    Core1,                    !- Zone or ZoneList Name
+    occOffice,               !- Number of People Schedule Name
+    Area/Person,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    ,                        !- People per Zone Floor Area {person/m2}
+    10,                      !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    AutoCalculate,           !- Sensible Heat Fraction
+    actOffice;     !- Activity Level Schedule Name
+	
+! ------------------------ PEOPLE
+
+  People,
+    People Perimeter7,       !- Name
+    Perimeter3,              !- Zone or ZoneList Name
+    occOffice,               !- Number of People Schedule Name
+    Area/Person,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    ,                        !- People per Zone Floor Area {person/m2}
+    10,                      !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    AutoCalculate,           !- Sensible Heat Fraction
+    actOffice;     !- Activity Level Schedule Name
+	
+! ------------------------ PEOPLE
+
+  People,
+    People Perimeter6,       !- Name
+    Perimeter2,              !- Zone or ZoneList Name
+    occOffice,               !- Number of People Schedule Name
+    Area/Person,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    ,                        !- People per Zone Floor Area {person/m2}
+    10,                      !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    AutoCalculate,           !- Sensible Heat Fraction
+    actOffice;     !- Activity Level Schedule Name
+	
+! ------------------------ PEOPLE
+
+  People,
+    People Perimeter5,       !- Name
+    Perimeter1,              !- Zone or ZoneList Name
+    occOffice,               !- Number of People Schedule Name
+    Area/Person,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    ,                        !- People per Zone Floor Area {person/m2}
+    10,                      !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    AutoCalculate,           !- Sensible Heat Fraction
+    actOffice;     !- Activity Level Schedule Name 		
+
+! ------------------------ PEOPLE
+
+  People,
+    People Perimeter4,       !- Name
+    Perimeter0,              !- Zone or ZoneList Name
+    occOffice,               !- Number of People Schedule Name
+    Area/Person,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    ,                        !- People per Zone Floor Area {person/m2}
+    10,                      !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    AutoCalculate,           !- Sensible Heat Fraction
+    actOffice;     !- Activity Level Schedule Name	
+	
+	
 	
 	
 ! ======================================================================
@@ -1055,35 +1787,7 @@
     TARP,                    !- Zone Inside Convection Algorithm
     DOE-2;                   !- Zone Outside Convection Algorithm
 	
-! ------------------------ PEOPLE
 
-  People,
-    People Perimeter0,       !- Name
-    Perimeter0,              !- Zone or ZoneList Name
-    occOffice,               !- Number of People Schedule Name
-    People/Area,             !- Number of People Calculation Method
-    ,                        !- Number of People
-    0.2,                     !- People per Zone Floor Area {person/m2}
-    ,                        !- Zone Floor Area per Person {m2/person}
-    0.3,                     !- Fraction Radiant
-    AUTOCALCULATE,           !- Sensible Heat Fraction
-    Perimeter0PeopleActivity,!- Activity Level Schedule Name
-    0.0000000382,            !- Carbon Dioxide Generation Rate {m3/s-W}
-    No,                      !- Enable ASHRAE 55 Comfort Warnings
-    ZoneAveraged,            !- Mean Radiant Temperature Calculation Type
-    ,                        !- Surface Name/Angle Factor List Name
-    Perimeter0WorkEfficiency,!- Work Efficiency Schedule Name
-    DynamicClothingModelASHRAE55,  !- Clothing Insulation Calculation Method
-    ,                        !- Clothing Insulation Calculation Method Schedule Name
-    ,                        !- Clothing Insulation Schedule Name
-    Perimeter0AirVelocity,   !- Air Velocity Schedule Name
-    AdaptiveASH55;           !- Thermal Comfort Model 1 Type
-
-  Schedule:Constant,Perimeter0PeopleActivity,Any Number,125.28;
-
-  Schedule:Constant,Perimeter0AirVelocity,Any Number,0.2;
-
-  Schedule:Constant,Perimeter0WorkEfficiency,Any Number,0;
 
 ! ------------------------ EQUIPMENT
 
@@ -1093,7 +1797,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -1139,82 +1843,7 @@
     3,                       !- Number of Stepped Control Steps
     1;                       !- Probability Lighting will be Reset When Needed in Manual Stepped Control
 
-! ------------------------ HVAC
 
-  Schedule:Constant,Perimeter0Heating_SP_Sch,Temperature,20;
-
-  Schedule:Constant,Perimeter0Cooling_SP_Sch,Temperature,26;
-
-  ZoneControl:Thermostat,
-    Perimeter0 Thermostat,   !- Name
-    Perimeter0,              !- Zone or ZoneList Name
-    Perimeter0ZoneControlTypeSched,  !- Control Type Schedule Name
-    ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
-    Dual Setpoint - Zone Perimeter0;  !- Control 1 Name
-
-  Schedule:Constant,Perimeter0ZoneControlTypeSched,Any Number,4;
-
-  ThermostatSetpoint:DualSetpoint,
-    Dual Setpoint - Zone Perimeter0,  !- Name
-    Perimeter0Heating_SP_Sch,!- Heating Setpoint Temperature Schedule Name
-    Perimeter0Cooling_SP_Sch;!- Cooling Setpoint Temperature Schedule Name
-
-  ZoneHVAC:EquipmentConnections,
-    Perimeter0,              !- Zone Name
-    Perimeter0 Equipment,    !- Zone Conditioning Equipment List Name
-    Perimeter0 Inlets,       !- Zone Air Inlet Node or NodeList Name
-    ,                        !- Zone Air Exhaust Node or NodeList Name
-    Node Perimeter0 Zone,    !- Zone Air Node Name
-    Node Perimeter0 Out;     !- Zone Return Air Node Name
-
-  ZoneHVAC:EquipmentList,
-    Perimeter0 Equipment,    !- Name
-    ZoneHVAC:IdealLoadsAirSystem,  !- Zone Equipment 1 Object Type
-    Perimeter0 Ideal Loads Air,  !- Zone Equipment 1 Name
-    1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
-
-  NodeList,
-    Perimeter0 Inlets,       !- Name
-    Node Perimeter0 In;      !- Node 1 Name
-
-  ZoneHVAC:IdealLoadsAirSystem,
-    Perimeter0 Ideal Loads Air,  !- Name
-    ,                        !- Availability Schedule Name
-    Node Perimeter0 In,      !- Zone Supply Air Node Name
-    ,                        !- Zone Exhaust Air Node Name
-    30,                      !- Maximum Heating Supply Air Temperature {C}
-    18,                      !- Minimum Cooling Supply Air Temperature {C}
-    0.01,                    !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
-    0.008,                   !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
-    NoLimit,                 !- Heating Limit
-    100,                     !- Maximum Heating Air Flow Rate {m3/s}
-    ,                        !- Maximum Sensible Heating Capacity {W}
-    NoLimit,                 !- Cooling Limit
-    100,                     !- Maximum Cooling Air Flow Rate {m3/s}
-    ,                        !- Maximum Total Cooling Capacity {W}
-    occOffice,               !- Heating Availability Schedule Name
-    occOffice,               !- Cooling Availability Schedule Name
-    None,                    !- Dehumidification Control Type
-    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
-    None,                    !- Humidification Control Type
-    ,                        !- Design Specification Outdoor Air Object Name
-    ,                        !- Outdoor Air Inlet Node Name
-    ,                        !- Demand Controlled Ventilation Type
-    NoEconomizer,            !- Outdoor Air Economizer Type
-    None,                    !- Heat Recovery Type
-    0.7,                     !- Sensible Heat Recovery Effectiveness {dimensionless}
-    0.65;                    !- Latent Heat Recovery Effectiveness {dimensionless}
-
-  ZoneControl:Humidistat,
-    Perimeter0Humidistat,    !- Name
-    Perimeter0,              !- Zone Name
-    Perimeter0HumidMin,      !- Humidifying Relative Humidity Setpoint Schedule Name
-    Perimeter0HumidMax;      !- Dehumidifying Relative Humidity Setpoint Schedule Name
-
-  Schedule:Constant,Perimeter0HumidMin,Any Number,20;
-
-  Schedule:Constant,Perimeter0HumidMax,Any Number,80;
 
 ! ------------------------ NATVENT
 
@@ -1289,6 +1918,519 @@
     ,                        !- Maximum Outdoor Temperature Schedule Name
     40;                      !- Maximum Wind Speed {m/s}
 
+	! ------------------------ NATVENT
+
+  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter1,Fraction,1;
+
+! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter1,Schedule Value,Hourly;
+! Output:Variable,occOffice,Schedule Value,Hourly;
+
+  EnergyManagementSystem:Actuator,
+    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter1,  !- Name
+    NATVENT_AVAIL_SCHED_Perimeter1,  !- Actuated Component Unique Name
+    Schedule:Constant,       !- Actuated Component Type
+    Schedule Value;          !- Actuated Component Control Type
+
+  EnergyManagementSystem:Sensor,
+    USRNATVENT_Perimeter1,   !- Name
+    occOffice,               !- Output:Variable or Output:Meter Index Key Name
+    Schedule Value;          !- Output:Variable or Output:Meter Name
+
+  EnergyManagementSystem:ProgramCallingManager,
+    My Perimeter1_Setpoint_Schedule_Calculator_Example,  !- Name
+    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
+    Perimeter1_ErlEnforceBinary;  !- Program Name 1
+
+  EnergyManagementSystem:Program,
+    Perimeter1_ErlEnforceBinary,  !- Name
+    IF (USRNATVENT_Perimeter1 > 0),  !- Program Line 1
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter1 = 1,  !- Program Line 2
+    ELSE,                    !- <none>
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter1 = 0,  !- <none>
+    ENDIF;                   !- <none>
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter1NatVent_Buoy,  !- Name
+    Perimeter1,              !- Zone Name
+    %Vent_f1%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter1,  !- Opening Area Fraction Schedule Name
+    0,                       !- Opening Effectiveness {dimensionless}
+    0,                       !- Effective Angle {deg}
+    0.624999999999971,       !- Height Difference {m}
+    AutoCalculate,                     !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter1NatVent_Wind0, !- Name
+    Perimeter1,              !- Zone Name
+    %Vent_f1%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter1,  !- Opening Area Fraction Schedule Name
+    Autocalculate,           !- Opening Effectiveness {dimensionless}
+    180,                     !- Effective Angle {deg}
+    0,                       !- Height Difference {m}
+    0,                       !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+	
+
+! ------------------------ NATVENT
+
+  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter2,Fraction,1;
+
+! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter2,Schedule Value,Hourly;
+! Output:Variable,occOffice,Schedule Value,Hourly;
+
+  EnergyManagementSystem:Actuator,
+    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter2,  !- Name
+    NATVENT_AVAIL_SCHED_Perimeter2,  !- Actuated Component Unique Name
+    Schedule:Constant,       !- Actuated Component Type
+    Schedule Value;          !- Actuated Component Control Type
+
+  EnergyManagementSystem:Sensor,
+    USRNATVENT_Perimeter2,   !- Name
+    occOffice,               !- Output:Variable or Output:Meter Index Key Name
+    Schedule Value;          !- Output:Variable or Output:Meter Name
+
+  EnergyManagementSystem:ProgramCallingManager,
+    My Perimeter2_Setpoint_Schedule_Calculator_Example,  !- Name
+    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
+    Perimeter2_ErlEnforceBinary;  !- Program Name 1
+
+  EnergyManagementSystem:Program,
+    Perimeter2_ErlEnforceBinary,  !- Name
+    IF (USRNATVENT_Perimeter2 > 0),  !- Program Line 1
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter2 = 1,  !- Program Line 2
+    ELSE,                    !- <none>
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter2 = 0,  !- <none>
+    ENDIF;                   !- <none>
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter2NatVent_Buoy,  !- Name
+    Perimeter2,              !- Zone Name
+    %Vent_f2%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter2,  !- Opening Area Fraction Schedule Name
+    0,                       !- Opening Effectiveness {dimensionless}
+    0,                       !- Effective Angle {deg}
+    0.624999999999971,       !- Height Difference {m}
+    AutoCalculate,                     !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter2NatVent_Wind0, !- Name
+    Perimeter2,              !- Zone Name
+    %Vent_f2%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter2,  !- Opening Area Fraction Schedule Name
+    Autocalculate,           !- Opening Effectiveness {dimensionless}
+    90,                      !- Effective Angle {deg}
+    0,                       !- Height Difference {m}
+    0,                       !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}	
+
+! ------------------------ NATVENT
+
+  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter3,Fraction,1;
+
+! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter3,Schedule Value,Hourly;
+! Output:Variable,occOffice,Schedule Value,Hourly;
+
+  EnergyManagementSystem:Actuator,
+    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter3,  !- Name
+    NATVENT_AVAIL_SCHED_Perimeter3,  !- Actuated Component Unique Name
+    Schedule:Constant,       !- Actuated Component Type
+    Schedule Value;          !- Actuated Component Control Type
+
+  EnergyManagementSystem:Sensor,
+    USRNATVENT_Perimeter3,   !- Name
+    occOffice,               !- Output:Variable or Output:Meter Index Key Name
+    Schedule Value;          !- Output:Variable or Output:Meter Name
+
+  EnergyManagementSystem:ProgramCallingManager,
+    My Perimeter3_Setpoint_Schedule_Calculator_Example,  !- Name
+    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
+    Perimeter3_ErlEnforceBinary;  !- Program Name 1
+
+  EnergyManagementSystem:Program,
+    Perimeter3_ErlEnforceBinary,  !- Name
+    IF (USRNATVENT_Perimeter3 > 0),  !- Program Line 1
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter3 = 1,  !- Program Line 2
+    ELSE,                    !- <none>
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter3 = 0,  !- <none>
+    ENDIF;                   !- <none>
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter3NatVent_Buoy,  !- Name
+    Perimeter3,              !- Zone Name
+    %Vent_f3%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter3,  !- Opening Area Fraction Schedule Name
+    0,                       !- Opening Effectiveness {dimensionless}
+    0,                       !- Effective Angle {deg}
+    0.624999999999971,       !- Height Difference {m}
+    AutoCalculate,                     !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter3NatVent_Wind0, !- Name
+    Perimeter3,              !- Zone Name
+    %Vent_f3%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter3,  !- Opening Area Fraction Schedule Name
+    Autocalculate,           !- Opening Effectiveness {dimensionless}
+    0,                       !- Effective Angle {deg}
+    0,                       !- Height Difference {m}
+    0,                       !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}	
+
+! ------------------------ NATVENT
+
+  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter4,Fraction,1;
+
+! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter4,Schedule Value,Hourly;
+! Output:Variable,occOffice,Schedule Value,Hourly;
+
+  EnergyManagementSystem:Actuator,
+    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter4,  !- Name
+    NATVENT_AVAIL_SCHED_Perimeter4,  !- Actuated Component Unique Name
+    Schedule:Constant,       !- Actuated Component Type
+    Schedule Value;          !- Actuated Component Control Type
+
+  EnergyManagementSystem:Sensor,
+    USRNATVENT_Perimeter4,   !- Name
+    occOffice,               !- Output:Variable or Output:Meter Index Key Name
+    Schedule Value;          !- Output:Variable or Output:Meter Name
+
+  EnergyManagementSystem:ProgramCallingManager,
+    My Perimeter4_Setpoint_Schedule_Calculator_Example,  !- Name
+    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
+    Perimeter4_ErlEnforceBinary;  !- Program Name 1
+
+  EnergyManagementSystem:Program,
+    Perimeter4_ErlEnforceBinary,  !- Name
+    IF (USRNATVENT_Perimeter4 > 0),  !- Program Line 1
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter4 = 1,  !- Program Line 2
+    ELSE,                    !- <none>
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter4 = 0,  !- <none>
+    ENDIF;                   !- <none>
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter4NatVent_Buoy,  !- Name
+    Perimeter4,              !- Zone Name
+    %Vent_f0%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter4,  !- Opening Area Fraction Schedule Name
+    0,                       !- Opening Effectiveness {dimensionless}
+    0,                       !- Effective Angle {deg}
+    0.624999999999971,       !- Height Difference {m}
+    AutoCalculate,                     !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter4NatVent_Wind0, !- Name
+    Perimeter4,              !- Zone Name
+    %Vent_f0%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter4,  !- Opening Area Fraction Schedule Name
+    Autocalculate,           !- Opening Effectiveness {dimensionless}
+    270,                     !- Effective Angle {deg}
+    0,                       !- Height Difference {m}
+    0,                       !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+! ------------------------ NATVENT
+
+  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter5,Fraction,1;
+
+! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter5,Schedule Value,Hourly;
+! Output:Variable,occOffice,Schedule Value,Hourly;
+
+  EnergyManagementSystem:Actuator,
+    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter5,  !- Name
+    NATVENT_AVAIL_SCHED_Perimeter5,  !- Actuated Component Unique Name
+    Schedule:Constant,       !- Actuated Component Type
+    Schedule Value;          !- Actuated Component Control Type
+
+  EnergyManagementSystem:Sensor,
+    USRNATVENT_Perimeter5,   !- Name
+    occOffice,               !- Output:Variable or Output:Meter Index Key Name
+    Schedule Value;          !- Output:Variable or Output:Meter Name
+
+  EnergyManagementSystem:ProgramCallingManager,
+    My Perimeter5_Setpoint_Schedule_Calculator_Example,  !- Name
+    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
+    Perimeter5_ErlEnforceBinary;  !- Program Name 1
+
+  EnergyManagementSystem:Program,
+    Perimeter5_ErlEnforceBinary,  !- Name
+    IF (USRNATVENT_Perimeter5 > 0),  !- Program Line 1
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter5 = 1,  !- Program Line 2
+    ELSE,                    !- <none>
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter5 = 0,  !- <none>
+    ENDIF;                   !- <none>
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter5NatVent_Buoy,  !- Name
+    Perimeter5,              !- Zone Name
+    %Vent_f1%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter5,  !- Opening Area Fraction Schedule Name
+    0,                       !- Opening Effectiveness {dimensionless}
+    0,                       !- Effective Angle {deg}
+    0.624999999999971,       !- Height Difference {m}
+    AutoCalculate,                     !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter5NatVent_Wind0, !- Name
+    Perimeter5,              !- Zone Name
+    %Vent_f1%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter5,  !- Opening Area Fraction Schedule Name
+    Autocalculate,           !- Opening Effectiveness {dimensionless}
+    180,                     !- Effective Angle {deg}
+    0,                       !- Height Difference {m}
+    0,                       !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+! ------------------------ NATVENT
+
+  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter6,Fraction,1;
+
+! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter6,Schedule Value,Hourly;
+! Output:Variable,occOffice,Schedule Value,Hourly;
+
+  EnergyManagementSystem:Actuator,
+    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter6,  !- Name
+    NATVENT_AVAIL_SCHED_Perimeter6,  !- Actuated Component Unique Name
+    Schedule:Constant,       !- Actuated Component Type
+    Schedule Value;          !- Actuated Component Control Type
+
+  EnergyManagementSystem:Sensor,
+    USRNATVENT_Perimeter6,   !- Name
+    occOffice,               !- Output:Variable or Output:Meter Index Key Name
+    Schedule Value;          !- Output:Variable or Output:Meter Name
+
+  EnergyManagementSystem:ProgramCallingManager,
+    My Perimeter6_Setpoint_Schedule_Calculator_Example,  !- Name
+    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
+    Perimeter6_ErlEnforceBinary;  !- Program Name 1
+
+  EnergyManagementSystem:Program,
+    Perimeter6_ErlEnforceBinary,  !- Name
+    IF (USRNATVENT_Perimeter6 > 0),  !- Program Line 1
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter6 = 1,  !- Program Line 2
+    ELSE,                    !- <none>
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter6 = 0,  !- <none>
+    ENDIF;                   !- <none>
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter6NatVent_Buoy,  !- Name
+    Perimeter6,              !- Zone Name
+    %Vent_f2%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter6,  !- Opening Area Fraction Schedule Name
+    0,                       !- Opening Effectiveness {dimensionless}
+    0,                       !- Effective Angle {deg}
+    0.624999999999971,       !- Height Difference {m}
+    AutoCalculate,                     !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter6NatVent_Wind0, !- Name
+    Perimeter6,              !- Zone Name
+    %Vent_f2%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter6,  !- Opening Area Fraction Schedule Name
+    Autocalculate,           !- Opening Effectiveness {dimensionless}
+    90,                      !- Effective Angle {deg}
+    0,                       !- Height Difference {m}
+    0,                       !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+! ------------------------ NATVENT
+
+  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter7,Fraction,1;
+
+! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter7,Schedule Value,Hourly;
+! Output:Variable,occOffice,Schedule Value,Hourly;
+
+  EnergyManagementSystem:Actuator,
+    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter7,  !- Name
+    NATVENT_AVAIL_SCHED_Perimeter7,  !- Actuated Component Unique Name
+    Schedule:Constant,       !- Actuated Component Type
+    Schedule Value;          !- Actuated Component Control Type
+
+  EnergyManagementSystem:Sensor,
+    USRNATVENT_Perimeter7,   !- Name
+    occOffice,               !- Output:Variable or Output:Meter Index Key Name
+    Schedule Value;          !- Output:Variable or Output:Meter Name
+
+  EnergyManagementSystem:ProgramCallingManager,
+    My Perimeter7_Setpoint_Schedule_Calculator_Example,  !- Name
+    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
+    Perimeter7_ErlEnforceBinary;  !- Program Name 1
+
+  EnergyManagementSystem:Program,
+    Perimeter7_ErlEnforceBinary,  !- Name
+    IF (USRNATVENT_Perimeter7 > 0),  !- Program Line 1
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter7 = 1,  !- Program Line 2
+    ELSE,                    !- <none>
+    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter7 = 0,  !- <none>
+    ENDIF;                   !- <none>
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter7NatVent_Buoy,  !- Name
+    Perimeter7,              !- Zone Name
+    %Vent_f3%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter7,  !- Opening Area Fraction Schedule Name
+    0,                       !- Opening Effectiveness {dimensionless}
+    0,                       !- Effective Angle {deg}
+    0.624999999999971,       !- Height Difference {m}
+    AutoCalculate,                     !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+  ZoneVentilation:WindandStackOpenArea,
+    Perimeter7NatVent_Wind0, !- Name
+    Perimeter7,              !- Zone Name
+    %Vent_f3%,        !- Opening Area {m2}
+    NATVENT_AVAIL_SCHED_Perimeter7,  !- Opening Area Fraction Schedule Name
+    Autocalculate,           !- Opening Effectiveness {dimensionless}
+    0,                       !- Effective Angle {deg}
+    0,                       !- Height Difference {m}
+    0,                       !- Discharge Coefficient for Opening
+    23,                      !- Minimum Indoor Temperature {C}
+    ,                        !- Minimum Indoor Temperature Schedule Name
+    24,                     !- Maximum Indoor Temperature {C}
+    ,                        !- Maximum Indoor Temperature Schedule Name
+    1,                       !- Delta Temperature {deltaC}
+    ,                        !- Delta Temperature Schedule Name
+    15,                       !- Minimum Outdoor Temperature {C}
+    ,                        !- Minimum Outdoor Temperature Schedule Name
+    29,                      !- Maximum Outdoor Temperature {C}
+    ,                        !- Maximum Outdoor Temperature Schedule Name
+    40;                      !- Maximum Wind Speed {m/s}
+
+	
 ! ------------------------ INFILTRATION
 
   ZoneInfiltration:DesignFlowRate,
@@ -1398,9 +2540,9 @@
     Perimeter0:f3:w0_ShadingControl,  !- Name
     ExteriorShade,           !- Shading Type
     ,                        !- Construction with Shading Name
-    OnIfHighSolarOnWindow,   !- Shading Control Type
-    AllOn,                   !- Schedule Name
-    180,                     !- Setpoint {W/m2, W or deg C}
+    OnIfHighZoneCooling,     !- Shading Control Type
+    AllOn,                        !- Schedule Name
+    24,                      !- Setpoint {W/m2, W or deg C}
     Yes,                     !- Shading Control Is Scheduled
     No,                      !- Glare Control Is Active
     Perimeter0:f3:w0_Shade,  !- Shading Device Material Name
@@ -1463,35 +2605,7 @@
 
 
 
-! ------------------------ PEOPLE
 
-  People,
-    People Perimeter1,       !- Name
-    Perimeter1,              !- Zone or ZoneList Name
-    occOffice,               !- Number of People Schedule Name
-    People/Area,             !- Number of People Calculation Method
-    ,                        !- Number of People
-    0.2,                     !- People per Zone Floor Area {person/m2}
-    ,                        !- Zone Floor Area per Person {m2/person}
-    0.3,                     !- Fraction Radiant
-    AUTOCALCULATE,           !- Sensible Heat Fraction
-    Perimeter1PeopleActivity,!- Activity Level Schedule Name
-    0.0000000382,            !- Carbon Dioxide Generation Rate {m3/s-W}
-    No,                      !- Enable ASHRAE 55 Comfort Warnings
-    ZoneAveraged,            !- Mean Radiant Temperature Calculation Type
-    ,                        !- Surface Name/Angle Factor List Name
-    Perimeter1WorkEfficiency,!- Work Efficiency Schedule Name
-    DynamicClothingModelASHRAE55,  !- Clothing Insulation Calculation Method
-    ,                        !- Clothing Insulation Calculation Method Schedule Name
-    ,                        !- Clothing Insulation Schedule Name
-    Perimeter1AirVelocity,   !- Air Velocity Schedule Name
-    AdaptiveASH55;           !- Thermal Comfort Model 1 Type
-
-  Schedule:Constant,Perimeter1PeopleActivity,Any Number,125.28;
-
-  Schedule:Constant,Perimeter1AirVelocity,Any Number,0.2;
-
-  Schedule:Constant,Perimeter1WorkEfficiency,Any Number,0;
 
 ! ------------------------ EQUIPMENT
 
@@ -1501,7 +2615,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -1547,155 +2661,9 @@
     3,                       !- Number of Stepped Control Steps
     1;                       !- Probability Lighting will be Reset When Needed in Manual Stepped Control
 
-! ------------------------ HVAC
 
-  Schedule:Constant,Perimeter1Heating_SP_Sch,Temperature,20;
 
-  Schedule:Constant,Perimeter1Cooling_SP_Sch,Temperature,26;
 
-  ZoneControl:Thermostat,
-    Perimeter1 Thermostat,   !- Name
-    Perimeter1,              !- Zone or ZoneList Name
-    Perimeter1ZoneControlTypeSched,  !- Control Type Schedule Name
-    ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
-    Dual Setpoint - Zone Perimeter1;  !- Control 1 Name
-
-  Schedule:Constant,Perimeter1ZoneControlTypeSched,Any Number,4;
-
-  ThermostatSetpoint:DualSetpoint,
-    Dual Setpoint - Zone Perimeter1,  !- Name
-    Perimeter1Heating_SP_Sch,!- Heating Setpoint Temperature Schedule Name
-    Perimeter1Cooling_SP_Sch;!- Cooling Setpoint Temperature Schedule Name
-
-  ZoneHVAC:EquipmentConnections,
-    Perimeter1,              !- Zone Name
-    Perimeter1 Equipment,    !- Zone Conditioning Equipment List Name
-    Perimeter1 Inlets,       !- Zone Air Inlet Node or NodeList Name
-    ,                        !- Zone Air Exhaust Node or NodeList Name
-    Node Perimeter1 Zone,    !- Zone Air Node Name
-    Node Perimeter1 Out;     !- Zone Return Air Node Name
-
-  ZoneHVAC:EquipmentList,
-    Perimeter1 Equipment,    !- Name
-    ZoneHVAC:IdealLoadsAirSystem,  !- Zone Equipment 1 Object Type
-    Perimeter1 Ideal Loads Air,  !- Zone Equipment 1 Name
-    1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
-
-  NodeList,
-    Perimeter1 Inlets,       !- Name
-    Node Perimeter1 In;      !- Node 1 Name
-
-  ZoneHVAC:IdealLoadsAirSystem,
-    Perimeter1 Ideal Loads Air,  !- Name
-    ,                        !- Availability Schedule Name
-    Node Perimeter1 In,      !- Zone Supply Air Node Name
-    ,                        !- Zone Exhaust Air Node Name
-    30,                      !- Maximum Heating Supply Air Temperature {C}
-    18,                      !- Minimum Cooling Supply Air Temperature {C}
-    0.01,                    !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
-    0.008,                   !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
-    NoLimit,                 !- Heating Limit
-    100,                     !- Maximum Heating Air Flow Rate {m3/s}
-    ,                        !- Maximum Sensible Heating Capacity {W}
-    NoLimit,                 !- Cooling Limit
-    100,                     !- Maximum Cooling Air Flow Rate {m3/s}
-    ,                        !- Maximum Total Cooling Capacity {W}
-    occOffice,               !- Heating Availability Schedule Name
-    occOffice,               !- Cooling Availability Schedule Name
-    None,                    !- Dehumidification Control Type
-    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
-    None,                    !- Humidification Control Type
-    ,                        !- Design Specification Outdoor Air Object Name
-    ,                        !- Outdoor Air Inlet Node Name
-    ,                        !- Demand Controlled Ventilation Type
-    NoEconomizer,            !- Outdoor Air Economizer Type
-    None,                    !- Heat Recovery Type
-    0.7,                     !- Sensible Heat Recovery Effectiveness {dimensionless}
-    0.65;                    !- Latent Heat Recovery Effectiveness {dimensionless}
-
-  ZoneControl:Humidistat,
-    Perimeter1Humidistat,    !- Name
-    Perimeter1,              !- Zone Name
-    Perimeter1HumidMin,      !- Humidifying Relative Humidity Setpoint Schedule Name
-    Perimeter1HumidMax;      !- Dehumidifying Relative Humidity Setpoint Schedule Name
-
-  Schedule:Constant,Perimeter1HumidMin,Any Number,20;
-
-  Schedule:Constant,Perimeter1HumidMax,Any Number,80;
-
-! ------------------------ NATVENT
-
-  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter1,Fraction,1;
-
-! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter1,Schedule Value,Hourly;
-! Output:Variable,occOffice,Schedule Value,Hourly;
-
-  EnergyManagementSystem:Actuator,
-    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter1,  !- Name
-    NATVENT_AVAIL_SCHED_Perimeter1,  !- Actuated Component Unique Name
-    Schedule:Constant,       !- Actuated Component Type
-    Schedule Value;          !- Actuated Component Control Type
-
-  EnergyManagementSystem:Sensor,
-    USRNATVENT_Perimeter1,   !- Name
-    occOffice,               !- Output:Variable or Output:Meter Index Key Name
-    Schedule Value;          !- Output:Variable or Output:Meter Name
-
-  EnergyManagementSystem:ProgramCallingManager,
-    My Perimeter1_Setpoint_Schedule_Calculator_Example,  !- Name
-    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
-    Perimeter1_ErlEnforceBinary;  !- Program Name 1
-
-  EnergyManagementSystem:Program,
-    Perimeter1_ErlEnforceBinary,  !- Name
-    IF (USRNATVENT_Perimeter1 > 0),  !- Program Line 1
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter1 = 1,  !- Program Line 2
-    ELSE,                    !- <none>
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter1 = 0,  !- <none>
-    ENDIF;                   !- <none>
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter1NatVent_Buoy,  !- Name
-    Perimeter1,              !- Zone Name
-    %Vent_f1%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter1,  !- Opening Area Fraction Schedule Name
-    0,                       !- Opening Effectiveness {dimensionless}
-    0,                       !- Effective Angle {deg}
-    0.624999999999971,       !- Height Difference {m}
-    AutoCalculate,                     !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter1NatVent_Wind0, !- Name
-    Perimeter1,              !- Zone Name
-    %Vent_f1%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter1,  !- Opening Area Fraction Schedule Name
-    Autocalculate,           !- Opening Effectiveness {dimensionless}
-    180,                     !- Effective Angle {deg}
-    0,                       !- Height Difference {m}
-    0,                       !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
 
 ! ------------------------ INFILTRATION
 
@@ -1788,9 +2756,9 @@
     Perimeter1:f2:w0_ShadingControl,  !- Name
     ExteriorShade,           !- Shading Type
     ,                        !- Construction with Shading Name
-    OnIfHighSolarOnWindow,   !- Shading Control Type
-    AllOn,                   !- Schedule Name
-    180,                     !- Setpoint {W/m2, W or deg C}
+    OnIfHighZoneCooling,     !- Shading Control Type
+    AllOn,                        !- Schedule Name
+    24,                      !- Setpoint {W/m2, W or deg C}
     Yes,                     !- Shading Control Is Scheduled
     No,                      !- Glare Control Is Active
     Perimeter1:f2:w0_Shade,  !- Shading Device Material Name
@@ -1871,35 +2839,6 @@
 
 
 
-! ------------------------ PEOPLE
-
-  People,
-    People Perimeter2,       !- Name
-    Perimeter2,              !- Zone or ZoneList Name
-    occOffice,               !- Number of People Schedule Name
-    People/Area,             !- Number of People Calculation Method
-    ,                        !- Number of People
-    0.2,                     !- People per Zone Floor Area {person/m2}
-    ,                        !- Zone Floor Area per Person {m2/person}
-    0.3,                     !- Fraction Radiant
-    AUTOCALCULATE,           !- Sensible Heat Fraction
-    Perimeter2PeopleActivity,!- Activity Level Schedule Name
-    0.0000000382,            !- Carbon Dioxide Generation Rate {m3/s-W}
-    No,                      !- Enable ASHRAE 55 Comfort Warnings
-    ZoneAveraged,            !- Mean Radiant Temperature Calculation Type
-    ,                        !- Surface Name/Angle Factor List Name
-    Perimeter2WorkEfficiency,!- Work Efficiency Schedule Name
-    DynamicClothingModelASHRAE55,  !- Clothing Insulation Calculation Method
-    ,                        !- Clothing Insulation Calculation Method Schedule Name
-    ,                        !- Clothing Insulation Schedule Name
-    Perimeter2AirVelocity,   !- Air Velocity Schedule Name
-    AdaptiveASH55;           !- Thermal Comfort Model 1 Type
-
-  Schedule:Constant,Perimeter2PeopleActivity,Any Number,125.28;
-
-  Schedule:Constant,Perimeter2AirVelocity,Any Number,0.2;
-
-  Schedule:Constant,Perimeter2WorkEfficiency,Any Number,0;
 
 ! ------------------------ EQUIPMENT
 
@@ -1909,7 +2848,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -1955,155 +2894,9 @@
     3,                       !- Number of Stepped Control Steps
     1;                       !- Probability Lighting will be Reset When Needed in Manual Stepped Control
 
-! ------------------------ HVAC
 
-  Schedule:Constant,Perimeter2Heating_SP_Sch,Temperature,20;
 
-  Schedule:Constant,Perimeter2Cooling_SP_Sch,Temperature,26;
 
-  ZoneControl:Thermostat,
-    Perimeter2 Thermostat,   !- Name
-    Perimeter2,              !- Zone or ZoneList Name
-    Perimeter2ZoneControlTypeSched,  !- Control Type Schedule Name
-    ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
-    Dual Setpoint - Zone Perimeter2;  !- Control 1 Name
-
-  Schedule:Constant,Perimeter2ZoneControlTypeSched,Any Number,4;
-
-  ThermostatSetpoint:DualSetpoint,
-    Dual Setpoint - Zone Perimeter2,  !- Name
-    Perimeter2Heating_SP_Sch,!- Heating Setpoint Temperature Schedule Name
-    Perimeter2Cooling_SP_Sch;!- Cooling Setpoint Temperature Schedule Name
-
-  ZoneHVAC:EquipmentConnections,
-    Perimeter2,              !- Zone Name
-    Perimeter2 Equipment,    !- Zone Conditioning Equipment List Name
-    Perimeter2 Inlets,       !- Zone Air Inlet Node or NodeList Name
-    ,                        !- Zone Air Exhaust Node or NodeList Name
-    Node Perimeter2 Zone,    !- Zone Air Node Name
-    Node Perimeter2 Out;     !- Zone Return Air Node Name
-
-  ZoneHVAC:EquipmentList,
-    Perimeter2 Equipment,    !- Name
-    ZoneHVAC:IdealLoadsAirSystem,  !- Zone Equipment 1 Object Type
-    Perimeter2 Ideal Loads Air,  !- Zone Equipment 1 Name
-    1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
-
-  NodeList,
-    Perimeter2 Inlets,       !- Name
-    Node Perimeter2 In;      !- Node 1 Name
-
-  ZoneHVAC:IdealLoadsAirSystem,
-    Perimeter2 Ideal Loads Air,  !- Name
-    ,                        !- Availability Schedule Name
-    Node Perimeter2 In,      !- Zone Supply Air Node Name
-    ,                        !- Zone Exhaust Air Node Name
-    30,                      !- Maximum Heating Supply Air Temperature {C}
-    18,                      !- Minimum Cooling Supply Air Temperature {C}
-    0.01,                    !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
-    0.008,                   !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
-    NoLimit,                 !- Heating Limit
-    100,                     !- Maximum Heating Air Flow Rate {m3/s}
-    ,                        !- Maximum Sensible Heating Capacity {W}
-    NoLimit,                 !- Cooling Limit
-    100,                     !- Maximum Cooling Air Flow Rate {m3/s}
-    ,                        !- Maximum Total Cooling Capacity {W}
-    occOffice,               !- Heating Availability Schedule Name
-    occOffice,               !- Cooling Availability Schedule Name
-    None,                    !- Dehumidification Control Type
-    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
-    None,                    !- Humidification Control Type
-    ,                        !- Design Specification Outdoor Air Object Name
-    ,                        !- Outdoor Air Inlet Node Name
-    ,                        !- Demand Controlled Ventilation Type
-    NoEconomizer,            !- Outdoor Air Economizer Type
-    None,                    !- Heat Recovery Type
-    0.7,                     !- Sensible Heat Recovery Effectiveness {dimensionless}
-    0.65;                    !- Latent Heat Recovery Effectiveness {dimensionless}
-
-  ZoneControl:Humidistat,
-    Perimeter2Humidistat,    !- Name
-    Perimeter2,              !- Zone Name
-    Perimeter2HumidMin,      !- Humidifying Relative Humidity Setpoint Schedule Name
-    Perimeter2HumidMax;      !- Dehumidifying Relative Humidity Setpoint Schedule Name
-
-  Schedule:Constant,Perimeter2HumidMin,Any Number,20;
-
-  Schedule:Constant,Perimeter2HumidMax,Any Number,80;
-
-! ------------------------ NATVENT
-
-  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter2,Fraction,1;
-
-! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter2,Schedule Value,Hourly;
-! Output:Variable,occOffice,Schedule Value,Hourly;
-
-  EnergyManagementSystem:Actuator,
-    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter2,  !- Name
-    NATVENT_AVAIL_SCHED_Perimeter2,  !- Actuated Component Unique Name
-    Schedule:Constant,       !- Actuated Component Type
-    Schedule Value;          !- Actuated Component Control Type
-
-  EnergyManagementSystem:Sensor,
-    USRNATVENT_Perimeter2,   !- Name
-    occOffice,               !- Output:Variable or Output:Meter Index Key Name
-    Schedule Value;          !- Output:Variable or Output:Meter Name
-
-  EnergyManagementSystem:ProgramCallingManager,
-    My Perimeter2_Setpoint_Schedule_Calculator_Example,  !- Name
-    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
-    Perimeter2_ErlEnforceBinary;  !- Program Name 1
-
-  EnergyManagementSystem:Program,
-    Perimeter2_ErlEnforceBinary,  !- Name
-    IF (USRNATVENT_Perimeter2 > 0),  !- Program Line 1
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter2 = 1,  !- Program Line 2
-    ELSE,                    !- <none>
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter2 = 0,  !- <none>
-    ENDIF;                   !- <none>
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter2NatVent_Buoy,  !- Name
-    Perimeter2,              !- Zone Name
-    %Vent_f2%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter2,  !- Opening Area Fraction Schedule Name
-    0,                       !- Opening Effectiveness {dimensionless}
-    0,                       !- Effective Angle {deg}
-    0.624999999999971,       !- Height Difference {m}
-    AutoCalculate,                     !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter2NatVent_Wind0, !- Name
-    Perimeter2,              !- Zone Name
-    %Vent_f2%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter2,  !- Opening Area Fraction Schedule Name
-    Autocalculate,           !- Opening Effectiveness {dimensionless}
-    90,                      !- Effective Angle {deg}
-    0,                       !- Height Difference {m}
-    0,                       !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
 
 ! ------------------------ INFILTRATION
 
@@ -2196,9 +2989,9 @@
     Perimeter2:f2:w0_ShadingControl,  !- Name
     ExteriorShade,           !- Shading Type
     ,                        !- Construction with Shading Name
-    OnIfHighSolarOnWindow,   !- Shading Control Type
-    AllOn,                   !- Schedule Name
-    180,                     !- Setpoint {W/m2, W or deg C}
+    OnIfHighZoneCooling,     !- Shading Control Type
+    AllOn,                        !- Schedule Name
+    24,                      !- Setpoint {W/m2, W or deg C}
     Yes,                     !- Shading Control Is Scheduled
     No,                      !- Glare Control Is Active
     Perimeter2:f2:w0_Shade,  !- Shading Device Material Name
@@ -2277,35 +3070,7 @@
     %px_3%,%py_3%,%pz_1%,  !- X,Y,Z ==> Vertex 3 {m}
     %pxin_3%,%pyin_3%,%pz_1%;  !- X,Y,Z ==> Vertex 4 {m}
 
-! ------------------------ PEOPLE
 
-  People,
-    People Perimeter3,       !- Name
-    Perimeter3,              !- Zone or ZoneList Name
-    occOffice,               !- Number of People Schedule Name
-    People/Area,             !- Number of People Calculation Method
-    ,                        !- Number of People
-    0.2,                     !- People per Zone Floor Area {person/m2}
-    ,                        !- Zone Floor Area per Person {m2/person}
-    0.3,                     !- Fraction Radiant
-    AUTOCALCULATE,           !- Sensible Heat Fraction
-    Perimeter3PeopleActivity,!- Activity Level Schedule Name
-    0.0000000382,            !- Carbon Dioxide Generation Rate {m3/s-W}
-    No,                      !- Enable ASHRAE 55 Comfort Warnings
-    ZoneAveraged,            !- Mean Radiant Temperature Calculation Type
-    ,                        !- Surface Name/Angle Factor List Name
-    Perimeter3WorkEfficiency,!- Work Efficiency Schedule Name
-    DynamicClothingModelASHRAE55,  !- Clothing Insulation Calculation Method
-    ,                        !- Clothing Insulation Calculation Method Schedule Name
-    ,                        !- Clothing Insulation Schedule Name
-    Perimeter3AirVelocity,   !- Air Velocity Schedule Name
-    AdaptiveASH55;           !- Thermal Comfort Model 1 Type
-
-  Schedule:Constant,Perimeter3PeopleActivity,Any Number,125.28;
-
-  Schedule:Constant,Perimeter3AirVelocity,Any Number,0.2;
-
-  Schedule:Constant,Perimeter3WorkEfficiency,Any Number,0;
 
 ! ------------------------ EQUIPMENT
 
@@ -2315,7 +3080,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -2361,155 +3126,9 @@
     3,                       !- Number of Stepped Control Steps
     1;                       !- Probability Lighting will be Reset When Needed in Manual Stepped Control
 
-! ------------------------ HVAC
 
-  Schedule:Constant,Perimeter3Heating_SP_Sch,Temperature,20;
 
-  Schedule:Constant,Perimeter3Cooling_SP_Sch,Temperature,26;
 
-  ZoneControl:Thermostat,
-    Perimeter3 Thermostat,   !- Name
-    Perimeter3,              !- Zone or ZoneList Name
-    Perimeter3ZoneControlTypeSched,  !- Control Type Schedule Name
-    ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
-    Dual Setpoint - Zone Perimeter3;  !- Control 1 Name
-
-  Schedule:Constant,Perimeter3ZoneControlTypeSched,Any Number,4;
-
-  ThermostatSetpoint:DualSetpoint,
-    Dual Setpoint - Zone Perimeter3,  !- Name
-    Perimeter3Heating_SP_Sch,!- Heating Setpoint Temperature Schedule Name
-    Perimeter3Cooling_SP_Sch;!- Cooling Setpoint Temperature Schedule Name
-
-  ZoneHVAC:EquipmentConnections,
-    Perimeter3,              !- Zone Name
-    Perimeter3 Equipment,    !- Zone Conditioning Equipment List Name
-    Perimeter3 Inlets,       !- Zone Air Inlet Node or NodeList Name
-    ,                        !- Zone Air Exhaust Node or NodeList Name
-    Node Perimeter3 Zone,    !- Zone Air Node Name
-    Node Perimeter3 Out;     !- Zone Return Air Node Name
-
-  ZoneHVAC:EquipmentList,
-    Perimeter3 Equipment,    !- Name
-    ZoneHVAC:IdealLoadsAirSystem,  !- Zone Equipment 1 Object Type
-    Perimeter3 Ideal Loads Air,  !- Zone Equipment 1 Name
-    1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
-
-  NodeList,
-    Perimeter3 Inlets,       !- Name
-    Node Perimeter3 In;      !- Node 1 Name
-
-  ZoneHVAC:IdealLoadsAirSystem,
-    Perimeter3 Ideal Loads Air,  !- Name
-    ,                        !- Availability Schedule Name
-    Node Perimeter3 In,      !- Zone Supply Air Node Name
-    ,                        !- Zone Exhaust Air Node Name
-    30,                      !- Maximum Heating Supply Air Temperature {C}
-    18,                      !- Minimum Cooling Supply Air Temperature {C}
-    0.01,                    !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
-    0.008,                   !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
-    NoLimit,                 !- Heating Limit
-    100,                     !- Maximum Heating Air Flow Rate {m3/s}
-    ,                        !- Maximum Sensible Heating Capacity {W}
-    NoLimit,                 !- Cooling Limit
-    100,                     !- Maximum Cooling Air Flow Rate {m3/s}
-    ,                        !- Maximum Total Cooling Capacity {W}
-    occOffice,               !- Heating Availability Schedule Name
-    occOffice,               !- Cooling Availability Schedule Name
-    None,                    !- Dehumidification Control Type
-    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
-    None,                    !- Humidification Control Type
-    ,                        !- Design Specification Outdoor Air Object Name
-    ,                        !- Outdoor Air Inlet Node Name
-    ,                        !- Demand Controlled Ventilation Type
-    NoEconomizer,            !- Outdoor Air Economizer Type
-    None,                    !- Heat Recovery Type
-    0.7,                     !- Sensible Heat Recovery Effectiveness {dimensionless}
-    0.65;                    !- Latent Heat Recovery Effectiveness {dimensionless}
-
-  ZoneControl:Humidistat,
-    Perimeter3Humidistat,    !- Name
-    Perimeter3,              !- Zone Name
-    Perimeter3HumidMin,      !- Humidifying Relative Humidity Setpoint Schedule Name
-    Perimeter3HumidMax;      !- Dehumidifying Relative Humidity Setpoint Schedule Name
-
-  Schedule:Constant,Perimeter3HumidMin,Any Number,20;
-
-  Schedule:Constant,Perimeter3HumidMax,Any Number,80;
-
-! ------------------------ NATVENT
-
-  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter3,Fraction,1;
-
-! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter3,Schedule Value,Hourly;
-! Output:Variable,occOffice,Schedule Value,Hourly;
-
-  EnergyManagementSystem:Actuator,
-    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter3,  !- Name
-    NATVENT_AVAIL_SCHED_Perimeter3,  !- Actuated Component Unique Name
-    Schedule:Constant,       !- Actuated Component Type
-    Schedule Value;          !- Actuated Component Control Type
-
-  EnergyManagementSystem:Sensor,
-    USRNATVENT_Perimeter3,   !- Name
-    occOffice,               !- Output:Variable or Output:Meter Index Key Name
-    Schedule Value;          !- Output:Variable or Output:Meter Name
-
-  EnergyManagementSystem:ProgramCallingManager,
-    My Perimeter3_Setpoint_Schedule_Calculator_Example,  !- Name
-    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
-    Perimeter3_ErlEnforceBinary;  !- Program Name 1
-
-  EnergyManagementSystem:Program,
-    Perimeter3_ErlEnforceBinary,  !- Name
-    IF (USRNATVENT_Perimeter3 > 0),  !- Program Line 1
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter3 = 1,  !- Program Line 2
-    ELSE,                    !- <none>
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter3 = 0,  !- <none>
-    ENDIF;                   !- <none>
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter3NatVent_Buoy,  !- Name
-    Perimeter3,              !- Zone Name
-    %Vent_f3%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter3,  !- Opening Area Fraction Schedule Name
-    0,                       !- Opening Effectiveness {dimensionless}
-    0,                       !- Effective Angle {deg}
-    0.624999999999971,       !- Height Difference {m}
-    AutoCalculate,                     !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter3NatVent_Wind0, !- Name
-    Perimeter3,              !- Zone Name
-    %Vent_f3%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter3,  !- Opening Area Fraction Schedule Name
-    Autocalculate,           !- Opening Effectiveness {dimensionless}
-    0,                       !- Effective Angle {deg}
-    0,                       !- Height Difference {m}
-    0,                       !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
 
 ! ------------------------ INFILTRATION
 
@@ -2638,9 +3257,9 @@
     Perimeter3:f4:w0_ShadingControl,  !- Name
     ExteriorShade,           !- Shading Type
     ,                        !- Construction with Shading Name
-    OnIfHighSolarOnWindow,   !- Shading Control Type
-    AllOn,                   !- Schedule Name
-    180,                     !- Setpoint {W/m2, W or deg C}
+    OnIfHighZoneCooling,     !- Shading Control Type
+    AllOn,                        !- Schedule Name
+    24,                      !- Setpoint {W/m2, W or deg C}
     Yes,                     !- Shading Control Is Scheduled
     No,                      !- Glare Control Is Active
     Perimeter3:f4:w0_Shade,  !- Shading Device Material Name
@@ -2699,35 +3318,7 @@
     TARP,                    !- Zone Inside Convection Algorithm
     DOE-2;                   !- Zone Outside Convection Algorithm
 
-! ------------------------ PEOPLE
 
-  People,
-    People Perimeter4,       !- Name
-    Perimeter4,              !- Zone or ZoneList Name
-    occOffice,               !- Number of People Schedule Name
-    People/Area,             !- Number of People Calculation Method
-    ,                        !- Number of People
-    0.2,                     !- People per Zone Floor Area {person/m2}
-    ,                        !- Zone Floor Area per Person {m2/person}
-    0.3,                     !- Fraction Radiant
-    AUTOCALCULATE,           !- Sensible Heat Fraction
-    Perimeter4PeopleActivity,!- Activity Level Schedule Name
-    0.0000000382,            !- Carbon Dioxide Generation Rate {m3/s-W}
-    No,                      !- Enable ASHRAE 55 Comfort Warnings
-    ZoneAveraged,            !- Mean Radiant Temperature Calculation Type
-    ,                        !- Surface Name/Angle Factor List Name
-    Perimeter4WorkEfficiency,!- Work Efficiency Schedule Name
-    DynamicClothingModelASHRAE55,  !- Clothing Insulation Calculation Method
-    ,                        !- Clothing Insulation Calculation Method Schedule Name
-    ,                        !- Clothing Insulation Schedule Name
-    Perimeter4AirVelocity,   !- Air Velocity Schedule Name
-    AdaptiveASH55;           !- Thermal Comfort Model 1 Type
-
-  Schedule:Constant,Perimeter4PeopleActivity,Any Number,125.28;
-
-  Schedule:Constant,Perimeter4AirVelocity,Any Number,0.2;
-
-  Schedule:Constant,Perimeter4WorkEfficiency,Any Number,0;
 
 ! ------------------------ EQUIPMENT
 
@@ -2737,7 +3328,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -2783,155 +3374,9 @@
     3,                       !- Number of Stepped Control Steps
     1;                       !- Probability Lighting will be Reset When Needed in Manual Stepped Control
 
-! ------------------------ HVAC
 
-  Schedule:Constant,Perimeter4Heating_SP_Sch,Temperature,20;
 
-  Schedule:Constant,Perimeter4Cooling_SP_Sch,Temperature,26;
 
-  ZoneControl:Thermostat,
-    Perimeter4 Thermostat,   !- Name
-    Perimeter4,              !- Zone or ZoneList Name
-    Perimeter4ZoneControlTypeSched,  !- Control Type Schedule Name
-    ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
-    Dual Setpoint - Zone Perimeter4;  !- Control 1 Name
-
-  Schedule:Constant,Perimeter4ZoneControlTypeSched,Any Number,4;
-
-  ThermostatSetpoint:DualSetpoint,
-    Dual Setpoint - Zone Perimeter4,  !- Name
-    Perimeter4Heating_SP_Sch,!- Heating Setpoint Temperature Schedule Name
-    Perimeter4Cooling_SP_Sch;!- Cooling Setpoint Temperature Schedule Name
-
-  ZoneHVAC:EquipmentConnections,
-    Perimeter4,              !- Zone Name
-    Perimeter4 Equipment,    !- Zone Conditioning Equipment List Name
-    Perimeter4 Inlets,       !- Zone Air Inlet Node or NodeList Name
-    ,                        !- Zone Air Exhaust Node or NodeList Name
-    Node Perimeter4 Zone,    !- Zone Air Node Name
-    Node Perimeter4 Out;     !- Zone Return Air Node Name
-
-  ZoneHVAC:EquipmentList,
-    Perimeter4 Equipment,    !- Name
-    ZoneHVAC:IdealLoadsAirSystem,  !- Zone Equipment 1 Object Type
-    Perimeter4 Ideal Loads Air,  !- Zone Equipment 1 Name
-    1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
-
-  NodeList,
-    Perimeter4 Inlets,       !- Name
-    Node Perimeter4 In;      !- Node 1 Name
-
-  ZoneHVAC:IdealLoadsAirSystem,
-    Perimeter4 Ideal Loads Air,  !- Name
-    ,                        !- Availability Schedule Name
-    Node Perimeter4 In,      !- Zone Supply Air Node Name
-    ,                        !- Zone Exhaust Air Node Name
-    30,                      !- Maximum Heating Supply Air Temperature {C}
-    18,                      !- Minimum Cooling Supply Air Temperature {C}
-    0.01,                    !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
-    0.008,                   !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
-    NoLimit,                 !- Heating Limit
-    100,                     !- Maximum Heating Air Flow Rate {m3/s}
-    ,                        !- Maximum Sensible Heating Capacity {W}
-    NoLimit,                 !- Cooling Limit
-    100,                     !- Maximum Cooling Air Flow Rate {m3/s}
-    ,                        !- Maximum Total Cooling Capacity {W}
-    occOffice,               !- Heating Availability Schedule Name
-    occOffice,               !- Cooling Availability Schedule Name
-    None,                    !- Dehumidification Control Type
-    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
-    None,                    !- Humidification Control Type
-    ,                        !- Design Specification Outdoor Air Object Name
-    ,                        !- Outdoor Air Inlet Node Name
-    ,                        !- Demand Controlled Ventilation Type
-    NoEconomizer,            !- Outdoor Air Economizer Type
-    None,                    !- Heat Recovery Type
-    0.7,                     !- Sensible Heat Recovery Effectiveness {dimensionless}
-    0.65;                    !- Latent Heat Recovery Effectiveness {dimensionless}
-
-  ZoneControl:Humidistat,
-    Perimeter4Humidistat,    !- Name
-    Perimeter4,              !- Zone Name
-    Perimeter4HumidMin,      !- Humidifying Relative Humidity Setpoint Schedule Name
-    Perimeter4HumidMax;      !- Dehumidifying Relative Humidity Setpoint Schedule Name
-
-  Schedule:Constant,Perimeter4HumidMin,Any Number,20;
-
-  Schedule:Constant,Perimeter4HumidMax,Any Number,80;
-
-! ------------------------ NATVENT
-
-  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter4,Fraction,1;
-
-! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter4,Schedule Value,Hourly;
-! Output:Variable,occOffice,Schedule Value,Hourly;
-
-  EnergyManagementSystem:Actuator,
-    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter4,  !- Name
-    NATVENT_AVAIL_SCHED_Perimeter4,  !- Actuated Component Unique Name
-    Schedule:Constant,       !- Actuated Component Type
-    Schedule Value;          !- Actuated Component Control Type
-
-  EnergyManagementSystem:Sensor,
-    USRNATVENT_Perimeter4,   !- Name
-    occOffice,               !- Output:Variable or Output:Meter Index Key Name
-    Schedule Value;          !- Output:Variable or Output:Meter Name
-
-  EnergyManagementSystem:ProgramCallingManager,
-    My Perimeter4_Setpoint_Schedule_Calculator_Example,  !- Name
-    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
-    Perimeter4_ErlEnforceBinary;  !- Program Name 1
-
-  EnergyManagementSystem:Program,
-    Perimeter4_ErlEnforceBinary,  !- Name
-    IF (USRNATVENT_Perimeter4 > 0),  !- Program Line 1
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter4 = 1,  !- Program Line 2
-    ELSE,                    !- <none>
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter4 = 0,  !- <none>
-    ENDIF;                   !- <none>
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter4NatVent_Buoy,  !- Name
-    Perimeter4,              !- Zone Name
-    %Vent_f0%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter4,  !- Opening Area Fraction Schedule Name
-    0,                       !- Opening Effectiveness {dimensionless}
-    0,                       !- Effective Angle {deg}
-    0.624999999999971,       !- Height Difference {m}
-    AutoCalculate,                     !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter4NatVent_Wind0, !- Name
-    Perimeter4,              !- Zone Name
-    %Vent_f0%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter4,  !- Opening Area Fraction Schedule Name
-    Autocalculate,           !- Opening Effectiveness {dimensionless}
-    270,                     !- Effective Angle {deg}
-    0,                       !- Height Difference {m}
-    0,                       !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
 
 ! ------------------------ INFILTRATION
 
@@ -3042,9 +3487,9 @@
     Perimeter4:f3:w0_ShadingControl,  !- Name
     ExteriorShade,           !- Shading Type
     ,                        !- Construction with Shading Name
-    OnIfHighSolarOnWindow,   !- Shading Control Type
-    AllOn,                   !- Schedule Name
-    180,                     !- Setpoint {W/m2, W or deg C}
+    OnIfHighZoneCooling,     !- Shading Control Type
+    AllOn,                        !- Schedule Name
+    24,                      !- Setpoint {W/m2, W or deg C}
     Yes,                     !- Shading Control Is Scheduled
     No,                      !- Glare Control Is Active
     Perimeter4:f3:w0_Shade,  !- Shading Device Material Name
@@ -3121,35 +3566,6 @@
     TARP,                    !- Zone Inside Convection Algorithm
     DOE-2;                   !- Zone Outside Convection Algorithm
 
-! ------------------------ PEOPLE
-
-  People,
-    People Perimeter5,       !- Name
-    Perimeter5,              !- Zone or ZoneList Name
-    occOffice,               !- Number of People Schedule Name
-    People/Area,             !- Number of People Calculation Method
-    ,                        !- Number of People
-    0.2,                     !- People per Zone Floor Area {person/m2}
-    ,                        !- Zone Floor Area per Person {m2/person}
-    0.3,                     !- Fraction Radiant
-    AUTOCALCULATE,           !- Sensible Heat Fraction
-    Perimeter5PeopleActivity,!- Activity Level Schedule Name
-    0.0000000382,            !- Carbon Dioxide Generation Rate {m3/s-W}
-    No,                      !- Enable ASHRAE 55 Comfort Warnings
-    ZoneAveraged,            !- Mean Radiant Temperature Calculation Type
-    ,                        !- Surface Name/Angle Factor List Name
-    Perimeter5WorkEfficiency,!- Work Efficiency Schedule Name
-    DynamicClothingModelASHRAE55,  !- Clothing Insulation Calculation Method
-    ,                        !- Clothing Insulation Calculation Method Schedule Name
-    ,                        !- Clothing Insulation Schedule Name
-    Perimeter5AirVelocity,   !- Air Velocity Schedule Name
-    AdaptiveASH55;           !- Thermal Comfort Model 1 Type
-
-  Schedule:Constant,Perimeter5PeopleActivity,Any Number,125.28;
-
-  Schedule:Constant,Perimeter5AirVelocity,Any Number,0.2;
-
-  Schedule:Constant,Perimeter5WorkEfficiency,Any Number,0;
 
 ! ------------------------ EQUIPMENT
 
@@ -3159,7 +3575,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -3205,155 +3621,9 @@
     3,                       !- Number of Stepped Control Steps
     1;                       !- Probability Lighting will be Reset When Needed in Manual Stepped Control
 
-! ------------------------ HVAC
 
-  Schedule:Constant,Perimeter5Heating_SP_Sch,Temperature,20;
 
-  Schedule:Constant,Perimeter5Cooling_SP_Sch,Temperature,26;
 
-  ZoneControl:Thermostat,
-    Perimeter5 Thermostat,   !- Name
-    Perimeter5,              !- Zone or ZoneList Name
-    Perimeter5ZoneControlTypeSched,  !- Control Type Schedule Name
-    ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
-    Dual Setpoint - Zone Perimeter5;  !- Control 1 Name
-
-  Schedule:Constant,Perimeter5ZoneControlTypeSched,Any Number,4;
-
-  ThermostatSetpoint:DualSetpoint,
-    Dual Setpoint - Zone Perimeter5,  !- Name
-    Perimeter5Heating_SP_Sch,!- Heating Setpoint Temperature Schedule Name
-    Perimeter5Cooling_SP_Sch;!- Cooling Setpoint Temperature Schedule Name
-
-  ZoneHVAC:EquipmentConnections,
-    Perimeter5,              !- Zone Name
-    Perimeter5 Equipment,    !- Zone Conditioning Equipment List Name
-    Perimeter5 Inlets,       !- Zone Air Inlet Node or NodeList Name
-    ,                        !- Zone Air Exhaust Node or NodeList Name
-    Node Perimeter5 Zone,    !- Zone Air Node Name
-    Node Perimeter5 Out;     !- Zone Return Air Node Name
-
-  ZoneHVAC:EquipmentList,
-    Perimeter5 Equipment,    !- Name
-    ZoneHVAC:IdealLoadsAirSystem,  !- Zone Equipment 1 Object Type
-    Perimeter5 Ideal Loads Air,  !- Zone Equipment 1 Name
-    1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
-
-  NodeList,
-    Perimeter5 Inlets,       !- Name
-    Node Perimeter5 In;      !- Node 1 Name
-
-  ZoneHVAC:IdealLoadsAirSystem,
-    Perimeter5 Ideal Loads Air,  !- Name
-    ,                        !- Availability Schedule Name
-    Node Perimeter5 In,      !- Zone Supply Air Node Name
-    ,                        !- Zone Exhaust Air Node Name
-    30,                      !- Maximum Heating Supply Air Temperature {C}
-    18,                      !- Minimum Cooling Supply Air Temperature {C}
-    0.01,                    !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
-    0.008,                   !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
-    NoLimit,                 !- Heating Limit
-    100,                     !- Maximum Heating Air Flow Rate {m3/s}
-    ,                        !- Maximum Sensible Heating Capacity {W}
-    NoLimit,                 !- Cooling Limit
-    100,                     !- Maximum Cooling Air Flow Rate {m3/s}
-    ,                        !- Maximum Total Cooling Capacity {W}
-    occOffice,               !- Heating Availability Schedule Name
-    occOffice,               !- Cooling Availability Schedule Name
-    None,                    !- Dehumidification Control Type
-    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
-    None,                    !- Humidification Control Type
-    ,                        !- Design Specification Outdoor Air Object Name
-    ,                        !- Outdoor Air Inlet Node Name
-    ,                        !- Demand Controlled Ventilation Type
-    NoEconomizer,            !- Outdoor Air Economizer Type
-    None,                    !- Heat Recovery Type
-    0.7,                     !- Sensible Heat Recovery Effectiveness {dimensionless}
-    0.65;                    !- Latent Heat Recovery Effectiveness {dimensionless}
-
-  ZoneControl:Humidistat,
-    Perimeter5Humidistat,    !- Name
-    Perimeter5,              !- Zone Name
-    Perimeter5HumidMin,      !- Humidifying Relative Humidity Setpoint Schedule Name
-    Perimeter5HumidMax;      !- Dehumidifying Relative Humidity Setpoint Schedule Name
-
-  Schedule:Constant,Perimeter5HumidMin,Any Number,20;
-
-  Schedule:Constant,Perimeter5HumidMax,Any Number,80;
-
-! ------------------------ NATVENT
-
-  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter5,Fraction,1;
-
-! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter5,Schedule Value,Hourly;
-! Output:Variable,occOffice,Schedule Value,Hourly;
-
-  EnergyManagementSystem:Actuator,
-    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter5,  !- Name
-    NATVENT_AVAIL_SCHED_Perimeter5,  !- Actuated Component Unique Name
-    Schedule:Constant,       !- Actuated Component Type
-    Schedule Value;          !- Actuated Component Control Type
-
-  EnergyManagementSystem:Sensor,
-    USRNATVENT_Perimeter5,   !- Name
-    occOffice,               !- Output:Variable or Output:Meter Index Key Name
-    Schedule Value;          !- Output:Variable or Output:Meter Name
-
-  EnergyManagementSystem:ProgramCallingManager,
-    My Perimeter5_Setpoint_Schedule_Calculator_Example,  !- Name
-    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
-    Perimeter5_ErlEnforceBinary;  !- Program Name 1
-
-  EnergyManagementSystem:Program,
-    Perimeter5_ErlEnforceBinary,  !- Name
-    IF (USRNATVENT_Perimeter5 > 0),  !- Program Line 1
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter5 = 1,  !- Program Line 2
-    ELSE,                    !- <none>
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter5 = 0,  !- <none>
-    ENDIF;                   !- <none>
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter5NatVent_Buoy,  !- Name
-    Perimeter5,              !- Zone Name
-    %Vent_f1%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter5,  !- Opening Area Fraction Schedule Name
-    0,                       !- Opening Effectiveness {dimensionless}
-    0,                       !- Effective Angle {deg}
-    0.624999999999971,       !- Height Difference {m}
-    AutoCalculate,                     !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter5NatVent_Wind0, !- Name
-    Perimeter5,              !- Zone Name
-    %Vent_f1%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter5,  !- Opening Area Fraction Schedule Name
-    Autocalculate,           !- Opening Effectiveness {dimensionless}
-    180,                     !- Effective Angle {deg}
-    0,                       !- Height Difference {m}
-    0,                       !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
 
 ! ------------------------ INFILTRATION
 
@@ -3446,9 +3716,9 @@
     Perimeter5:f2:w0_ShadingControl,  !- Name
     ExteriorShade,           !- Shading Type
     ,                        !- Construction with Shading Name
-    OnIfHighSolarOnWindow,   !- Shading Control Type
-    AllOn,                   !- Schedule Name
-    180,                     !- Setpoint {W/m2, W or deg C}
+    OnIfHighZoneCooling,     !- Shading Control Type
+    AllOn,                        !- Schedule Name
+    24,                      !- Setpoint {W/m2, W or deg C}
     Yes,                     !- Shading Control Is Scheduled
     No,                      !- Glare Control Is Active
     Perimeter5:f2:w0_Shade,  !- Shading Device Material Name
@@ -3543,35 +3813,7 @@
     TARP,                    !- Zone Inside Convection Algorithm
     DOE-2;                   !- Zone Outside Convection Algorithm
 
-! ------------------------ PEOPLE
 
-  People,
-    People Perimeter6,       !- Name
-    Perimeter6,              !- Zone or ZoneList Name
-    occOffice,               !- Number of People Schedule Name
-    People/Area,             !- Number of People Calculation Method
-    ,                        !- Number of People
-    0.2,                     !- People per Zone Floor Area {person/m2}
-    ,                        !- Zone Floor Area per Person {m2/person}
-    0.3,                     !- Fraction Radiant
-    AUTOCALCULATE,           !- Sensible Heat Fraction
-    Perimeter6PeopleActivity,!- Activity Level Schedule Name
-    0.0000000382,            !- Carbon Dioxide Generation Rate {m3/s-W}
-    No,                      !- Enable ASHRAE 55 Comfort Warnings
-    ZoneAveraged,            !- Mean Radiant Temperature Calculation Type
-    ,                        !- Surface Name/Angle Factor List Name
-    Perimeter6WorkEfficiency,!- Work Efficiency Schedule Name
-    DynamicClothingModelASHRAE55,  !- Clothing Insulation Calculation Method
-    ,                        !- Clothing Insulation Calculation Method Schedule Name
-    ,                        !- Clothing Insulation Schedule Name
-    Perimeter6AirVelocity,   !- Air Velocity Schedule Name
-    AdaptiveASH55;           !- Thermal Comfort Model 1 Type
-
-  Schedule:Constant,Perimeter6PeopleActivity,Any Number,125.28;
-
-  Schedule:Constant,Perimeter6AirVelocity,Any Number,0.2;
-
-  Schedule:Constant,Perimeter6WorkEfficiency,Any Number,0;
 
 ! ------------------------ EQUIPMENT
 
@@ -3581,7 +3823,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -3627,155 +3869,9 @@
     3,                       !- Number of Stepped Control Steps
     1;                       !- Probability Lighting will be Reset When Needed in Manual Stepped Control
 
-! ------------------------ HVAC
 
-  Schedule:Constant,Perimeter6Heating_SP_Sch,Temperature,20;
 
-  Schedule:Constant,Perimeter6Cooling_SP_Sch,Temperature,26;
 
-  ZoneControl:Thermostat,
-    Perimeter6 Thermostat,   !- Name
-    Perimeter6,              !- Zone or ZoneList Name
-    Perimeter6ZoneControlTypeSched,  !- Control Type Schedule Name
-    ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
-    Dual Setpoint - Zone Perimeter6;  !- Control 1 Name
-
-  Schedule:Constant,Perimeter6ZoneControlTypeSched,Any Number,4;
-
-  ThermostatSetpoint:DualSetpoint,
-    Dual Setpoint - Zone Perimeter6,  !- Name
-    Perimeter6Heating_SP_Sch,!- Heating Setpoint Temperature Schedule Name
-    Perimeter6Cooling_SP_Sch;!- Cooling Setpoint Temperature Schedule Name
-
-  ZoneHVAC:EquipmentConnections,
-    Perimeter6,              !- Zone Name
-    Perimeter6 Equipment,    !- Zone Conditioning Equipment List Name
-    Perimeter6 Inlets,       !- Zone Air Inlet Node or NodeList Name
-    ,                        !- Zone Air Exhaust Node or NodeList Name
-    Node Perimeter6 Zone,    !- Zone Air Node Name
-    Node Perimeter6 Out;     !- Zone Return Air Node Name
-
-  ZoneHVAC:EquipmentList,
-    Perimeter6 Equipment,    !- Name
-    ZoneHVAC:IdealLoadsAirSystem,  !- Zone Equipment 1 Object Type
-    Perimeter6 Ideal Loads Air,  !- Zone Equipment 1 Name
-    1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
-
-  NodeList,
-    Perimeter6 Inlets,       !- Name
-    Node Perimeter6 In;      !- Node 1 Name
-
-  ZoneHVAC:IdealLoadsAirSystem,
-    Perimeter6 Ideal Loads Air,  !- Name
-    ,                        !- Availability Schedule Name
-    Node Perimeter6 In,      !- Zone Supply Air Node Name
-    ,                        !- Zone Exhaust Air Node Name
-    30,                      !- Maximum Heating Supply Air Temperature {C}
-    18,                      !- Minimum Cooling Supply Air Temperature {C}
-    0.01,                    !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
-    0.008,                   !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
-    NoLimit,                 !- Heating Limit
-    100,                     !- Maximum Heating Air Flow Rate {m3/s}
-    ,                        !- Maximum Sensible Heating Capacity {W}
-    NoLimit,                 !- Cooling Limit
-    100,                     !- Maximum Cooling Air Flow Rate {m3/s}
-    ,                        !- Maximum Total Cooling Capacity {W}
-    occOffice,               !- Heating Availability Schedule Name
-    occOffice,               !- Cooling Availability Schedule Name
-    None,                    !- Dehumidification Control Type
-    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
-    None,                    !- Humidification Control Type
-    ,                        !- Design Specification Outdoor Air Object Name
-    ,                        !- Outdoor Air Inlet Node Name
-    ,                        !- Demand Controlled Ventilation Type
-    NoEconomizer,            !- Outdoor Air Economizer Type
-    None,                    !- Heat Recovery Type
-    0.7,                     !- Sensible Heat Recovery Effectiveness {dimensionless}
-    0.65;                    !- Latent Heat Recovery Effectiveness {dimensionless}
-
-  ZoneControl:Humidistat,
-    Perimeter6Humidistat,    !- Name
-    Perimeter6,              !- Zone Name
-    Perimeter6HumidMin,      !- Humidifying Relative Humidity Setpoint Schedule Name
-    Perimeter6HumidMax;      !- Dehumidifying Relative Humidity Setpoint Schedule Name
-
-  Schedule:Constant,Perimeter6HumidMin,Any Number,20;
-
-  Schedule:Constant,Perimeter6HumidMax,Any Number,80;
-
-! ------------------------ NATVENT
-
-  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter6,Fraction,1;
-
-! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter6,Schedule Value,Hourly;
-! Output:Variable,occOffice,Schedule Value,Hourly;
-
-  EnergyManagementSystem:Actuator,
-    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter6,  !- Name
-    NATVENT_AVAIL_SCHED_Perimeter6,  !- Actuated Component Unique Name
-    Schedule:Constant,       !- Actuated Component Type
-    Schedule Value;          !- Actuated Component Control Type
-
-  EnergyManagementSystem:Sensor,
-    USRNATVENT_Perimeter6,   !- Name
-    occOffice,               !- Output:Variable or Output:Meter Index Key Name
-    Schedule Value;          !- Output:Variable or Output:Meter Name
-
-  EnergyManagementSystem:ProgramCallingManager,
-    My Perimeter6_Setpoint_Schedule_Calculator_Example,  !- Name
-    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
-    Perimeter6_ErlEnforceBinary;  !- Program Name 1
-
-  EnergyManagementSystem:Program,
-    Perimeter6_ErlEnforceBinary,  !- Name
-    IF (USRNATVENT_Perimeter6 > 0),  !- Program Line 1
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter6 = 1,  !- Program Line 2
-    ELSE,                    !- <none>
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter6 = 0,  !- <none>
-    ENDIF;                   !- <none>
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter6NatVent_Buoy,  !- Name
-    Perimeter6,              !- Zone Name
-    %Vent_f2%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter6,  !- Opening Area Fraction Schedule Name
-    0,                       !- Opening Effectiveness {dimensionless}
-    0,                       !- Effective Angle {deg}
-    0.624999999999971,       !- Height Difference {m}
-    AutoCalculate,                     !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter6NatVent_Wind0, !- Name
-    Perimeter6,              !- Zone Name
-    %Vent_f2%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter6,  !- Opening Area Fraction Schedule Name
-    Autocalculate,           !- Opening Effectiveness {dimensionless}
-    90,                      !- Effective Angle {deg}
-    0,                       !- Height Difference {m}
-    0,                       !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
 
 ! ------------------------ INFILTRATION
 
@@ -3868,9 +3964,9 @@
     Perimeter6:f2:w0_ShadingControl,  !- Name
     ExteriorShade,           !- Shading Type
     ,                        !- Construction with Shading Name
-    OnIfHighSolarOnWindow,   !- Shading Control Type
-    AllOn,                   !- Schedule Name
-    180,                     !- Setpoint {W/m2, W or deg C}
+    OnIfHighZoneCooling,     !- Shading Control Type
+    AllOn,                        !- Schedule Name
+    24,                      !- Setpoint {W/m2, W or deg C}
     Yes,                     !- Shading Control Is Scheduled
     No,                      !- Glare Control Is Active
     Perimeter6:f2:w0_Shade,  !- Shading Device Material Name
@@ -3965,35 +4061,7 @@
     TARP,                    !- Zone Inside Convection Algorithm
     DOE-2;                   !- Zone Outside Convection Algorithm
 
-! ------------------------ PEOPLE
 
-  People,
-    People Perimeter7,       !- Name
-    Perimeter7,              !- Zone or ZoneList Name
-    occOffice,               !- Number of People Schedule Name
-    People/Area,             !- Number of People Calculation Method
-    ,                        !- Number of People
-    0.2,                     !- People per Zone Floor Area {person/m2}
-    ,                        !- Zone Floor Area per Person {m2/person}
-    0.3,                     !- Fraction Radiant
-    AUTOCALCULATE,           !- Sensible Heat Fraction
-    Perimeter7PeopleActivity,!- Activity Level Schedule Name
-    0.0000000382,            !- Carbon Dioxide Generation Rate {m3/s-W}
-    No,                      !- Enable ASHRAE 55 Comfort Warnings
-    ZoneAveraged,            !- Mean Radiant Temperature Calculation Type
-    ,                        !- Surface Name/Angle Factor List Name
-    Perimeter7WorkEfficiency,!- Work Efficiency Schedule Name
-    DynamicClothingModelASHRAE55,  !- Clothing Insulation Calculation Method
-    ,                        !- Clothing Insulation Calculation Method Schedule Name
-    ,                        !- Clothing Insulation Schedule Name
-    Perimeter7AirVelocity,   !- Air Velocity Schedule Name
-    AdaptiveASH55;           !- Thermal Comfort Model 1 Type
-
-  Schedule:Constant,Perimeter7PeopleActivity,Any Number,125.28;
-
-  Schedule:Constant,Perimeter7AirVelocity,Any Number,0.2;
-
-  Schedule:Constant,Perimeter7WorkEfficiency,Any Number,0;
 
 ! ------------------------ EQUIPMENT
 
@@ -4003,7 +4071,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -4049,155 +4117,8 @@
     3,                       !- Number of Stepped Control Steps
     1;                       !- Probability Lighting will be Reset When Needed in Manual Stepped Control
 
-! ------------------------ HVAC
 
-  Schedule:Constant,Perimeter7Heating_SP_Sch,Temperature,20;
 
-  Schedule:Constant,Perimeter7Cooling_SP_Sch,Temperature,26;
-
-  ZoneControl:Thermostat,
-    Perimeter7 Thermostat,   !- Name
-    Perimeter7,              !- Zone or ZoneList Name
-    Perimeter7ZoneControlTypeSched,  !- Control Type Schedule Name
-    ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
-    Dual Setpoint - Zone Perimeter7;  !- Control 1 Name
-
-  Schedule:Constant,Perimeter7ZoneControlTypeSched,Any Number,4;
-
-  ThermostatSetpoint:DualSetpoint,
-    Dual Setpoint - Zone Perimeter7,  !- Name
-    Perimeter7Heating_SP_Sch,!- Heating Setpoint Temperature Schedule Name
-    Perimeter7Cooling_SP_Sch;!- Cooling Setpoint Temperature Schedule Name
-
-  ZoneHVAC:EquipmentConnections,
-    Perimeter7,              !- Zone Name
-    Perimeter7 Equipment,    !- Zone Conditioning Equipment List Name
-    Perimeter7 Inlets,       !- Zone Air Inlet Node or NodeList Name
-    ,                        !- Zone Air Exhaust Node or NodeList Name
-    Node Perimeter7 Zone,    !- Zone Air Node Name
-    Node Perimeter7 Out;     !- Zone Return Air Node Name
-
-  ZoneHVAC:EquipmentList,
-    Perimeter7 Equipment,    !- Name
-    ZoneHVAC:IdealLoadsAirSystem,  !- Zone Equipment 1 Object Type
-    Perimeter7 Ideal Loads Air,  !- Zone Equipment 1 Name
-    1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
-
-  NodeList,
-    Perimeter7 Inlets,       !- Name
-    Node Perimeter7 In;      !- Node 1 Name
-
-  ZoneHVAC:IdealLoadsAirSystem,
-    Perimeter7 Ideal Loads Air,  !- Name
-    ,                        !- Availability Schedule Name
-    Node Perimeter7 In,      !- Zone Supply Air Node Name
-    ,                        !- Zone Exhaust Air Node Name
-    30,                      !- Maximum Heating Supply Air Temperature {C}
-    18,                      !- Minimum Cooling Supply Air Temperature {C}
-    0.01,                    !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
-    0.008,                   !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
-    NoLimit,                 !- Heating Limit
-    100,                     !- Maximum Heating Air Flow Rate {m3/s}
-    ,                        !- Maximum Sensible Heating Capacity {W}
-    NoLimit,                 !- Cooling Limit
-    100,                     !- Maximum Cooling Air Flow Rate {m3/s}
-    ,                        !- Maximum Total Cooling Capacity {W}
-    occOffice,               !- Heating Availability Schedule Name
-    occOffice,               !- Cooling Availability Schedule Name
-    None,                    !- Dehumidification Control Type
-    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
-    None,                    !- Humidification Control Type
-    ,                        !- Design Specification Outdoor Air Object Name
-    ,                        !- Outdoor Air Inlet Node Name
-    ,                        !- Demand Controlled Ventilation Type
-    NoEconomizer,            !- Outdoor Air Economizer Type
-    None,                    !- Heat Recovery Type
-    0.7,                     !- Sensible Heat Recovery Effectiveness {dimensionless}
-    0.65;                    !- Latent Heat Recovery Effectiveness {dimensionless}
-
-  ZoneControl:Humidistat,
-    Perimeter7Humidistat,    !- Name
-    Perimeter7,              !- Zone Name
-    Perimeter7HumidMin,      !- Humidifying Relative Humidity Setpoint Schedule Name
-    Perimeter7HumidMax;      !- Dehumidifying Relative Humidity Setpoint Schedule Name
-
-  Schedule:Constant,Perimeter7HumidMin,Any Number,20;
-
-  Schedule:Constant,Perimeter7HumidMax,Any Number,80;
-
-! ------------------------ NATVENT
-
-  Schedule:Constant,NATVENT_AVAIL_SCHED_Perimeter7,Fraction,1;
-
-! Output:Variable,NATVENT_AVAIL_SCHED_Perimeter7,Schedule Value,Hourly;
-! Output:Variable,occOffice,Schedule Value,Hourly;
-
-  EnergyManagementSystem:Actuator,
-    NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter7,  !- Name
-    NATVENT_AVAIL_SCHED_Perimeter7,  !- Actuated Component Unique Name
-    Schedule:Constant,       !- Actuated Component Type
-    Schedule Value;          !- Actuated Component Control Type
-
-  EnergyManagementSystem:Sensor,
-    USRNATVENT_Perimeter7,   !- Name
-    occOffice,               !- Output:Variable or Output:Meter Index Key Name
-    Schedule Value;          !- Output:Variable or Output:Meter Name
-
-  EnergyManagementSystem:ProgramCallingManager,
-    My Perimeter7_Setpoint_Schedule_Calculator_Example,  !- Name
-    BeginTimestepBeforePredictor,  !- EnergyPlus Model Calling Point
-    Perimeter7_ErlEnforceBinary;  !- Program Name 1
-
-  EnergyManagementSystem:Program,
-    Perimeter7_ErlEnforceBinary,  !- Name
-    IF (USRNATVENT_Perimeter7 > 0),  !- Program Line 1
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter7 = 1,  !- Program Line 2
-    ELSE,                    !- <none>
-    Set NATVENT_AVAIL_SCHED_ACTUATOR_Perimeter7 = 0,  !- <none>
-    ENDIF;                   !- <none>
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter7NatVent_Buoy,  !- Name
-    Perimeter7,              !- Zone Name
-    %Vent_f3%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter7,  !- Opening Area Fraction Schedule Name
-    0,                       !- Opening Effectiveness {dimensionless}
-    0,                       !- Effective Angle {deg}
-    0.624999999999971,       !- Height Difference {m}
-    AutoCalculate,                     !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
-
-  ZoneVentilation:WindandStackOpenArea,
-    Perimeter7NatVent_Wind0, !- Name
-    Perimeter7,              !- Zone Name
-    %Vent_f3%,        !- Opening Area {m2}
-    NATVENT_AVAIL_SCHED_Perimeter7,  !- Opening Area Fraction Schedule Name
-    Autocalculate,           !- Opening Effectiveness {dimensionless}
-    0,                       !- Effective Angle {deg}
-    0,                       !- Height Difference {m}
-    0,                       !- Discharge Coefficient for Opening
-    23,                      !- Minimum Indoor Temperature {C}
-    ,                        !- Minimum Indoor Temperature Schedule Name
-    24,                     !- Maximum Indoor Temperature {C}
-    ,                        !- Maximum Indoor Temperature Schedule Name
-    1,                       !- Delta Temperature {deltaC}
-    ,                        !- Delta Temperature Schedule Name
-    15,                       !- Minimum Outdoor Temperature {C}
-    ,                        !- Minimum Outdoor Temperature Schedule Name
-    29,                      !- Maximum Outdoor Temperature {C}
-    ,                        !- Maximum Outdoor Temperature Schedule Name
-    40;                      !- Maximum Wind Speed {m/s}
 
 ! ------------------------ INFILTRATION
 
@@ -4326,9 +4247,9 @@
     Perimeter7:f4:w0_ShadingControl,  !- Name
     ExteriorShade,           !- Shading Type
     ,                        !- Construction with Shading Name
-    OnIfHighSolarOnWindow,   !- Shading Control Type
-    AllOn,                   !- Schedule Name
-    180,                     !- Setpoint {W/m2, W or deg C}
+    OnIfHighZoneCooling,     !- Shading Control Type
+    AllOn,                        !- Schedule Name
+    24,                      !- Setpoint {W/m2, W or deg C}
     Yes,                     !- Shading Control Is Scheduled
     No,                      !- Glare Control Is Active
     Perimeter7:f4:w0_Shade,  !- Shading Device Material Name
@@ -4387,35 +4308,7 @@
     TARP,                    !- Zone Inside Convection Algorithm
     DOE-2;                   !- Zone Outside Convection Algorithm
 
-! ------------------------ PEOPLE
 
-  People,
-    People Core0,            !- Name
-    Core0,                   !- Zone or ZoneList Name
-    occOffice,               !- Number of People Schedule Name
-    People/Area,             !- Number of People Calculation Method
-    ,                        !- Number of People
-    0.2,                     !- People per Zone Floor Area {person/m2}
-    ,                        !- Zone Floor Area per Person {m2/person}
-    0.3,                     !- Fraction Radiant
-    AUTOCALCULATE,           !- Sensible Heat Fraction
-    Core0PeopleActivity,     !- Activity Level Schedule Name
-    0.0000000382,            !- Carbon Dioxide Generation Rate {m3/s-W}
-    No,                      !- Enable ASHRAE 55 Comfort Warnings
-    ZoneAveraged,            !- Mean Radiant Temperature Calculation Type
-    ,                        !- Surface Name/Angle Factor List Name
-    Core0WorkEfficiency,     !- Work Efficiency Schedule Name
-    DynamicClothingModelASHRAE55,  !- Clothing Insulation Calculation Method
-    ,                        !- Clothing Insulation Calculation Method Schedule Name
-    ,                        !- Clothing Insulation Schedule Name
-    Core0AirVelocity,        !- Air Velocity Schedule Name
-    AdaptiveASH55;           !- Thermal Comfort Model 1 Type
-
-  Schedule:Constant,Core0PeopleActivity,Any Number,125.28;
-
-  Schedule:Constant,Core0AirVelocity,Any Number,0.2;
-
-  Schedule:Constant,Core0WorkEfficiency,Any Number,0;
 
 ! ------------------------ EQUIPMENT
 
@@ -4425,7 +4318,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -4452,82 +4345,7 @@
 
 
 
-! ------------------------ HVAC
 
-  Schedule:Constant,Core0Heating_SP_Sch,Temperature,20;
-
-  Schedule:Constant,Core0Cooling_SP_Sch,Temperature,26;
-
-  ZoneControl:Thermostat,
-    Core0 Thermostat,        !- Name
-    Core0,                   !- Zone or ZoneList Name
-    Core0ZoneControlTypeSched,  !- Control Type Schedule Name
-    ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
-    Dual Setpoint - Zone Core0;  !- Control 1 Name
-
-  Schedule:Constant,Core0ZoneControlTypeSched,Any Number,4;
-
-  ThermostatSetpoint:DualSetpoint,
-    Dual Setpoint - Zone Core0,  !- Name
-    Core0Heating_SP_Sch,     !- Heating Setpoint Temperature Schedule Name
-    Core0Cooling_SP_Sch;     !- Cooling Setpoint Temperature Schedule Name
-
-  ZoneHVAC:EquipmentConnections,
-    Core0,                   !- Zone Name
-    Core0 Equipment,         !- Zone Conditioning Equipment List Name
-    Core0 Inlets,            !- Zone Air Inlet Node or NodeList Name
-    ,                        !- Zone Air Exhaust Node or NodeList Name
-    Node Core0 Zone,         !- Zone Air Node Name
-    Node Core0 Out;          !- Zone Return Air Node Name
-
-  ZoneHVAC:EquipmentList,
-    Core0 Equipment,         !- Name
-    ZoneHVAC:IdealLoadsAirSystem,  !- Zone Equipment 1 Object Type
-    Core0 Ideal Loads Air,   !- Zone Equipment 1 Name
-    1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
-
-  NodeList,
-    Core0 Inlets,            !- Name
-    Node Core0 In;           !- Node 1 Name
-
-  ZoneHVAC:IdealLoadsAirSystem,
-    Core0 Ideal Loads Air,   !- Name
-    ,                        !- Availability Schedule Name
-    Node Core0 In,           !- Zone Supply Air Node Name
-    ,                        !- Zone Exhaust Air Node Name
-    30,                      !- Maximum Heating Supply Air Temperature {C}
-    18,                      !- Minimum Cooling Supply Air Temperature {C}
-    0.01,                    !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
-    0.008,                   !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
-    NoLimit,                 !- Heating Limit
-    100,                     !- Maximum Heating Air Flow Rate {m3/s}
-    ,                        !- Maximum Sensible Heating Capacity {W}
-    NoLimit,                 !- Cooling Limit
-    100,                     !- Maximum Cooling Air Flow Rate {m3/s}
-    ,                        !- Maximum Total Cooling Capacity {W}
-    occOffice,               !- Heating Availability Schedule Name
-    occOffice,               !- Cooling Availability Schedule Name
-    None,                    !- Dehumidification Control Type
-    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
-    None,                    !- Humidification Control Type
-    ,                        !- Design Specification Outdoor Air Object Name
-    ,                        !- Outdoor Air Inlet Node Name
-    ,                        !- Demand Controlled Ventilation Type
-    NoEconomizer,            !- Outdoor Air Economizer Type
-    None,                    !- Heat Recovery Type
-    0.7,                     !- Sensible Heat Recovery Effectiveness {dimensionless}
-    0.65;                    !- Latent Heat Recovery Effectiveness {dimensionless}
-
-  ZoneControl:Humidistat,
-    Core0Humidistat,         !- Name
-    Core0,                   !- Zone Name
-    Core0HumidMin,           !- Humidifying Relative Humidity Setpoint Schedule Name
-    Core0HumidMax;           !- Dehumidifying Relative Humidity Setpoint Schedule Name
-
-  Schedule:Constant,Core0HumidMin,Any Number,20;
-
-  Schedule:Constant,Core0HumidMax,Any Number,80;
 
 ! ------------------------ INFILTRATION
 
@@ -4670,35 +4488,7 @@
     TARP,                    !- Zone Inside Convection Algorithm
     DOE-2;                   !- Zone Outside Convection Algorithm
 
-! ------------------------ PEOPLE
 
-  People,
-    People Core1,            !- Name
-    Core1,                   !- Zone or ZoneList Name
-    occOffice,               !- Number of People Schedule Name
-    People/Area,             !- Number of People Calculation Method
-    ,                        !- Number of People
-    0.2,                     !- People per Zone Floor Area {person/m2}
-    ,                        !- Zone Floor Area per Person {m2/person}
-    0.3,                     !- Fraction Radiant
-    AUTOCALCULATE,           !- Sensible Heat Fraction
-    Core1PeopleActivity,     !- Activity Level Schedule Name
-    0.0000000382,            !- Carbon Dioxide Generation Rate {m3/s-W}
-    No,                      !- Enable ASHRAE 55 Comfort Warnings
-    ZoneAveraged,            !- Mean Radiant Temperature Calculation Type
-    ,                        !- Surface Name/Angle Factor List Name
-    Core1WorkEfficiency,     !- Work Efficiency Schedule Name
-    DynamicClothingModelASHRAE55,  !- Clothing Insulation Calculation Method
-    ,                        !- Clothing Insulation Calculation Method Schedule Name
-    ,                        !- Clothing Insulation Schedule Name
-    Core1AirVelocity,        !- Air Velocity Schedule Name
-    AdaptiveASH55;           !- Thermal Comfort Model 1 Type
-
-  Schedule:Constant,Core1PeopleActivity,Any Number,125.28;
-
-  Schedule:Constant,Core1AirVelocity,Any Number,0.2;
-
-  Schedule:Constant,Core1WorkEfficiency,Any Number,0;
 
 ! ------------------------ EQUIPMENT
 
@@ -4708,7 +4498,7 @@
     equipOffice,             !- Schedule Name
     Watts/Area,              !- Design Level Calculation Method
     ,                        !- Design Level {W}
-    12,                      !- Watts per Zone Floor Area {W/m2}
+    10,                      !- Watts per Zone Floor Area {W/m2}
     ,                        !- Watts per Person {W/person}
     0,                       !- Fraction Latent
     .2,                      !- Fraction Radiant
@@ -4735,82 +4525,7 @@
 
 
 
-! ------------------------ HVAC
 
-  Schedule:Constant,Core1Heating_SP_Sch,Temperature,20;
-
-  Schedule:Constant,Core1Cooling_SP_Sch,Temperature,26;
-
-  ZoneControl:Thermostat,
-    Core1 Thermostat,        !- Name
-    Core1,                   !- Zone or ZoneList Name
-    Core1ZoneControlTypeSched,  !- Control Type Schedule Name
-    ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
-    Dual Setpoint - Zone Core1;  !- Control 1 Name
-
-  Schedule:Constant,Core1ZoneControlTypeSched,Any Number,4;
-
-  ThermostatSetpoint:DualSetpoint,
-    Dual Setpoint - Zone Core1,  !- Name
-    Core1Heating_SP_Sch,     !- Heating Setpoint Temperature Schedule Name
-    Core1Cooling_SP_Sch;     !- Cooling Setpoint Temperature Schedule Name
-
-  ZoneHVAC:EquipmentConnections,
-    Core1,                   !- Zone Name
-    Core1 Equipment,         !- Zone Conditioning Equipment List Name
-    Core1 Inlets,            !- Zone Air Inlet Node or NodeList Name
-    ,                        !- Zone Air Exhaust Node or NodeList Name
-    Node Core1 Zone,         !- Zone Air Node Name
-    Node Core1 Out;          !- Zone Return Air Node Name
-
-  ZoneHVAC:EquipmentList,
-    Core1 Equipment,         !- Name
-    ZoneHVAC:IdealLoadsAirSystem,  !- Zone Equipment 1 Object Type
-    Core1 Ideal Loads Air,   !- Zone Equipment 1 Name
-    1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
-
-  NodeList,
-    Core1 Inlets,            !- Name
-    Node Core1 In;           !- Node 1 Name
-
-  ZoneHVAC:IdealLoadsAirSystem,
-    Core1 Ideal Loads Air,   !- Name
-    ,                        !- Availability Schedule Name
-    Node Core1 In,           !- Zone Supply Air Node Name
-    ,                        !- Zone Exhaust Air Node Name
-    30,                      !- Maximum Heating Supply Air Temperature {C}
-    18,                      !- Minimum Cooling Supply Air Temperature {C}
-    0.01,                    !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
-    0.008,                   !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
-    NoLimit,                 !- Heating Limit
-    100,                     !- Maximum Heating Air Flow Rate {m3/s}
-    ,                        !- Maximum Sensible Heating Capacity {W}
-    NoLimit,                 !- Cooling Limit
-    100,                     !- Maximum Cooling Air Flow Rate {m3/s}
-    ,                        !- Maximum Total Cooling Capacity {W}
-    occOffice,               !- Heating Availability Schedule Name
-    occOffice,               !- Cooling Availability Schedule Name
-    None,                    !- Dehumidification Control Type
-    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
-    None,                    !- Humidification Control Type
-    ,                        !- Design Specification Outdoor Air Object Name
-    ,                        !- Outdoor Air Inlet Node Name
-    ,                        !- Demand Controlled Ventilation Type
-    NoEconomizer,            !- Outdoor Air Economizer Type
-    None,                    !- Heat Recovery Type
-    0.7,                     !- Sensible Heat Recovery Effectiveness {dimensionless}
-    0.65;                    !- Latent Heat Recovery Effectiveness {dimensionless}
-
-  ZoneControl:Humidistat,
-    Core1Humidistat,         !- Name
-    Core1,                   !- Zone Name
-    Core1HumidMin,           !- Humidifying Relative Humidity Setpoint Schedule Name
-    Core1HumidMax;           !- Dehumidifying Relative Humidity Setpoint Schedule Name
-
-  Schedule:Constant,Core1HumidMin,Any Number,20;
-
-  Schedule:Constant,Core1HumidMax,Any Number,80;
 
 ! ------------------------ INFILTRATION
 
@@ -4939,7 +4654,10 @@
 
 	
 	
+	
 
+	
+	
 
 !========================================================================================  	
 ! ------------------------ OUTPUTS

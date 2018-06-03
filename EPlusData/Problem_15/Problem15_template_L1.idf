@@ -17,8 +17,8 @@
     1;                       !- Number of Times Runperiod to be Repeated
 
   RunPeriodControl:DaylightSavingTime,
-    Last Sunday in March,    !- Start Date
-    Last Sunday in October;  !- End Date
+    1 January,    !- Start Date
+    31 December;  !- End Date
 
   Site:GroundTemperature:BuildingSurface,14,14,14,14,14,14,14,14,14,14,14,14;
 
